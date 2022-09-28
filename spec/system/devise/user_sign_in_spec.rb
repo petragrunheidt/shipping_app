@@ -19,4 +19,17 @@ describe 'Usuário se autentica' do
     end
     expect(page).to have_content "Login efetuado com sucesso."
   end
+  it 'e faz logout' do
+    # Arrange
+    user = FactoryBot.create(:user)
+
+    # Act
+    login_as(user)
+    visit root_path
+    click_on 'Encerrar Sessão'
+
+    # Assert
+    expect(page).to have_content 'Logout efetuado com sucesso.'
+    expect(page).to have_link 'Iniciar Sessão'
+  end
 end

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ShippingApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+  </head>
+  <nav>
+  <h1>Transporte & Frete</h1>
+ <% if user_signed_in? %>
+  <p>Olá, <%= current_user.email %></p>
+  <%= button_to 'Encerrar Sessão', destroy_user_session_path, method: 'delete' %>
+  <% else %>
+  <%= link_to 'Iniciar Sessão', new_user_session_path %>
+  <% end %>
+  </nav>
+  <div><%= notice %></div>
+  <body class='admin'>
+    <%= yield %>
+  </body>
+</html>
