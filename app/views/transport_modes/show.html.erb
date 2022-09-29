@@ -1,6 +1,6 @@
 
 
-<h1><%= @transport_mode.name %></h1>
+<h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
 <h3>Tabela de informações de uso</h3>
 <table>
 <tr>
@@ -25,5 +25,8 @@
 <%= link_to 'Voltar', transport_modes_path %> |
 <% if current_user.admin %>
 <%= link_to 'Editar Modo de Transporte', edit_transport_mode_path %>
-<% end %>
 </div>
+<%= button_to @transport_mode.active? ? 'Desativar' : 'Ativar', @transport_mode.active? ? deactivate_transport_mode_path : activate_transport_mode_path, { method: 'patch'} %>
+<% end %>
+
+

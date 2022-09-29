@@ -1,6 +1,6 @@
 class TransportModesController < ApplicationController
-  before_action :check_admin, only: [:new, :create, :edit, :update]
-  before_action :set_transport_mode, only: [:show, :edit, :update]
+  before_action :check_admin, only: [:new, :create, :edit, :update, :activate, :deactivate]
+  before_action :set_transport_mode, only: [:show, :edit, :update, :activate, :deactivate]
   before_action :transport_mode_params, only: [:create, :update]
   def index
     @transport_mode = TransportMode.all
@@ -31,6 +31,15 @@ class TransportModesController < ApplicationController
     end
   end
 
+  def activate
+    @transport_mode.active!
+    return redirect_to @transport_mode, notice: 'Modo de Transporte ativado.'
+  end
+
+  def deactivate
+    @transport_mode.inactive!
+    return redirect_to @transport_mode, notice: 'Modo de Transporte desativado.'
+  end
 
   private
 

@@ -1,4 +1,5 @@
 class TransportMode < ApplicationRecord
+  enum status: { inactive: 0, active: 1 }
   validates :name, :min_weight, :max_weight, :min_distance, :max_distance, :shipping_value, presence: true
   validates :min_weight, :min_distance, :max_weight, :max_distance, :shipping_value, comparison: { greater_than: 0 }
   validates :max_weight, comparison: {greater_than: :min_weight}
