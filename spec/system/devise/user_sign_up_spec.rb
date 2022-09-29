@@ -8,7 +8,7 @@ describe 'Usuário cria sua conta' do
     visit new_user_session_path
     click_on "Criar uma conta"
     fill_in 'Nome', with: 'Petrinha'
-    fill_in 'E-mail', with: 'petrinha@gmail.com'
+    fill_in 'E-mail', with: 'petrinha@sistemadefrete.com.br'
     fill_in 'Senha', with: 'password'
     fill_in 'Confirme sua senha', with: 'password'
     click_on 'Criar conta'
