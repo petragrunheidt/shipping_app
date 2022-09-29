@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      transport_mode:
+        one: 'Modalidade de Transporte'
+        other: 'Modalidades de Transporte'
+    attributes:
+      transport_mode:
+        name: 'Nome'
+        min_weight: 'Carga mínima'
+        max_weight: 'Carga máxima'
+        min_distance: 'Distância mínima'
+        max_distance: 'Distância máxima'
+        shipping_value: 'Valor do frete'
+

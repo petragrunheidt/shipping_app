@@ -1,0 +1,29 @@
+
+
+<h1><%= @transport_mode.name %></h1>
+<h3>Tabela de informações de uso</h3>
+<table>
+<tr>
+    <th></th>
+    <th>Carga Suportada</th>
+    <th>Faixa de Distâncias</th>
+
+</tr>
+<tr>
+    <th>Min</th>
+    <th><%= @transport_mode.min_weight %>kg</th>
+    <th><%= @transport_mode.min_distance %>km</th>
+</tr>
+<tr>
+    <th>Max</th>
+    <th><%= @transport_mode.max_weight %>kg</th>
+    <th><%= @transport_mode.max_distance %>km</th>
+</tr>
+</table>
+<p><%= TransportMode.human_attribute_name('shipping_value') %>: <%= number_to_currency(@transport_mode.shipping_value, locale: 'pt-BR')%></p>
+<div style='inline-block'>
+<%= link_to 'Voltar', transport_modes_path %> |
+<% if current_user.admin %>
+<%= link_to 'Editar Modo de Transporte', edit_transport_mode_path %>
+<% end %>
+</div>

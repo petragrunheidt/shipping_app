@@ -1,0 +1,9 @@
+<h1><%= TransportMode.model_name.human(count: 2)%> disponíveis:</h1>
+<% if @transport_mode.present? %>
+<% @transport_mode.each do |trans| %>
+<h3><%= trans.name %></h3>
+<%= link_to 'mais informações', trans%>
+<% end %>
+<% else %>
+<h3>Nenhuma Modalidade de Transporte Cadastrada</h3>
+<% end %>

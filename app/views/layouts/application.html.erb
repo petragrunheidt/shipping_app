@@ -10,6 +10,9 @@
   </head>
   <nav>
   <h1>Transporte & Frete</h1>
+  <dt>
+  <dl><%=link_to 'Modos de Transporte', transport_modes_path%></dl>
+  </dt>
  <% if user_signed_in? %>
   <p>Olá, <%= current_user.email %></p>
   <%= button_to 'Encerrar Sessão', destroy_user_session_path, method: 'delete' %>
