@@ -6,5 +6,6 @@ FactoryBot.define do
     min_weight { 10 }
     max_weight { 100 }
     shipping_value { "9.99" }
+    status { 1 }
   end
 end

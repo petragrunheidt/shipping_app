@@ -1,0 +1,34 @@
+<%= form_with model: @vehicle do |trans| %>
+
+<% if @vehicle.errors.any? %>
+
+  <div id="error_explanation">
+    <h2>Todos os campos devem ser preenchidos</h2>
+    <div>
+      <% @vehicle.errors.each do |error| %>
+        <% flash.now[:alert] = error.full_message%>
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+
+        <% end %>
+   </div>
+<% end %>
+  </div>
+<% end %>
+<dl>
+<dt><%= trans.label :vehicle_brand %></dt>
+<dt><%= trans.text_field :vehicle_brand %></dt>
+<dt><%= trans.label :vehicle_model %></dt>
+<dt><%= trans.text_field :vehicle_model %></dt>
+<dt><%= trans.label :nameplate %></dt>
+<dt><%= trans.text_field :nameplate %></dt>
+<dt><%= trans.label :manifacture_year %></dt>
+<dt><%= trans.number_field :manifacture_year %></dt>
+<dt><%= trans.label :maximum_load %>(kg)</dt>
+<dt><%= trans.number_field :maximum_load %></dt>
+<dt><%= trans.label :transport_mode_id %></dt>
+<dt><%= trans.collection_select :transport_mode_id, @transport_modes, :id, :name, prompt:true %></dt>
+</dl>
+<%= trans.submit 'Enviar' %>
+
+<% end %>

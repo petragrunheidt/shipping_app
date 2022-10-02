@@ -8,4 +8,8 @@ Rails.application.routes.draw do
     patch :activate, on: :member
     patch :deactivate, on: :member
   end
+  resources :vehicles, only: [:index, :show, :new, :create, :edit, :update] do
+    patch :activate, on: :member
+    patch :deactivate, on: :member
+  end
 end

@@ -10,11 +10,20 @@
   </head>
   <nav>
   <h1>Transporte & Frete</h1>
-  <dt>
-  <dl><%=link_to 'Modos de Transporte', transport_modes_path%></dl>
-  </dt>
+
+
+<div tag="nav links">
+<%=link_to 'Modos de Transporte', transport_modes_path%> |
+<%=link_to 'Veículos', vehicles_path%>
+</div>
+
+
  <% if user_signed_in? %>
-  <p>Olá, <%= current_user.description %></p>
+  <p>Olá, <%= current_user.description %>
+  <% if current_user.admin == true %>
+  <%= link_to '| Pagina de Admin', admin_dashboard_index_path %>
+  <% end %>
+  </p>
   <%= button_to 'Encerrar Sessão', destroy_user_session_path, method: 'delete' %>
   <% else %>
   <%= link_to 'Iniciar Sessão', new_user_session_path %>

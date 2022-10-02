@@ -46,7 +46,7 @@ describe 'Administrador entra na pagina de cadastrar novo modo de transporte' do
     expect(page).to have_content 'R$ 10,00'
 
   end
-  it 'com sucesso' do
+  it 'e encontra mensagens de erro ao deixar campos em branco' do
     # Arrange
     admin = FactoryBot.create(:user, admin: true)
 

@@ -1,0 +1,18 @@
+<h1><%= @vehicle.full_description %> <%= @vehicle.circulation? ? '(Em circulação)' : '(Em manutenção)' %></h1>
+<h3>Informações do <%= Vehicle.model_name.human %></h3>
+<dl>
+<dt><%= Vehicle.human_attribute_name('vehicle_brand') %>: <%= @vehicle.vehicle_brand %></dt>
+<dt><%= Vehicle.human_attribute_name('vehicle_model') %>: <%= @vehicle.vehicle_model %></dt>
+<dt><%= Vehicle.human_attribute_name('nameplate') %>: <%= @vehicle.nameplate %></dt>
+<dt><%= Vehicle.human_attribute_name('manifacture_year') %>: <%= @vehicle.manifacture_year %></dt>
+<dt><%= Vehicle.human_attribute_name('maximum_load') %>: <%= @vehicle.maximum_load %>kg</dt>
+<dt><%= Vehicle.human_attribute_name('transport_mode') %>: <%=link_to @vehicle.transport_mode.name, @vehicle.transport_mode %></dt>
+</dl>
+
+<div style='inline-block'>
+<%= link_to 'Voltar', vehicles_path %> |
+<% if current_user.admin %>
+<%= link_to 'Editar dados do Veículo', edit_vehicle_path %>
+</div>
+<%= button_to @vehicle.circulation? ? 'Mandar Veículo para manutenção' : 'Mandar Veículo para circulação', @vehicle.circulation? ? deactivate_vehicle_path : activate_vehicle_path, { method: 'patch'} %>
+<% end %>

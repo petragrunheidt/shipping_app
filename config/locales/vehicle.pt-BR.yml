@@ -1,0 +1,15 @@
+pt-BR:
+  activerecord:
+    models:
+      vehicle:
+        one: 'Veículo'
+        other: 'Veículos'
+    attributes:
+      vehicle:
+        nameplate: 'Placa de Identificação'
+        vehicle_brand: 'Marca do Veículo'
+        vehicle_model: 'Modelo do Veículo'
+        maximum_load: 'Carga máxima'
+        manifacture_year: 'Ano de Fabricação'
+        transport_mode: 'Modalidade de Transporte'
+        transport_mode_id: 'Modalidade de Transporte'
