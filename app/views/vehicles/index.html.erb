@@ -1,4 +1,5 @@
 <h1><%= Vehicle.model_name.human(count: 2)%> disponíveis:</h1>
+<p><%= (link_to 'Cadastrar novo Veículo', new_vehicle_path) if current_user.admin == true %></p>
 <% if @vehicles.present? %>
 <% @vehicles.each do |trans| %>
 <h3><%= link_to trans.full_description, trans%> <%= trans.circulation? ? '(circulação)' : '(manutenção)' %></h3>

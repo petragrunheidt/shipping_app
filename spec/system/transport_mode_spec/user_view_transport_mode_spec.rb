@@ -5,7 +5,7 @@ describe 'Usuário vê modos de transporte cadastrados' do
         # Arrange
         user = FactoryBot.create(:user)
         TransportMode.create(name: 'Modal Rodoviário', min_distance: 10, max_distance: 100, min_weight: 10,
-           max_weight: 100, shipping_value: 10.00)
+           max_weight: 100, fixed_rate: 10.00)
 
         # Act
         login_as(user)
@@ -37,7 +37,7 @@ describe 'Usuário vê modos de transporte cadastrados' do
         # Arrange
         user = FactoryBot.create(:user)
         TransportMode.create(name: 'Modal Rodoviário', min_distance: 10, max_distance: 100, min_weight: 10,
-          max_weight: 100, shipping_value: 10.00)
+          max_weight: 100, fixed_rate: 10.00)
 
         # Act
         login_as(user)
@@ -58,7 +58,7 @@ describe 'Usuário vê modos de transporte cadastrados' do
       # Arrange
       user = FactoryBot.create(:user)
       TransportMode.create(name: 'Modal Rodoviário', min_distance: 10, max_distance: 100, min_weight: 10,
-        max_weight: 100, shipping_value: 10.00)
+        max_weight: 100, fixed_rate: 10.00)
 
       # Act
       login_as(user)

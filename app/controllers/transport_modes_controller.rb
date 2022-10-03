@@ -45,7 +45,7 @@ class TransportModesController < ApplicationController
 
   def transport_mode_params
     params.require(:transport_mode).permit(:name, :min_distance,
-      :max_distance, :min_weight, :max_weight, :shipping_value)
+      :max_distance, :min_weight, :max_weight, :fixed_rate)
   end
 
   def check_admin

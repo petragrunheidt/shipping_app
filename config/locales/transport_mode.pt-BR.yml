@@ -11,5 +11,5 @@ pt-BR:
         max_weight: 'Carga máxima'
         min_distance: 'Distância mínima'
         max_distance: 'Distância máxima'
-        shipping_value: 'Valor do frete'
+        fixed_rate: 'Taxa Fixa'
 

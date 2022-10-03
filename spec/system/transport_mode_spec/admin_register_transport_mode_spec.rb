@@ -17,7 +17,7 @@ describe 'Administrador entra na pagina de cadastrar novo modo de transporte' do
     expect(page).to have_field TransportMode.human_attribute_name('max_weight')
     expect(page).to have_field TransportMode.human_attribute_name('min_distance')
     expect(page).to have_field TransportMode.human_attribute_name('max_distance')
-    expect(page).to have_field TransportMode.human_attribute_name('shipping_value')
+    expect(page).to have_field TransportMode.human_attribute_name('fixed_rate')
   end
   it 'com sucesso' do
     # Arrange
@@ -32,7 +32,7 @@ describe 'Administrador entra na pagina de cadastrar novo modo de transporte' do
     fill_in 'Carga máxima', with: 100
     fill_in 'Distância mínima', with: 10
     fill_in 'Distância máxima', with: 100
-    fill_in 'Valor do frete', with: 10.00
+    fill_in 'Taxa Fixa', with: 10.00
     click_on 'Enviar'
 
     # Assert
@@ -59,7 +59,7 @@ describe 'Administrador entra na pagina de cadastrar novo modo de transporte' do
     fill_in 'Carga máxima', with: ''
     fill_in 'Distância mínima', with: 10
     fill_in 'Distância máxima', with: 100
-    fill_in 'Valor do frete', with: 10.00
+    fill_in 'Taxa Fixa', with: 10.00
     click_on 'Enviar'
 
     # Assert

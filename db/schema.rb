@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_03_141651) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_03_201743) do
   create_table "distance_tables", force: :cascade do |t|
     t.integer "min"
     t.integer "max"
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_03_141651) do
     t.integer "max_distance"
     t.integer "min_weight"
     t.integer "max_weight"
-    t.decimal "shipping_value"
+    t.decimal "fixed_rate"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0

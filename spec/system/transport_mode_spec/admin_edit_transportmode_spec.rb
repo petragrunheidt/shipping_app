@@ -18,7 +18,7 @@ describe 'Administrador entra na pagina de editar modo de transporte' do
     expect(page).to have_field TransportMode.human_attribute_name('max_weight')
     expect(page).to have_field TransportMode.human_attribute_name('min_distance')
     expect(page).to have_field TransportMode.human_attribute_name('max_distance')
-    expect(page).to have_field TransportMode.human_attribute_name('shipping_value')
+    expect(page).to have_field TransportMode.human_attribute_name('fixed_rate')
   end
   it 'com sucesso' do
     # Arrange
@@ -35,7 +35,7 @@ describe 'Administrador entra na pagina de editar modo de transporte' do
     fill_in 'Carga máxima', with: 1000
     fill_in 'Distância mínima', with: 10
     fill_in 'Distância máxima', with: 999
-    fill_in 'Valor do frete', with: 12.50
+    fill_in 'Taxa Fixa', with: 12.50
     click_on 'Enviar'
 
     # Assert

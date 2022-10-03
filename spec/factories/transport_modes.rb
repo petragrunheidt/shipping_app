@@ -5,7 +5,7 @@ FactoryBot.define do
     max_distance { 100 }
     min_weight { 10 }
     max_weight { 100 }
-    shipping_value { "9.99" }
+    fixed_rate { "9.99" }
     status { 1 }
   end
 end

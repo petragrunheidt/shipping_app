@@ -14,9 +14,9 @@ RSpec.describe TransportMode, type: :model do
         expect(result).to be false
 
       end
-      it 'false when shipping_value is empty' do
+      it 'false when fixed_rate is empty' do
         # Arrange
-        tm = FactoryBot.build(:transport_mode, shipping_value: '')
+        tm = FactoryBot.build(:transport_mode, fixed_rate: '')
 
         # Act
         result = tm.valid?
@@ -49,9 +49,9 @@ RSpec.describe TransportMode, type: :model do
         expect(result).to be false
 
       end
-      it 'false when shipping_value is not greater than 0' do
+      it 'false when fixed_rate is not greater than 0' do
         # Arrange
-        tm = FactoryBot.build(:transport_mode, shipping_value: 0)
+        tm = FactoryBot.build(:transport_mode, fixed_rate: 0)
 
         # Act
         result = tm.valid?

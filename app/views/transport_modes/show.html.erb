@@ -18,7 +18,7 @@
     <th><%= @transport_mode.max_distance %>km</th>
 </tr>
 </table>
-<p><%= TransportMode.human_attribute_name('shipping_value') %>: <%= number_to_currency(@transport_mode.shipping_value, locale: 'pt-BR')%></p>
+<p><%= TransportMode.human_attribute_name('fixed_rate') %>: <%= number_to_currency(@transport_mode.fixed_rate, locale: 'pt-BR')%></p>
 <div style='inline-block'>
 <%= link_to 'Voltar', transport_modes_path %> |
 <% if current_user.admin %>
