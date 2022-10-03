@@ -1,4 +1,4 @@
-class WeightTable < ApplicationRecord
+class DistanceTable < ApplicationRecord
 
   def next
     self.class.where("id > ?", id).first

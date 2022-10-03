@@ -1,0 +1,40 @@
+<%= form_with model: @weight_line do |line| %>
+
+<% if @weight_line.errors.any? %>
+
+  <div id="error_explanation">
+    <h2>Todos os campos devem ser preenchidos</h2>
+    <div>
+      <% @weight_line.errors.each do |error| %>
+        <% flash.now[:alert] = error.full_message%>
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+
+        <% end %>
+   </div>
+<% end %>
+  </div>
+<% end %>
+<table>
+<tr>
+<th><%= line.label :min %></th>
+<th><%= line.label :max %></th>
+<th><%= line.label :value %></th>
+</tr>
+<% if @last_line.present? %>
+</tr>
+<tr>
+<th><%= @last_line.min %>kg</th>
+<th><%= @last_line.max %>kg</th>
+<th><%= number_to_currency(@last_line.value, locale: 'pt-BR') %></th>
+</tr>
+<% end %>
+<tr>
+<th><%= line.number_field :min %></th>
+<th><%= line.number_field :max %></th>
+<th><%= line.number_field :value, step: :any  %></th>
+</tr>
+</table>
+<p><%= line.submit 'Enviar' %></p>
+
+<% end %>

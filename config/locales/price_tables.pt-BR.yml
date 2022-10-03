@@ -1,0 +1,14 @@
+pt-BR:
+  activerecord:
+    models:
+      weight_table: 'Tabela de Peso'
+      distance_table: 'Tabela de Distância'
+    attributes:
+      weight_table:
+        min: 'Peso Mínimo'
+        max: 'Peso Máximo'
+        value: 'Valor por Peso'
+      distance_table:
+        min: 'Distância Mínima'
+        max: 'Distância Máxima'
+        value: 'Valor por Distância'
