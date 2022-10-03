@@ -17,11 +17,14 @@ class WeightTablesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @previous = @weight_line.previous
+    @next = @weight_line.next
+  end
 
   def update
     if @weight_line.update(weight_line_params)
-      return redirect_to price_tables_path, notice: 'Linha atualizada com sucesso.'
+      return redirect_to price_tables_path, notice: "Linha #{@weight_line.id} editada com sucesso."
     else
       render :new
     end
@@ -43,4 +46,5 @@ class WeightTablesController < ApplicationController
   def set_weight_line
     @weight_line = WeightTable.find(params[:id])
   end
+
 end

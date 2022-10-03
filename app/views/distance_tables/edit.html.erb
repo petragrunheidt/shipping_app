@@ -1,2 +1,47 @@
-<h1>Editar linha da <%= TransportMode.human_attribute_name('distance_table') %></h1>
-<%= render partial: 'form', locals: { order: @distance_line }%>
+<h1>Editar linha <%= @distance_line.id %> da <%= DistanceTable.model_name.human %></h1>
+<%= form_with model: @distance_line do |line| %>
+
+<% if @distance_line.errors.any? %>
+
+  <div id="error_explanation">
+    <h2>Todos os campos devem ser preenchidos</h2>
+    <div>
+      <% @distance_line.errors.each do |error| %>
+        <% flash.now[:alert] = error.full_message%>
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+
+        <% end %>
+   </div>
+<% end %>
+  </div>
+<% end %>
+<table>
+<tr>
+<th><%= line.label :min %></th>
+<th><%= line.label :max %></th>
+<th><%= line.label :value %></th>
+<% if @previous.present? %>
+<tr>
+<th><%= @previous.min %>km</th>
+<th><%= @previous.max %>km</th>
+<th><%= number_to_currency(@previous.value, locale: 'pt-BR') %></th>
+</tr>
+<% end %>
+<tr>
+<th><%= line.number_field :min %></th>
+<th><%= line.number_field :max %></th>
+<th><%= line.number_field :value, step: :any %></th>
+</tr>
+<% if @next.present? %>
+<tr>
+<th><%= @next.min %>km</th>
+<th><%= @next.max %>km</th>
+<th><%= number_to_currency(@next.value, locale: 'pt-BR') %></th>
+</tr>
+<% end %>
+</table>
+<p><%= line.submit 'Enviar' %></p>
+
+<% end %>
+

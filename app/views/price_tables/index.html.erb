@@ -1,5 +1,5 @@
 <h1>Tabelas de Preço</h1>
-
+<div id="weight-table">
 <h3>Tabela de preços por peso</h3>
 <% if @weight_table.present? %>
 <table>
@@ -13,6 +13,7 @@
     <th><%= line.min %>kg</th>
     <th><%= line.max %>kg</th>
     <th><%= number_to_currency(line.value, locale: 'pt-BR')  %></th>
+    <th><%= (link_to "Editar linha #{line.id}", edit_weight_table_path(line)) if current_user.admin == true %></th>
 </tr>
 <% end %>
 </table>
@@ -22,7 +23,8 @@
 <% if current_user.admin == true %>
 </p><%= link_to 'Adicionar linha à tabela de Peso', new_weight_table_path %></p>
 <% end %>
-
+</div>
+<div id="distance-table">
 <h3>Tabela de preços por distância</h3>
 <% if @distance_table.present? %>
 <table>
@@ -36,12 +38,14 @@
     <th><%= line.min %>km</th>
     <th><%= line.max %>km</th>
     <th><%= number_to_currency(line.value, locale: 'pt-BR')  %></th>
+    <th><%= (link_to "Editar linha #{line.id}", edit_distance_table_path(line)) if current_user.admin == true %></th>
 </tr>
 <% end %>
 </table>
 <% else %>
 <h3>Nenhum dado cadastrado.</h3>
 <% end %>
+</div>
 <% if current_user.admin == true %>
 <p><%= link_to 'Adicionar linha à tabela de Distância', new_distance_table_path %></p>
 <% end %>

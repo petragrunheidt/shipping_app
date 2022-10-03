@@ -16,11 +16,14 @@ class DistanceTablesController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @previous = @distance_line.previous
+    @next = @distance_line.next
+  end
 
   def update
     if @distance_line.update(distance_line_params)
-      return redirect_to price_tables_path, notice: 'Linha atualizada com sucesso.'
+      return redirect_to price_tables_path, notice: "Linha #{@distance_line.id} editada com sucesso."
     else
       render :new
     end
