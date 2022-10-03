@@ -12,4 +12,5 @@ Rails.application.routes.draw do
     patch :activate, on: :member
     patch :deactivate, on: :member
   end
+  resources :price_tables, only: [:index, :show, :new, :create, :edit, :update, :destroy]
 end

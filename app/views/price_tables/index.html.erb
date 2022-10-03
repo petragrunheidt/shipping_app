@@ -1,0 +1,20 @@
+<h3>Tabela de preços por peso</h3>
+<% if @weight_table.present? %>
+<table>
+<tr>
+    <th>Intervalo de pesos</th>
+    <th></th>
+    <th>Preço por kg</th>
+<% @weight_table.each do |column| %>
+</tr>
+<tr>
+    <th><%= column.min %>kg</th>
+    <th><%= column.max %>kg</th>
+    <th><%= number_to_currency(column.value, locale: 'pt-BR')  %></th>
+</tr>
+<% end %>
+</table>
+<% else %>
+<h3>Nenhum dado cadastrado.</h3>
+<% end %>
+<%= link_to 'Voltar', root_path %>

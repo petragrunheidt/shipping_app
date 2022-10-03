@@ -1,0 +1,2 @@
+class WeightTable < ApplicationRecord
+end

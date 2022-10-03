@@ -1,7 +1,7 @@
 <h1><%= Vehicle.model_name.human(count: 2)%> disponíveis:</h1>
 <% if @vehicles.present? %>
 <% @vehicles.each do |trans| %>
-<h3><%= link_to trans.full_description, trans%></h3>
+<h3><%= link_to trans.full_description, trans%> <%= trans.circulation? ? '(circulação)' : '(manutenção)' %></h3>
 
 <% end %>
 <% else %>
