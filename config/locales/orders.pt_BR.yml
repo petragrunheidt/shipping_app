@@ -1,0 +1,21 @@
+pt-BR:
+  maintenance: 'manutenção'
+  circulation: 'circulação'
+  activerecord:
+    models:
+      order:
+        one: 'Ordem de Serviço'
+        other: 'Ordens de Serviço'
+    attributes:
+      order:
+        takeout_address: 'Endereço de Retirada'
+        code: 'Código'
+        weight: 'Peso'
+        heigth: 'Altura'
+        width: 'Largura'
+        depth: 'Profundidade'
+        delivery_address: 'Endereço de Entrega'
+        name: 'Nome'
+        email: 'Email'
+        customer_id: 'CPF/CNPJ'
+

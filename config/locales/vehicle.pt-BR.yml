@@ -1,4 +1,7 @@
 pt-BR:
+  pending: 'Pendente'
+  canceled: 'Cancelada'
+  delivered: 'Entregue'
   activerecord:
     models:
       vehicle:
@@ -13,7 +16,6 @@ pt-BR:
         manifacture_year: 'Ano de Fabricação'
         transport_mode: 'Modalidade de Transporte'
         transport_mode_id: 'Modalidade de Transporte'
-        status:
-          maintenance: 'manutenção'
-          circulation: 'circulação'
+        status: 'Status'
+
 

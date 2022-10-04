@@ -1,0 +1,9 @@
+<h1><%= Order.model_name.human(count: 2) %> Cadastradas</h1>
+<% if @orders.present? %>
+<% @orders.each do |order| %>
+<h3><%= Order.model_name.human %>: <%=link_to order.code, order %></h3>
+<p><%= Order.human_attribute_name('status') %>: <%= t(order.status) %></p>
+<% end %>
+<% else %>
+<h3>Nenhuma Ordem de serviço Cadastrada</h3>
+<% end %>

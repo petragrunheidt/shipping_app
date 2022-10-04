@@ -10,13 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_03_201743) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_04_150721) do
   create_table "distance_tables", force: :cascade do |t|
     t.integer "min"
     t.integer "max"
     t.decimal "value", precision: 10, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "takeout_address"
+    t.string "code"
+    t.integer "weight"
+    t.integer "heigth"
+    t.integer "width"
+    t.integer "depth"
+    t.string "delivery_address"
+    t.string "name"
+    t.string "email"
+    t.string "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "status", default: 0
+    t.integer "total_distance"
   end
 
   create_table "transport_modes", force: :cascade do |t|

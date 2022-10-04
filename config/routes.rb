@@ -15,4 +15,10 @@ Rails.application.routes.draw do
   resources :price_tables, only: [:index]
   resources :weight_tables, only: [:new, :create, :edit, :update]
   resources :distance_tables, only: [:new, :create, :edit, :update]
+  resources :orders, only: [:index, :show, :new, :create, :edit, :update] do
+    get 'search', on: :collection
+    patch :set_pending, on: :member
+    patch :set_canceled, on: :member
+    patch :set_delivered, on: :member
+  end
 end
