@@ -1,8 +1,8 @@
 pt-BR:
   activerecord:
     models:
-      weight_table: 'Tabela de Peso'
-      distance_table: 'Tabela de Distância'
+      weight_table: 'Tabela de preços por faixa de Peso'
+      distance_table: 'Tabela de preços por faixa de Distância'
     attributes:
       weight_table:
         min: 'Peso Mínimo'

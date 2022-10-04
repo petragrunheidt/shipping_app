@@ -3,11 +3,13 @@ class DistanceTablesController < ApplicationController
   before_action :set_distance_line, only: [:edit, :update]
   before_action :distance_line_params, only: [:create, :update]
   def new
+    @transport_modes = TransportMode.all
     @distance_line = DistanceTable.new
     @last_line = DistanceTable.last
   end
 
   def create
+    @transport_modes = TransportMode.all
     @distance_line = DistanceTable.new(distance_line_params)
     if @distance_line.save
       return redirect_to price_tables_path, notice: "Linha #{@distance_line.id} adicionada com sucesso."
@@ -17,11 +19,13 @@ class DistanceTablesController < ApplicationController
   end
 
   def edit
+    @transport_modes = TransportMode.all
     @previous = @distance_line.previous
     @next = @distance_line.next
   end
 
   def update
+    @transport_modes = TransportMode.all
     if @distance_line.update(distance_line_params)
       return redirect_to price_tables_path, notice: "Linha #{@distance_line.id} editada com sucesso."
     else

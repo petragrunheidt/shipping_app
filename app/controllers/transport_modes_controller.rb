@@ -6,7 +6,10 @@ class TransportModesController < ApplicationController
     @transport_mode = TransportMode.all
   end
 
-  def show; end
+  def show
+    @weight_table = @transport_mode.weight_tables
+    @distance_table = @transport_mode.distance_tables
+  end
 
   def new
     @transport_mode = TransportMode.new

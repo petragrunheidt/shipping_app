@@ -20,11 +20,64 @@
 </table>
 <p><%= TransportMode.human_attribute_name('fixed_rate') %>: <%= number_to_currency(@transport_mode.fixed_rate, locale: 'pt-BR')%></p>
 <div style='inline-block'>
-<%= link_to 'Voltar', transport_modes_path %> |
 <% if current_user.admin %>
 <%= link_to 'Editar Modo de Transporte', edit_transport_mode_path %>
 </div>
 <%= button_to @transport_mode.active? ? 'Desativar' : 'Ativar', @transport_mode.active? ? deactivate_transport_mode_path : activate_transport_mode_path, { method: 'patch'} %>
 <% end %>
 
+
+<div id="weight-table">
+<h2><%= WeightTable.model_name.human %></h2>
+<% if @weight_table.present? %>
+<table>
+<tr>
+    <th>Intervalo de pesos</th>
+    <th></th>
+    <th>Preço por kg</th>
+<% @weight_table.each do |line| %>
+</tr>
+<tr>
+    <th><%= line.min %>kg</th>
+    <th><%= line.max %>kg</th>
+    <th><%= number_to_currency(line.value, locale: 'pt-BR')  %></th>
+    <th><%= (link_to "Editar linha #{line.id}", edit_weight_table_path(line)) if current_user.admin == true %></th>
+</tr>
+<% end %>
+</table>
+<% else %>
+<h3>Nenhum dado cadastrado.</h3>
+<% end %>
+<% if current_user.admin == true %>
+</p><%= link_to 'Adicionar linha à tabela de Peso', new_weight_table_path %></p>
+<% end %>
+</div>
+
+<div id="distance-table">
+<h2><%= DistanceTable.model_name.human %></h2>
+<% if @distance_table.present? %>
+<table>
+<tr>
+    <th>Intervalo de distâncias</th>
+    <th></th>
+    <th>Preço por km</th>
+<% @distance_table.each do |line| %>
+</tr>
+<tr>
+    <th><%= line.min %>km</th>
+    <th><%= line.max %>km</th>
+    <th><%= number_to_currency(line.value, locale: 'pt-BR')  %></th>
+    <th><%= (link_to "Editar linha #{line.id}", edit_distance_table_path(line)) if current_user.admin == true %></th>
+</tr>
+<% end %>
+</table>
+<% else %>
+<h3>Nenhum dado cadastrado.</h3>
+<% end %>
+<% if current_user.admin == true %>
+</p><%= link_to 'Adicionar linha à tabela de Peso', new_distance_table_path %></p>
+<% end %>
+</div>
+<%= link_to 'Voltar', transport_modes_path %>
+<%= request.referrer %>
 
