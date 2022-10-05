@@ -1,0 +1,24 @@
+<h1><%= "#{Order.model_name.human} #{@order.code}" %>
+<dl>
+<h3>Informações do Fornecedor</h3>
+<dt><%= Order.human_attribute_name('takeout_address') %>: <%= @order.takeout_address %></dt>
+<dt>Dimensões: <%= "#{@order.weight }x#{@order.depth}x#{@order.heigth}cm" %></dt>
+<h3>Informações do Cliente</h3>
+<dt><%= Order.human_attribute_name('name') %>: <%= @order.name %></dt>
+<dt><%= Order.human_attribute_name('email') %>: <%= @order.email %></dt>
+<dt><%= Order.human_attribute_name('customer_id') %>: <%= @order.customer_id  %></dt>
+<dt><%= Order.human_attribute_name('delivery_address') %>: <%= @order.delivery_address %></dt>
+
+<p><%= Order.human_attribute_name('total_distance') %>: <%= @order.total_distance %>km</p>
+<p><%= Order.human_attribute_name('status') %>: <%= t(@order.status) %>km</p>
+</dl>
+
+<% if current_user.admin %>
+<%= button_to 'Marcar como Pendente', set_pending_order_path, { method: 'patch'} %>
+<%= button_to 'Marcar como Cancelado', set_canceled_order_path, { method: 'patch'} %>
+<%= button_to 'Marcar como Entregue', set_delivered_order_path, { method: 'patch'} %>
+<% end %>
+
+<div style='inline-block'>
+<%= link_to 'Voltar', orders_path %>
+

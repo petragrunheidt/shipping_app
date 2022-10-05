@@ -17,5 +17,6 @@ pt-BR:
         delivery_address: 'Endereço de Entrega'
         name: 'Nome'
         email: 'Email'
+        total_distance: 'Distância Total'
         customer_id: 'CPF/CNPJ'
 

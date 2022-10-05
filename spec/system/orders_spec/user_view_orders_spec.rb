@@ -55,9 +55,15 @@ describe 'Usuário vê Ordens de Serviço cadastrados' do
         click_on order.code
 
         # Assert
-        expect(page).to have_link("ABCDEFGHIJ12345")
+        expect(page).to have_content("Ordem de Serviço #{order.code}")
+        expect(page).to have_content("Endereço de Retirada: Rua da Transportadora 101")
+        expect(page).to have_content("Dimensões: 10x10x10cm")
+        expect(page).to have_content("Endereço de Entrega: Rua da Petra 60")
+        expect(page).to have_content("Nome: Petra")
+        expect(page).to have_content("Email: petra@mail.com")
+        expect(page).to have_content("CPF/CNPJ: 193029304")
+        expect(page).to have_content("Distância Total: 100km")
         expect(page).to have_content("Status: Pendente")
-
     end
     it 'acessa uma ordem especifica e volta para a lista de Ordens de Serviço' do
       # Arrange
