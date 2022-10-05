@@ -8,7 +8,11 @@ pt-BR:
         min: 'Peso Mínimo'
         max: 'Peso Máximo'
         value: 'Valor por Peso'
+        transport_mode: 'Modalidade de Transporte'
+        transport_mode_id: 'Modalidade de Transporte'
       distance_table:
         min: 'Distância Mínima'
         max: 'Distância Máxima'
         value: 'Valor por Distância'
+        transport_mode: 'Modalidade de Transporte'
+        transport_mode_id: 'Modalidade de Transporte'

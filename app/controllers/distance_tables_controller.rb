@@ -12,7 +12,7 @@ class DistanceTablesController < ApplicationController
     @transport_modes = TransportMode.all
     @distance_line = DistanceTable.new(distance_line_params)
     if @distance_line.save
-      return redirect_to price_tables_path, notice: "Linha #{@distance_line.id} adicionada com sucesso."
+      return redirect_to @distance_line.transport_mode, notice: "Linha #{@distance_line.id} adicionada com sucesso."
     else
       render :new
     end
@@ -27,7 +27,7 @@ class DistanceTablesController < ApplicationController
   def update
     @transport_modes = TransportMode.all
     if @distance_line.update(distance_line_params)
-      return redirect_to price_tables_path, notice: "Linha #{@distance_line.id} editada com sucesso."
+      return redirect_to @distance_line.transport_mode, notice: "Linha #{@distance_line.id} editada com sucesso."
     else
       render :new
     end
@@ -36,7 +36,7 @@ class DistanceTablesController < ApplicationController
   private
 
   def distance_line_params
-    params.require(:distance_table).permit(:min, :max, :value)
+    params.require(:distance_table).permit(:min, :max, :value, :transport_mode_id)
   end
 
   def check_admin

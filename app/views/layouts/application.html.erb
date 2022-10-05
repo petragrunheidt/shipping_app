@@ -15,13 +15,13 @@
 <div tag="nav links">
 <%=link_to 'Modos de Transporte', transport_modes_path%> |
 <%=link_to 'Veículos', vehicles_path%> |
-<%= link_to 'Tabelas de Preço', price_tables_path%> |
 <%= link_to 'Ordens de Serviço', orders_path%> |
 </div>
 
 
  <% if user_signed_in? %>
-  <p>Olá, <%= current_user.description %>
+  <p>
+  Olá, <%= current_user.description %>
   <% if current_user.admin == true %>
   <%= link_to '| Pagina de Admin', admin_dashboard_index_path %>
   <% end %>

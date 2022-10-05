@@ -13,7 +13,7 @@ class WeightTablesController < ApplicationController
     @transport_modes = TransportMode.all
     @weight_line = WeightTable.new(weight_line_params)
     if @weight_line.save
-      return redirect_to price_tables_path, notice: "Linha #{@weight_line.id} adicionada com sucesso."
+      return redirect_to @weight_line.transport_mode, notice: "Linha #{@weight_line.id} adicionada com sucesso."
     else
       render :new
     end
@@ -28,7 +28,7 @@ class WeightTablesController < ApplicationController
   def update
     @transport_modes = TransportMode.all
     if @weight_line.update(weight_line_params)
-      return redirect_to price_tables_path, notice: "Linha #{@weight_line.id} editada com sucesso."
+      return redirect_to @weight_line.transport_mode, notice: "Linha #{@weight_line.id} editada com sucesso."
     else
       render :new
     end
@@ -37,7 +37,7 @@ class WeightTablesController < ApplicationController
   private
 
   def weight_line_params
-    params.require(:weight_table).permit(:min, :max, :value,:transport_mode_id)
+    params.require(:weight_table).permit(:min, :max, :value, :transport_mode_id)
   end
 
   def check_admin

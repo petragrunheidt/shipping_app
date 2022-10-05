@@ -21,6 +21,7 @@
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
 <th><%= line.label :value %></th>
+<th><%= line.label :transport_mode_id %></th>
 <% if @previous.present? %>
 <tr>
 <th><%= @previous.min %>km</th>
@@ -32,6 +33,7 @@
 <th><%= line.number_field :min %></th>
 <th><%= line.number_field :max %></th>
 <th><%= line.number_field :value, step: :any %></th>
+<th><%= line.collection_select :transport_mode_id, @transport_modes, :id, :name, prompt:true %></th>
 </tr>
 <% if @next.present? %>
 <tr>
