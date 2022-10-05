@@ -1,0 +1,11 @@
+<h1>Resultados da Busca por: <%= @query %></h1>
+<% if @vehicles.present? %>
+<p><%= @vehicles.count %> <%= Vehicle.model_name.human(count: @vehicles.count) %> <%= I18n.translate(:found, count: @vehicles.count) %></p>
+
+<% @vehicles.each do |trans| %>
+  <h3><%= link_to trans.full_description, trans %> <%= t(trans.status) %></h3>
+<% end %>
+<% else %>
+<h2>Nenhum resultado encontrado para a busca por: <%= @query %></h2>
+
+<% end %>

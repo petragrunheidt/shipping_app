@@ -42,6 +42,11 @@ class VehiclesController < ApplicationController
     return redirect_to @vehicle, notice: 'Veículo enviado para manutenção.'
   end
 
+  def search
+    @query = params["query"]
+    @vehicles = Vehicle.where("nameplate LIKE ?", "%#{@query}%")
+  end
+
   private
 
   def vehicle_params

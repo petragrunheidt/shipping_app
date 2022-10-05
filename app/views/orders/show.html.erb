@@ -15,7 +15,7 @@
 
 <% if current_user.admin %>
 <%= button_to 'Marcar como Pendente', set_pending_order_path, { method: 'patch'} %>
-<%= button_to 'Marcar como Cancelado', set_canceled_order_path, { method: 'patch'} %>
+<%= button_to 'Marcar como Cancelada', set_canceled_order_path, { method: 'patch'} %>
 <%= button_to 'Marcar como Entregue', set_delivered_order_path, { method: 'patch'} %>
 <% end %>
 
