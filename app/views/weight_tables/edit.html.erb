@@ -35,7 +35,7 @@
 <th><%= line.number_field :min %></th>
 <th><%= line.number_field :max %></th>
 <th><%= line.number_field :value, step: :any  %></th>
-<th><%= line.collection_select :transport_mode_id, @transport_modes, :id, :name, prompt:true %></th>
+<th><%= line.collection_select :transport_mode_id, @transport_modes, :id, :with_weight_range, prompt:true %></th>
 </tr>
 
 <% if @next.present? %>
