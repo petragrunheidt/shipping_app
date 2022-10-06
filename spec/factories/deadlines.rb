@@ -1,8 +1,8 @@
 FactoryBot.define do
-  factory :distance_table do
+  factory :deadline do
     min { 10 }
-    max { 20 }
-    value { "5.00" }
+    max { 60 }
+    time { 24 }
     transport_mode
   end
 end

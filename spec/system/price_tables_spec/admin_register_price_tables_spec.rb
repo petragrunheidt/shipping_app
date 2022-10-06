@@ -137,8 +137,8 @@ describe 'Usuário tenta cadastrar linha em tabela de preços' do
         # Assert
 
         expect(page).to have_content('Linha 1 adicionada com sucesso.')
-        expect(page).to have_content 'Intervalo de distâncias'
-        expect(page).to have_content 'Preço por km'
+        expect(page).to have_content 'Intervalo de Distâncias'
+        expect(page).to have_content 'Preço por faixa de km'
         expect(page).to have_content '10km'
         expect(page).to have_content '30km'
         expect(page).to have_content 'R$ 0,65'

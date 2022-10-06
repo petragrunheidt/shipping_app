@@ -58,9 +58,9 @@
 <% if @distance_table.present? %>
 <table>
 <tr>
-    <th>Intervalo de distâncias</th>
+    <th>Intervalo de Distâncias</th>
     <th></th>
-    <th>Preço por km</th>
+    <th>Preço por faixa de km</th>
 <% @distance_table.each do |line| %>
 </tr>
 <tr>
@@ -78,6 +78,33 @@
 </p><%= link_to 'Adicionar linha à tabela de Distância', new_distance_table_path %></p>
 <% end %>
 </div>
+
+<div id="deadline-table">
+<h2><%= Deadline.model_name.human %></h2>
+<% if @deadline.present? %>
+<table>
+<tr>
+    <th>Intervalo de Distâncias</th>
+    <th></th>
+    <th>Tempo de Entrega</th>
+<% @deadline.each do |line| %>
+</tr>
+<tr>
+    <th><%= line.min %>km</th>
+    <th><%= line.max %>km</th>
+    <th><%= line.time %>h</th>
+    <th><%= (link_to "Editar linha #{line.id}", edit_deadline_path(line)) if current_user.admin == true %></th>
+</tr>
+<% end %>
+</table>
+<% else %>
+<h3>Nenhum dado cadastrado.</h3>
+<% end %>
+<% if current_user.admin == true %>
+</p><%= link_to 'Adicionar linha à tabela de Prazos', new_deadline_path %></p>
+<% end %>
+</div>
+
 <%= link_to 'Voltar', transport_modes_path %>
-<%= request.referrer %>
+
 

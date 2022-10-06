@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      deadline: 'Tabela de Prazos'
+    attributes:
+
+      deadline:
+        min: 'Distância Mínima'
+        max: 'Distância Máxima'
+        time: 'Tempo de Entrega'
+        transport_mode: 'Modalidade de Transporte'
+        transport_mode_id: 'Modalidade de Transporte'

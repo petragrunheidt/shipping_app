@@ -7,14 +7,17 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 User.create!(name: 'Petra', email: 'petra@sistemadefrete.com.br', password: 'password', admin: true)
-transport = TransportMode.create!(name: 'Frota de Caminhões', min_weight: 10, max_weight: 100, min_distance: 10, max_distance: 100, fixed_rate: 10)
+TransportMode.create!(name: 'Frota de Bikes', min_weight: 10, max_weight: 50, min_distance: 10, max_distance: 50, fixed_rate: 7)
+TransportMode.create!(name: 'Frota de Carros', min_weight: 50, max_weight: 200, min_distance: 50, max_distance: 200, fixed_rate: 10)
+TransportMode.create!(name: 'Frota de Caminhões', min_weight: 100, max_weight: 500, min_distance: 100, max_distance: 500, fixed_rate: 15)
 
-(10..16).each do |i|
-  TransportMode.create!(name: SecureRandom.alphanumeric(6), min_weight: i, max_weight: (10*i), min_distance: i, max_distance: (10*i), fixed_rate: (i/2))
-end
-(1..10).each do |i|
-  Vehicle.create!(nameplate: SecureRandom.alphanumeric(7), vehicle_brand: 'Nissan', vehicle_model: SecureRandom.alphanumeric(5),
-  manifacture_year: 2003, maximum_load: 80, transport_mode: transport)
+(1..5).each do |i|
+  Vehicle.create!(nameplate: SecureRandom.alphanumeric(7).upcase, vehicle_brand: 'Caloi', vehicle_model: SecureRandom.alphanumeric(5),
+  manifacture_year: 2003, maximum_load: 40 + i, transport_mode: TransportMode.find(1))
+  Vehicle.create!(nameplate: SecureRandom.alphanumeric(7).upcase, vehicle_brand: 'Nissan', vehicle_model: SecureRandom.alphanumeric(5),
+  manifacture_year: 2003, maximum_load: 180 + i, transport_mode: TransportMode.find(2))
+  Vehicle.create!(nameplate: SecureRandom.alphanumeric(7).upcase, vehicle_brand: 'Caminhãosan', vehicle_model: SecureRandom.alphanumeric(5),
+  manifacture_year: 2003, maximum_load: 480 + i, transport_mode: TransportMode.find(3))
 end
 
 

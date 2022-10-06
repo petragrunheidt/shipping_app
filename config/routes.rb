@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     patch :activate, on: :member
     patch :deactivate, on: :member
   end
-  resources :price_tables, only: [:index]
+  resources :deadlines, only: [:new, :create, :edit, :update]
   resources :weight_tables, only: [:new, :create, :edit, :update]
   resources :distance_tables, only: [:new, :create, :edit, :update]
   resources :orders, only: [:index, :show, :new, :create, :edit, :update] do
