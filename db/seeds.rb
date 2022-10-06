@@ -20,5 +20,15 @@ TransportMode.create!(name: 'Frota de Caminhões', min_weight: 100, max_weight: 
   manifacture_year: 2003, maximum_load: 480 + i, transport_mode: TransportMode.find(3))
 end
 
+WeightTable.create(min: 10, max: 20, value: 0.40, transport_mode: TransportMode.find(1))
+WeightTable.create(min: 21, max: 30, value: 0.50, transport_mode: TransportMode.find(1))
+WeightTable.create(min: 31, max: 49, value: 0.60, transport_mode: TransportMode.find(1))
 
+DistanceTable.create(min: 10, max: 20, value: 5, transport_mode: TransportMode.find(1))
+DistanceTable.create(min: 21, max: 30, value: 7, transport_mode: TransportMode.find(1))
+DistanceTable.create(min: 31, max: 49, value: 10, transport_mode: TransportMode.find(1))
+
+Deadline.create(min: 10, max: 20, time: 12, transport_mode: TransportMode.find(1))
+Deadline.create(min: 21, max: 30, time: 24, transport_mode: TransportMode.find(1))
+Deadline.create(min: 31, max: 49, time: 48, transport_mode: TransportMode.find(1))
 

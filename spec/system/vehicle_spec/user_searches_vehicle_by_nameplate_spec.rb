@@ -27,18 +27,18 @@ describe 'Usuário busca por um Veículo' do
   it 'e encontra um Veículo' do
     # Arrange
     user = FactoryBot.create(:user)
-    vehicle = FactoryBot.build(:vehicle, nameplate: 'ABC1234')
+    FactoryBot.create(:vehicle, nameplate: 'ABC1234', vehicle_brand: 'Nissan', vehicle_model: 'A140i')
 
     # Act
     login_as(user)
     visit vehicles_path
-    fill_in 'Buscar Veículo', with: "ABC1234"
+    fill_in 'Buscar Veículo', with: 'ABC1234'
     click_on 'Buscar'
 
     # Assert
     expect(page).to have_content "Resultados da Busca por: ABC1234"
     expect(page).to have_content '1 Veículo encontrado'
-    expect(page).to have_content "Código: 'ABC1234'"
+    expect(page).to have_content "Nissan A140i - ABC1234"
 
    end
    it 'e entra na pagina do Veículo' do
@@ -49,7 +49,7 @@ describe 'Usuário busca por um Veículo' do
     # Act
     login_as(user)
     visit vehicles_path
-    fill_in 'Buscar Veículo', with: vehicle.nameplate
+    fill_in 'Buscar Veículo', with: 'ABC1234'
     click_on 'Buscar'
     click_on('Nissan A140i - ABC1234')
 
@@ -72,8 +72,8 @@ describe 'Usuário busca por um Veículo' do
    it 'e encontra mais do que um Veículo' do
     # Arrange
     user = FactoryBot.create(:user)
-    vehicle1 = FactoryBot.create(:vehicle, nameplate: 'ABC1234', vehicle_brand: 'Nissan', vehicle_model: 'A140i')
-    vehicle2 = FactoryBot.create(:vehicle, nameplate: 'ABC3940', vehicle_brand: 'Nissan', vehicle_model: 'C13')
+    FactoryBot.create(:vehicle, nameplate: 'ABC1234', vehicle_brand: 'Nissan', vehicle_model: 'A140i')
+    FactoryBot.create(:vehicle, nameplate: 'ABC3940', vehicle_brand: 'Nissan', vehicle_model: 'C13')
     FactoryBot.create(:vehicle, nameplate: 'CBD1930', vehicle_brand: 'Nissan', vehicle_model: 'B40')
     # Act
     login_as(user)
@@ -84,7 +84,7 @@ describe 'Usuário busca por um Veículo' do
     # Assert
     expect(page).to have_content "Resultados da Busca por: ABC"
     expect(page).to have_content '2 Veículos encontrados'
-    expect(page).to have_link "Galpão Destino: Nissan A140i - ABC1234"
-    expect(page).to have_link "Galpão Destino: Nissan C13 - ABC3940"
+    expect(page).to have_link "Nissan A140i - ABC1234"
+    expect(page).to have_link "Nissan C13 - ABC3940"
    end
 end
