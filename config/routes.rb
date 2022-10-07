@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   end
   root "home#index"
   resources :transport_modes, only: [:index, :show, :new, :create, :edit, :update] do
+    resources :deadlines, only: [:create, :edit, :update]
+    resources :weight_tables, only: [:create, :edit, :update]
+    resources :distance_tables, only: [:create, :edit, :update]
     patch :activate, on: :member
     patch :deactivate, on: :member
   end
@@ -13,9 +16,7 @@ Rails.application.routes.draw do
     patch :activate, on: :member
     patch :deactivate, on: :member
   end
-  resources :deadlines, only: [:new, :create, :edit, :update]
-  resources :weight_tables, only: [:new, :create, :edit, :update]
-  resources :distance_tables, only: [:new, :create, :edit, :update]
+
   resources :orders, only: [:index, :show, :new, :create, :edit, :update] do
     get 'search', on: :collection
     patch :set_pending, on: :member

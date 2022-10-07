@@ -1,5 +1,5 @@
 <h1>Editar linha <%= @deadline.id %> da <%= DistanceTable.model_name.human %></h1>
-<%= form_with model: @deadline do |line| %>
+<%= form_with model: [@transport_mode, @deadline] do |line| %>
 
 <% if @deadline.errors.any? %>
 

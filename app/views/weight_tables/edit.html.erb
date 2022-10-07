@@ -1,5 +1,5 @@
 <h1>Editar linha <%= @weight_line.id %> da <%= WeightTable.model_name.human %></h1>
-<%= form_with model: @weight_line do |line| %>
+<%= form_with model: [@transport_mode, @weight_line] do |line| %>
 <% if @weight_line.errors.any? %>
 
   <div id="error_explanation">

@@ -19,11 +19,13 @@ class DeadlinesController < ApplicationController
   end
 
   def edit
+    @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
 
   end
 
   def update
+    @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
     if @deadline.update(deadline_params)
       return redirect_to @deadline.transport_mode, notice: "Linha #{@deadline.id} editada com sucesso."

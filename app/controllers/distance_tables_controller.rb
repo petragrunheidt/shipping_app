@@ -19,12 +19,14 @@ class DistanceTablesController < ApplicationController
   end
 
   def edit
+    @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
     @previous = @distance_line.previous
     @next = @distance_line.next
   end
 
   def update
+    @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
     if @distance_line.update(distance_line_params)
       return redirect_to @distance_line.transport_mode, notice: "Linha #{@distance_line.id} editada com sucesso."

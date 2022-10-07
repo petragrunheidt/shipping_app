@@ -1,5 +1,5 @@
 <h1>Editar linha <%= @distance_line.id %> da <%= DistanceTable.model_name.human %></h1>
-<%= form_with model: @distance_line do |line| %>
+<%= form_with model: [@transport_mode, @distance_line] do |line| %>
 
 <% if @distance_line.errors.any? %>
 

@@ -20,12 +20,14 @@ class WeightTablesController < ApplicationController
   end
 
   def edit
+    @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
     @previous = @weight_line.previous
     @next = @weight_line.next
   end
 
   def update
+    @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
     if @weight_line.update(weight_line_params)
       return redirect_to @weight_line.transport_mode, notice: "Linha #{@weight_line.id} editada com sucesso."
