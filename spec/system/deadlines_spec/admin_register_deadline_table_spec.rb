@@ -12,7 +12,9 @@ describe 'Usuário tenta cadastrar linha em tabela de prazos' do
         click_on('mais informações')
 
         # Assert
-        expect(page).not_to have_link 'Adicionar linha à tabela de Prazos'
+        expect(page).not_to have_field 'Distância Mínima'
+        expect(page).not_to have_field 'Distância Máxima'
+        expect(page).not_to have_field 'Tempo de Entrega'
 
     end
     it 'e acessa a pagina de adicionar linha a uma tabela de Prazo vazia' do
@@ -24,7 +26,6 @@ describe 'Usuário tenta cadastrar linha em tabela de prazos' do
         login_as(user)
         visit transport_modes_path
         click_on('mais informações')
-        click_on 'Adicionar linha à tabela de Prazos'
 
 
         # Assert
@@ -43,12 +44,13 @@ describe 'Usuário tenta cadastrar linha em tabela de prazos' do
         login_as(user)
         visit transport_modes_path
         click_on('mais informações')
-        click_on 'Adicionar linha à tabela de Prazos'
-        fill_in 'Distância Mínima', with: 10
-        fill_in 'Distância Máxima', with: 20
-        fill_in 'Tempo de Entrega', with: 24
-        select 'Frota de Caminhões', :from => 'Modalidade de Transporte'
-        click_on 'Enviar'
+        within('div#deadline-table') do
+          fill_in 'Distância Mínima', with: 10
+          fill_in 'Distância Máxima', with: 20
+          fill_in 'Tempo de Entrega', with: 24
+          select 'Frota de Caminhões', :from => 'Modalidade de Transporte'
+          click_on 'Enviar'
+        end
 
         # Assert
 

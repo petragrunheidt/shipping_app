@@ -13,6 +13,6 @@ pt-BR:
       distance_table:
         min: 'Distância Mínima'
         max: 'Distância Máxima'
-        value: 'Valor por Distância'
+        value: 'Valor por faixa de Distância'
         transport_mode: 'Modalidade de Transporte'
         transport_mode_id: 'Modalidade de Transporte'

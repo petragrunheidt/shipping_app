@@ -7,9 +7,16 @@ class TransportModesController < ApplicationController
   end
 
   def show
+    @transport_modes = TransportMode.all
+
     @weight_table = @transport_mode.weight_tables
+    @weight_line = WeightTable.new
+
     @distance_table = @transport_mode.distance_tables
+    @distance_line = DistanceTable.new
+
     @deadline = @transport_mode.deadlines
+    @deadline_line = Deadline.new
   end
 
   def new

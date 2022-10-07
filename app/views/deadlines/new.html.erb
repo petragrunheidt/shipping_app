@@ -1,12 +1,12 @@
 <h1>Adicionar linha à <%= Deadline.model_name.human %></h1>
-<%= form_with model: @deadline do |line| %>
+<%= form_with model: @deadline_line do |line| %>
 
-<% if @deadline.errors.any? %>
+<% if @deadline_line.errors.any? %>
 
   <div id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
     <div>
-      <% @deadline.errors.each do |error| %>
+      <% @deadline_line.errors.each do |error| %>
         <% flash.now[:alert] = error.full_message%>
         <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, class: name %>

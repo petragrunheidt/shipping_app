@@ -50,6 +50,41 @@
 <% end %>
 <% if current_user.admin == true %>
 </p><%= link_to 'Adicionar linha à tabela de Peso', new_weight_table_path %></p>
+
+<h4>Adicionar linha à <%= WeightTable.model_name.human %></h4>
+<%= form_with model: @weight_line do |line| %>
+<% if @weight_line.errors.any? %>
+
+  <div id="error_explanation">
+    <h2>Todos os campos devem ser preenchidos</h2>
+    <div>
+      <% @weight_line.errors.each do |error| %>
+        <% flash.now[:alert] = error.full_message%>
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+
+        <% end %>
+   </div>
+<% end %>
+  </div>
+<% end %>
+<table>
+<tr>
+<th><%= line.label :min %></th>
+<th><%= line.label :max %></th>
+<th><%= line.label :value %></th>
+<th><%= line.label :transport_mode_id %></th>
+</tr>
+<tr>
+<th><%= line.number_field :min %></th>
+<th><%= line.number_field :max %></th>
+<th><%= line.number_field :value, step: :any  %></th>
+<th><%= line.collection_select :transport_mode_id, @transport_modes, :id, :with_weight_range %></th>
+</tr>
+</table>
+<p><%= line.submit 'Enviar' %></p>
+
+<% end %>
 <% end %>
 </div>
 
@@ -75,9 +110,43 @@
 <h3>Nenhum dado cadastrado.</h3>
 <% end %>
 <% if current_user.admin == true %>
-</p><%= link_to 'Adicionar linha à tabela de Distância', new_distance_table_path %></p>
+<h4>Adicionar linha à <%= DistanceTable.model_name.human %></h4>
+<%= form_with model: @distance_line do |line| %>
+
+<% if @distance_line.errors.any? %>
+
+  <div id="error_explanation">
+    <h2>Todos os campos devem ser preenchidos</h2>
+    <div>
+      <% @distance_line.errors.each do |error| %>
+        <% flash.now[:alert] = error.full_message%>
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+
+        <% end %>
+   </div>
+<% end %>
+  </div>
+<% end %>
+<table>
+<tr>
+<th><%= line.label :min %></th>
+<th><%= line.label :max %></th>
+<th><%= line.label :value %></th>
+<th><%= line.label :transport_mode_id %></th>
+</tr>
+<tr>
+<th><%= line.number_field :min %></th>
+<th><%= line.number_field :max %></th>
+<th><%= line.number_field :value, step: :any %></th>
+<th><%= line.collection_select :transport_mode_id, @transport_modes, :id, :with_distance_range, prompt:true %></th>
+</tr>
+</table>
+<p><%= line.submit 'Enviar' %></p>
+<% end %>
 <% end %>
 </div>
+
 
 <div id="deadline-table">
 <h2><%= Deadline.model_name.human %></h2>
@@ -101,7 +170,40 @@
 <h3>Nenhum dado cadastrado.</h3>
 <% end %>
 <% if current_user.admin == true %>
-</p><%= link_to 'Adicionar linha à tabela de Prazos', new_deadline_path %></p>
+<h4>Adicionar linha à <%= Deadline.model_name.human %></h4>
+<%= form_with model: @deadline_line do |line| %>
+
+<% if @deadline_line.errors.any? %>
+
+  <div id="error_explanation">
+    <h2>Todos os campos devem ser preenchidos</h2>
+    <div>
+      <% @deadline_line.errors.each do |error| %>
+        <% flash.now[:alert] = error.full_message%>
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+
+        <% end %>
+   </div>
+<% end %>
+  </div>
+<% end %>
+<table>
+<tr>
+<th><%= line.label :min %></th>
+<th><%= line.label :max %></th>
+<th><%= line.label :time %></th>
+<th><%= line.label :transport_mode_id %></th>
+<tr>
+<th><%= line.number_field :min %></th>
+<th><%= line.number_field :max %></th>
+<th><%= line.number_field :time%></th>
+<th><%= line.collection_select :transport_mode_id, @transport_modes, :id, :with_distance_range, prompt:true %></th>
+</tr>
+</table>
+<p><%= line.submit 'Enviar' %></p>
+
+<% end %>
 <% end %>
 </div>
 
