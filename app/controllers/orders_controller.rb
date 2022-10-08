@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     if @order.save
-      return redirect_to @order, notice: 'Ordem de Serviço Cadastrado com sucesso.'
+      return redirect_to @order, notice: 'Ordem de Serviço cadastrada com sucesso.'
     else
       render :new
     end
@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
 
   def update
     if @order.update(order_params)
-      return redirect_to @order, notice: 'Ordem de Serviço Atualizado com sucesso.'
+      return redirect_to @order, notice: 'Ordem de Serviço atualizado com sucesso.'
     else
       render :new
     end
@@ -49,8 +49,8 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:nameplate, :order_brand, :order_model,
-      :manifacture_year, :maximum_load, :transport_mode_id, :status)
+    params.require(:order).permit(:takeout_address, :weight, :heigth, :width, :depth, :delivery_address, :name,
+      :email, :customer_id, :total_distance, :status, :code)
   end
 
   def check_admin

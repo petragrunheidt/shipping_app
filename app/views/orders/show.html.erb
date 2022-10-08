@@ -2,7 +2,8 @@
 <dl>
 <h3>Informações do Fornecedor</h3>
 <dt><%= Order.human_attribute_name('takeout_address') %>: <%= @order.takeout_address %></dt>
-<dt>Dimensões: <%= "#{@order.weight }x#{@order.depth}x#{@order.heigth}cm" %></dt>
+<dt>Peso: <%= @order.weight %>kg</dt>
+<dt>Dimensões: <%= "#{@order.heigth}x#{@order.width}x#{@order.depth}cm" %></dt>
 <h3>Informações do Cliente</h3>
 <dt><%= Order.human_attribute_name('name') %>: <%= @order.name %></dt>
 <dt><%= Order.human_attribute_name('email') %>: <%= @order.email %></dt>

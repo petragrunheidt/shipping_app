@@ -1,0 +1,45 @@
+<%= form_with model: @order do |order| %>
+
+<% if @order.errors.any? %>
+
+  <div id="error_explanation">
+    <h2>Todos os campos devem ser preenchidos</h2>
+    <div>
+      <% @order.errors.each do |error| %>
+        <% flash.now[:alert] = error.full_message%>
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+
+        <% end %>
+   </div>
+<% end %>
+  </div>
+<% end %>
+<dl>
+<h3>Informações de Retirada</h3>
+<dt><%= order.label :takeout_address %></dt>
+<dt><%= order.text_field :takeout_address %></dt>
+<dt><%= order.label :weight %>(kg)</dt>
+<dt><%= order.number_field :weight %></dt>
+<dt><%= order.label :heigth %>(kg)</dt>
+<dt><%= order.number_field :heigth %></dt>
+<dt><%= order.label :width %>(km)</dt>
+<dt><%= order.number_field :width %></dt>
+<dt><%= order.label :depth %>(km)</dt>
+<dt><%= order.number_field :depth %></dt>
+<h3>Informações de Entrega</h3>
+<dt><%= order.label :delivery_address %></dt>
+<dt><%= order.text_field :delivery_address %></dt>
+<dt><%= order.label :name %></dt>
+<dt><%= order.text_field :name %></dt>
+<dt><%= order.label :email %></dt>
+<dt><%= order.text_field :email %></dt>
+<dt><%= order.label :customer_id %></dt>
+<dt><%= order.text_field :customer_id %></dt>
+<br>
+<dt><%= order.label :total_distance %></dt>
+<dt><%= order.number_field :total_distance %></dt>
+</dl>
+<%= order.submit 'Enviar' %>
+
+<% end %>
