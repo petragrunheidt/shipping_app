@@ -13,7 +13,9 @@
 <p><%= Order.human_attribute_name('total_distance') %>: <%= @order.total_distance %>km</p>
 <p><%= Order.human_attribute_name('status') %>: <%= t(@order.status) %></p>
 </dl>
-
+<% if current_user.admin and @order.pending? %>
+<%= link_to 'Editar Ordem de Serviço', edit_order_path(@order) %>
+<% end %>
 <%= link_to 'Iniciar Ordem de Serviço', new_order_order_start_path(@order) %>
 
 <% if @order.waiting_confirmation?%>

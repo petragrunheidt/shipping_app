@@ -32,5 +32,5 @@ Deadline.create!(min: 10, max: 20, time: 12, transport_mode: TransportMode.find(
 Deadline.create!(min: 21, max: 30, time: 24, transport_mode: TransportMode.find(1))
 Deadline.create!(min: 31, max: 49, time: 48, transport_mode: TransportMode.find(1))
 
-order = Order.create(takeout_address:  "Rua da Transportadora 101",weight:  10,heigth:  10,width:  10,depth:  10,delivery_address:  "Rua da Petra 60",
-  name:  "Petra",email:  "petra@mail.com",customer_id:  "193029304",total_distance: 100,status: :pending)
+order = Order.create(takeout_address:  "Rua da Transportadora 101",weight:  20,heigth:  10,width:  10,depth:  10,delivery_address:  "Rua da Petra 60",
+  name:  "Petra",email:  "petra@mail.com",customer_id:  "193029304",total_distance: 30,status: :pending)
