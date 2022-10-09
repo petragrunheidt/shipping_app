@@ -1,28 +1,25 @@
 require 'rails_helper'
 
-describe 'Admin tenta mudar o status de ativação de um veículo' do
+describe 'Admin tenta mudar o status de ativação uma ordem de serviço' do
     it 'e não encontra botão se entra como usuário comum' do
       # Arrange
       user = FactoryBot.create(:user)
-      order = FactoryBot.create(:order)
+      order = FactoryBot.create(:order, status: :on_route)
 
       # Act
       login_as(user)
       visit orders_path
       click_on order.code
 
-
-
       # Assert
-      expect(page).not_to have_button 'Marcar como Pendente'
       expect(page).not_to have_button 'Marcar como Cancelada'
       expect(page).not_to have_button 'Marcar como Entregue'
 
     end
-    it 'do padrão (pendente), para em entregue (com sucesso)' do
+    it 'para em entregue com sucesso' do
         # Arrange
         admin = FactoryBot.create(:user, admin: true)
-        order = FactoryBot.create(:order)
+        order = FactoryBot.create(:order, status: :on_route)
 
         # Act
         login_as(admin)
@@ -34,10 +31,10 @@ describe 'Admin tenta mudar o status de ativação de um veículo' do
         expect(page).to have_content 'Status: Entregue'
         expect(page).to have_content 'Status da ordem de serviço atualizada.'
     end
-    it 'de pendente, para cancelada' do
+    it 'para cancelada com sucesso' do
       # Arrange
       admin = FactoryBot.create(:user, admin: true)
-      order = FactoryBot.create(:order, status: 0)
+      order = FactoryBot.create(:order, status: :on_route)
 
       # Act
       login_as(admin)

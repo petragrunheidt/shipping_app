@@ -3,14 +3,6 @@ class WeightTable < ApplicationRecord
   belongs_to :transport_mode
   validate :weight_range
 
-  def next
-    self.class.where("id > ?", id).first
-  end
-
-  def previous
-    self.class.where("id < ?", id).last
-  end
-
   private
 
   def weight_range

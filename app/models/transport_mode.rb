@@ -7,6 +7,7 @@ class TransportMode < ApplicationRecord
   validates :min_weight, :min_distance, :max_weight, :max_distance, :fixed_rate, comparison: { greater_than: 0 }
   validates :max_weight, comparison: {greater_than: :min_weight}
   validates :max_distance, comparison: {greater_than: :min_distance}
+  has_many :order_starts
 
   def with_weight_range
     "#{name} | #{min_weight}-#{max_weight}kg"
@@ -15,4 +16,9 @@ class TransportMode < ApplicationRecord
   def with_distance_range
     "#{name} | #{min_distance}-#{max_distance}km"
   end
+
+  def with_weight_and_distance_range
+    "#{name} | #{min_weight}-#{max_weight}kg | #{min_distance}-#{max_distance}km"
+  end
+
 end

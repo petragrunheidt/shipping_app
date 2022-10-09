@@ -5,7 +5,7 @@ class DistanceTablesController < ApplicationController
   def new
     @transport_modes = TransportMode.all
     @distance_line = DistanceTable.new
-    @last_line = DistanceTable.last
+
   end
 
   def create
@@ -21,8 +21,7 @@ class DistanceTablesController < ApplicationController
   def edit
     @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
-    @previous = @distance_line.previous
-    @next = @distance_line.next
+
   end
 
   def update

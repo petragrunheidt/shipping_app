@@ -4,7 +4,6 @@ class WeightTablesController < ApplicationController
   before_action :weight_line_params, only: [:create, :update]
 
   def new
-    @last_line = WeightTable.last
     @weight_line = WeightTable.new
     @transport_modes = TransportMode.all
   end
@@ -22,8 +21,7 @@ class WeightTablesController < ApplicationController
   def edit
     @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
-    @previous = @weight_line.previous
-    @next = @weight_line.next
+
   end
 
   def update

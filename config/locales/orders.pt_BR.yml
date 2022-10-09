@@ -1,6 +1,9 @@
 pt-BR:
-  maintenance: 'manutenção'
-  circulation: 'circulação'
+  pending: 'Pendente'
+  canceled: 'Cancelada'
+  delivered: 'Entregue'
+  on_route: 'Em Processo de Entrega'
+  waiting_confirmation: 'Aguardando Confirmação'
   activerecord:
     models:
       order:

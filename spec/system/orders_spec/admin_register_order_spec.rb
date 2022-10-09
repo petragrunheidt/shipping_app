@@ -22,7 +22,7 @@ describe 'Administrador entra na pagina de cadastrar nova Ordem de Serviço' do
     expect(page).to have_field 'Distância Total'
     expect(page).to have_field 'CPF/CNPJ'
   end
-  it 'com sucesso' do
+  it 'e faz o cadastro com sucesso' do
     # Arrange
     admin = FactoryBot.create(:user, admin: true)
 

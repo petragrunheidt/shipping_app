@@ -6,7 +6,9 @@ class OrdersController < ApplicationController
     @orders = Order.all
   end
 
-  def show; end
+  def show
+    @order_confirmation = OrderStart.find_by(order: @order)
+  end
 
   def new
     @order = Order.new
@@ -31,8 +33,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def set_pending
-    @order.pending!
+  def set_on_route
+    @order.on_route!
     return redirect_to @order, notice: "Status da ordem de serviço atualizada."
   end
 

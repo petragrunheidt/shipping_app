@@ -1,7 +1,6 @@
 pt-BR:
-  pending: 'Pendente'
-  canceled: 'Cancelada'
-  delivered: 'Entregue'
+  maintenance: 'manutenção'
+  circulation: 'circulação'
   activerecord:
     models:
       vehicle:

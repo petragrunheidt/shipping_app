@@ -22,14 +22,7 @@
 <th><%= line.label :max %></th>
 <th><%= line.label :value %></th>
 <th><%= line.label :transport_mode_id %></th>
-<% if @last_line.present? %>
 </tr>
-<tr>
-<th><%= @last_line.min %>km</th>
-<th><%= @last_line.max %>km</th>
-<th><%= number_to_currency(@last_line.value, locale: 'pt-BR') %></th>
-</tr>
-<% end %>
 <tr>
 <th><%= line.number_field :min %></th>
 <th><%= line.number_field :max %></th>
