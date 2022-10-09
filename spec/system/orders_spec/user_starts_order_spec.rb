@@ -5,6 +5,8 @@ describe 'Usuário inicia ordem de serviço' do
       # Arrange
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :pending)
+      delivery = FactoryBot.create(:transport_mode, status: :active)
+      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :circulation)
 
       # Act
       login_as(user)
@@ -52,11 +54,9 @@ describe 'Usuário inicia ordem de serviço' do
       visit orders_path
       click_on order.code
       click_on 'Iniciar Ordem de Serviço'
-      select delivery.with_weight_range, :from => 'Opções de Entrega'
-      click_on 'Iniciar Ordem de Serviço'
 
       # Assert
-      expect(page).to have_content 'Veículo não pode ficar em branco'
+      expect(page).to have_content 'No momento, não há Veículos disponíveis para essa Ordem de Serviço'
     end
 
     it 'e confirma o pedido com sucesso' do

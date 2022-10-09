@@ -7,6 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 User.create!(name: 'Petra', email: 'petra@sistemadefrete.com.br', password: 'password', admin: true)
+User.create!(name: 'usuario', email: 'qualquer@sistemadefrete.com.br', password: 'password', admin: false)
 TransportMode.create!(name: 'Frota de Bikes', min_weight: 10, max_weight: 50, min_distance: 10, max_distance: 50, fixed_rate: 7, status: :active)
 TransportMode.create!(name: 'Frota de Carros', min_weight: 50, max_weight: 200, min_distance: 50, max_distance: 200, fixed_rate: 10, status: :active)
 TransportMode.create!(name: 'Frota de Caminhões', min_weight: 100, max_weight: 500, min_distance: 100, max_distance: 500, fixed_rate: 15)
