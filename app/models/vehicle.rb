@@ -1,6 +1,6 @@
 class Vehicle < ApplicationRecord
   belongs_to :transport_mode
-  enum status: { maintenance: 0, circulation: 1 }
+  enum status: { maintenance: 0, circulation: 1, out_for_delivery: 5 }
   validates :nameplate, :vehicle_brand, :vehicle_model, :maximum_load, :manifacture_year, presence: true
   validates :maximum_load, :manifacture_year, comparison: { greater_than: 0 }
   validate :maximum_load_range

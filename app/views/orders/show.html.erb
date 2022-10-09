@@ -14,9 +14,9 @@
 <p><%= Order.human_attribute_name('status') %>: <%= t(@order.status) %></p>
 </dl>
 <% if current_user.admin and @order.pending? %>
-<%= link_to 'Editar Ordem de Serviço', edit_order_path(@order) %>
+<p><%= link_to 'Editar Ordem de Serviço', edit_order_path(@order) %></p>
 <% end %>
-<%= link_to 'Iniciar Ordem de Serviço', new_order_order_start_path(@order) %>
+<p><%= link_to 'Iniciar Ordem de Serviço', new_order_order_start_path(@order) %></p>
 
 <% if @order.waiting_confirmation?%>
 <h3>Confirmação do Pedido</h3>
@@ -24,6 +24,9 @@
 <p>Veículo: <%= @order.order_start.vehicle.full_description %><p>
 <p>Valor do Frete: <%= number_to_currency(@order.order_start.full_value, locale: 'pt-BR') %></p>
 <p><%= @order.order_start.deadline %></p>
+<p><%= button_to 'Confirmar Ordem de Serviço', order_confirmation_order_path, { method: 'patch'} %>
+<%= button_to 'Reconfigurar Ordem de Serviço', order_order_start_path(@order.order_start), { method: 'delete' }%>
+</p>
 <% end %>
 
 <% if current_user.admin and @order.on_route? %>

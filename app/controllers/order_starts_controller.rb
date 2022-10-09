@@ -3,7 +3,7 @@ class OrderStartsController < ApplicationController
   def new
     @order = Order.find(params[:order_id])
     @order_start = OrderStart.new
-    @transport_modes = TransportMode.where(status: :active)
+    @transport_modes = TransportMode.where(status: :active).where("max_weight > ?", @order.weight).where("min_weight < ?", @order.weight)
   end
 
   def create
@@ -19,6 +19,14 @@ class OrderStartsController < ApplicationController
       redirect_to @order, notice: 'Ordem de Serviço Iniciada.'
     else
       render:new
+    end
+  end
+
+  def destroy
+    @order = Order.find(params[:order_id])
+    @order.pending!
+    if @order.order_start.destroy
+      return redirect_to @order, notice: "Inicie novamente a Ordem de Serviço."
     end
   end
 end

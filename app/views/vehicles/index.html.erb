@@ -9,7 +9,7 @@
 <p><%= (link_to 'Cadastrar novo Veículo', new_vehicle_path) if current_user.admin == true %></p>
 <% if @vehicles.present? %>
 <% @vehicles.each do |trans| %>
-<h3><%= link_to trans.full_description, trans%> <%= trans.circulation? ? '(circulação)' : '(manutenção)' %></h3>
+<h3><%= link_to trans.full_description, trans%> - <%= t(trans.status) %></h3>
 
 <% end %>
 <% else %>

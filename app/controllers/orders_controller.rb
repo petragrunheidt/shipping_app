@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :check_admin, only: [:new, :create, :edit, :update, :set_pending, :set_canceled, :set_delivered]
-  before_action :set_order, only: [:show, :edit, :update, :set_pending, :set_canceled, :set_delivered]
+  before_action :set_order, only: [:show, :edit, :update, :set_pending, :set_canceled, :set_delivered, :order_confirmation]
   before_action :order_params, only: [:create, :update]
   def index
     @orders = Order.all
@@ -33,9 +33,10 @@ class OrdersController < ApplicationController
     end
   end
 
-  def set_on_route
+  def order_confirmation
     @order.on_route!
-    return redirect_to @order, notice: "Status da ordem de serviço atualizada."
+    @order.order_start.vehicle.out_for_delivery!
+    return redirect_to @order, notice: "Ordem de Serviço confirmada."
   end
 
   def set_delivered

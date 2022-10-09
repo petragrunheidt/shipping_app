@@ -16,7 +16,7 @@ describe 'Usuário vê veículos cadastrados' do
         # Assert
         expect(page).to have_content('Veículos disponíveis:')
         expect(page).to have_link('Nissan A140i - ABC1234')
-        expect(page).to have_content '(manutenção)'
+        expect(page).to have_content 'Manutenção'
 
     end
     it 'e vê mensagem quando não há veículos cadastrados' do

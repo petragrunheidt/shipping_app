@@ -1,6 +1,7 @@
 pt-BR:
-  maintenance: 'manutenção'
-  circulation: 'circulação'
+  maintenance: 'Manutenção'
+  circulation: 'Circulação'
+  out_for_delivery : 'Em Processo de Entrega'
   activerecord:
     models:
       vehicle:

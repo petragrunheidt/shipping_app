@@ -1,7 +1,7 @@
 <h1>Iniciar Ordem de Serviço <%= @order.code %></h1>
 <%= form_with model: [@order, @order_start] do |order| %>
 <%= order.label :transport_mode_id, 'Opções de Entrega' %>
-<%= order.collection_select :transport_mode_id, @transport_modes, :id, :with_weight_range, prompt:true %>
+<%= order.collection_select :transport_mode_id, @transport_modes, :id, :with_weight_and_distance_range, prompt:true %>
 
 
 <%= order.submit 'Iniciar Ordem de Serviço' %>
