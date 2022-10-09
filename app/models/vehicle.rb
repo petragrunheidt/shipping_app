@@ -4,6 +4,7 @@ class Vehicle < ApplicationRecord
   validates :nameplate, :vehicle_brand, :vehicle_model, :maximum_load, :manifacture_year, presence: true
   validates :maximum_load, :manifacture_year, comparison: { greater_than: 0 }
   validate :maximum_load_range
+  has_one :order_start
 
   def full_description
     "#{vehicle_brand} #{vehicle_model} - #{nameplate}"

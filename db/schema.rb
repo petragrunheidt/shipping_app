@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_08_142158) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_09_161904) do
   create_table "deadlines", force: :cascade do |t|
     t.integer "min"
     t.integer "max"
@@ -36,8 +36,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_142158) do
     t.integer "transport_mode_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vehicle_id", null: false
     t.index ["order_id"], name: "index_order_starts_on_order_id"
     t.index ["transport_mode_id"], name: "index_order_starts_on_transport_mode_id"
+    t.index ["vehicle_id"], name: "index_order_starts_on_vehicle_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -110,6 +112,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_08_142158) do
   add_foreign_key "distance_tables", "transport_modes"
   add_foreign_key "order_starts", "orders"
   add_foreign_key "order_starts", "transport_modes"
+  add_foreign_key "order_starts", "vehicles"
   add_foreign_key "vehicles", "transport_modes"
   add_foreign_key "weight_tables", "transport_modes"
 end

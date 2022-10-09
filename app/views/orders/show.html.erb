@@ -18,7 +18,8 @@
 
 <% if @order.waiting_confirmation?%>
 <h3>Confirmação do Pedido</h3>
-<p><%= @order.order_start.transport_mode.name %><p>
+<p>Modo de Transporte: <%= @order.order_start.transport_mode.name %><p>
+<p>Veículo: <%= @order.order_start.vehicle.full_description %><p>
 <p>Valor do Frete: <%= number_to_currency(@order.order_start.full_value, locale: 'pt-BR') %></p>
 <p><%= @order.order_start.deadline %></p>
 <% end %>

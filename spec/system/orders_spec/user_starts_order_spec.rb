@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário iniciar ordem de serviço' do
+describe 'Usuário inicia ordem de serviço' do
     it 'e acessa página com formulario para iniciar ordem de serviço' do
       # Arrange
       user = FactoryBot.create(:user)
@@ -21,7 +21,8 @@ describe 'Usuário iniciar ordem de serviço' do
       # Arrange
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :pending)
-      delivery = FactoryBot.create(:transport_mode)
+      delivery = FactoryBot.create(:transport_mode, status: :active)
+      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :circulation)
 
       # Act
       login_as(user)
@@ -35,7 +36,46 @@ describe 'Usuário iniciar ordem de serviço' do
       expect(page).to have_content 'Status: Aguardando Confirmação'
       expect(page).to have_content 'Ordem de Serviço Iniciada.'
       expect(page).to have_content delivery.name
+      expect(page).to have_content vehicle.full_description
       expect(page).to have_content 'Valor do Frete:'
       expect(page).to have_content 'Prazo de entrega:'
+    end
+    it 'e encontra erro quando não há veículos em circulação' do
+      # Arrange
+      user = FactoryBot.create(:user)
+      order = FactoryBot.create(:order, status: :pending)
+      delivery = FactoryBot.create(:transport_mode, status: :active)
+      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :maintenance)
+
+      # Act
+      login_as(user)
+      visit orders_path
+      click_on order.code
+      click_on 'Iniciar Ordem de Serviço'
+      select delivery.with_weight_range, :from => 'Opções de Entrega'
+      click_on 'Iniciar Ordem de Serviço'
+
+      # Assert
+      expect(page).to have_content 'Veículo não pode ficar em branco'
+    end
+
+    it 'e confirma o pedido com sucesso' do
+      # Arrange
+      user = FactoryBot.create(:user)
+      order = FactoryBot.create(:order, status: :pending, weight: 50)
+      delivery = FactoryBot.create(:transport_mode, min_weight: 1, max_weight: 100, status: :active)
+      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :circulation)
+
+      # Act
+      login_as(user)
+      visit orders_path
+      click_on order.code
+      click_on 'Iniciar Ordem de Serviço'
+      select delivery.with_weight_range, :from => 'Opções de Entrega'
+      click_on 'Iniciar Ordem de Serviço'
+
+      # Assert
+
+
     end
   end
