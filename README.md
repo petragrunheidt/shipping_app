@@ -3,6 +3,10 @@ Project workflow and planning available at: https://github.com/users/petragrunhe
 
 Populate with, rails db:seed
 
-admin_login: email: petra@sistemadefrete.com.br password: password
+admin_login:
+email: petra@sistemadefrete.com.br
+password: password
 
-regular_user_login: email: qualquer@sistemadefrete.com.br password: password
+regular_user_login:
+email: qualquer@sistemadefrete.com.br
+password: password
