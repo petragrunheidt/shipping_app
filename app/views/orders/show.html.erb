@@ -21,7 +21,7 @@
 
 </div>
 <div tag="pending-buttons">
-<% if @order.pending? %>
+<% if @order.pending? and current_user.present? %>
 <% if current_user.admin %>
 <p><%= link_to 'Editar Ordem de Serviço', edit_order_path(@order) %></p>
 <% end %>
@@ -38,7 +38,7 @@
 <dt>Valor do Frete: <%= number_to_currency(@order.order_start.full_value, locale: 'pt-BR') %></dt>
 <dt><%= @order.order_start.deadline %></dt>
 <dl>
-<% if @order.waiting_confirmation?%>
+<% if @order.waiting_confirmation? and current_user.present? %>
 <p><%= button_to 'Confirmar Ordem de Serviço', order_confirmation_order_path, { method: 'patch'} %>
 <%= button_to 'Reconfigurar Ordem de Serviço', order_order_start_path(@order.order_start), { method: 'delete' }%>
 </p>
@@ -47,7 +47,7 @@
 </div>
 
 <div tag="on_route-buttons">
-<% if @order.on_route? %>
+<% if @order.on_route? and current_user.present? %>
 <p><%= link_to 'Finalizar Ordem de Serviço', new_order_order_end_path(@order) %></p>
 <% if current_user.admin %>
 <p><%= button_to 'Marcar como Cancelada', set_canceled_order_path, { method: 'patch'} %></p>

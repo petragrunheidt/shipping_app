@@ -1,0 +1,11 @@
+<h1>Resultados da Busca por: <%= @query %></h1>
+<% if @order.present? %>
+<p><%= Order.model_name.human %> encontrada! </p>
+
+<h3><%= link_to @order.code, @order %> </h3>
+<p><%= Order.human_attribute_name('status') %>: <%= t(@order.status) %></p>
+
+<% else %>
+<h3>Nenhum resultado encontrado para a busca por: <%= @query %></h3>
+
+<% end %>

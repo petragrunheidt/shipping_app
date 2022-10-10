@@ -8,8 +8,7 @@ describe 'Usuário busca por um Veículo' do
     visit vehicles_path
 
     # Assert
-    expect(page).not_to have_field('Buscar Veículo por placa')
-    expect(page).not_to have_button('Buscar')
+    expect(current_path).to eq new_user_session_path
   end
   it 'a partir da lista de Veículos' do
     # Arrange
@@ -33,7 +32,9 @@ describe 'Usuário busca por um Veículo' do
     login_as(user)
     visit vehicles_path
     fill_in 'Buscar Veículo', with: 'ABC1234'
-    click_on 'Buscar'
+    within('div#vehicle-search') do
+      click_on 'Buscar'
+    end
 
     # Assert
     expect(page).to have_content "Resultados da Busca por: ABC1234"
@@ -50,7 +51,9 @@ describe 'Usuário busca por um Veículo' do
     login_as(user)
     visit vehicles_path
     fill_in 'Buscar Veículo', with: 'ABC1234'
-    click_on 'Buscar'
+    within('div#vehicle-search') do
+      click_on 'Buscar'
+    end
     click_on('Nissan A140i - ABC1234')
 
     # Assert
@@ -64,7 +67,10 @@ describe 'Usuário busca por um Veículo' do
     login_as(user)
     visit vehicles_path
     fill_in 'Buscar Veículo', with: 'a'
-    click_on 'Buscar'
+    within('div#vehicle-search') do
+      click_on 'Buscar'
+    end
+
 
     # Assert
     expect(page).to have_content "Nenhum resultado encontrado para a busca por: a"
@@ -79,7 +85,9 @@ describe 'Usuário busca por um Veículo' do
     login_as(user)
     visit vehicles_path
     fill_in 'Buscar Veículo', with: 'ABC'
-    click_on 'Buscar'
+    within('div#vehicle-search') do
+      click_on 'Buscar'
+    end
 
     # Assert
     expect(page).to have_content "Resultados da Busca por: ABC"

@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show, :search]
   before_action :check_admin, only: [:new, :create, :edit, :update, :set_pending, :set_canceled, :set_delivered]
   before_action :set_order, only: [:show, :edit, :update, :set_pending, :set_canceled, :set_delivered, :order_confirmation]
   before_action :order_params, only: [:create, :update]
@@ -31,6 +32,11 @@ class OrdersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def search
+    @query = params["order_query"]
+    @order = Order.find_by("code LIKE ?", "%#{@query}%")
   end
 
   def order_confirmation

@@ -1,4 +1,5 @@
 <h1><%= Vehicle.model_name.human(count: 2)%> disponíveis:</h1>
+<div id="vehicle-search">
 <p>
 <%= form_with url: search_vehicles_path, method: :get do |form|%>
     <%= form.label :query, 'Buscar Veículo' %>
@@ -6,6 +7,7 @@
     <%= form.submit 'Buscar'%>
 <% end %>
 </p>
+</div>
 <p><%= (link_to 'Cadastrar novo Veículo', new_vehicle_path) if current_user.admin == true %></p>
 <% if @vehicles.present? %>
 <% @vehicles.each do |trans| %>
