@@ -93,7 +93,6 @@ describe 'Usuário tenta cadastrar linha em tabela de preços' do
             fill_in 'Distância Mínima', with: 10
             fill_in 'Distância Máxima', with: 30
             fill_in 'Valor por faixa de Distância', with: 0.65
-            select 'Frota de Caminhões', :from => 'Modalidade de Transporte'
             click_on 'Enviar'
         end
 

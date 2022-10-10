@@ -9,8 +9,10 @@ class DistanceTablesController < ApplicationController
   end
 
   def create
-    @transport_modes = TransportMode.all
+    @transport_mode = TransportMode.find(params[:transport_mode_id])
+
     @distance_line = DistanceTable.new(distance_line_params)
+    @distance_line.transport_mode = @transport_mode
     if @distance_line.save
       return redirect_to @distance_line.transport_mode, notice: "Linha #{@distance_line.id} adicionada com sucesso."
     else
@@ -37,7 +39,7 @@ class DistanceTablesController < ApplicationController
   private
 
   def distance_line_params
-    params.require(:distance_table).permit(:min, :max, :value, :transport_mode_id)
+    params.require(:distance_table).permit(:min, :max, :value)
   end
 
   def check_admin

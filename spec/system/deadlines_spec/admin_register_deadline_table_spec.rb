@@ -48,7 +48,6 @@ describe 'Usuário tenta cadastrar linha em tabela de prazos' do
           fill_in 'Distância Mínima', with: 10
           fill_in 'Distância Máxima', with: 20
           fill_in 'Tempo de Entrega', with: 24
-          select 'Frota de Caminhões', :from => 'Modalidade de Transporte'
           click_on 'Enviar'
         end
 

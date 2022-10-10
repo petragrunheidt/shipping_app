@@ -9,8 +9,10 @@ class DeadlinesController < ApplicationController
   end
 
   def create
-    @transport_modes = TransportMode.all
+    @transport_mode = TransportMode.find(params[:transport_mode_id])
     @deadline = Deadline.new(deadline_params)
+
+    @deadline.transport_mode = @transport_mode
     if @deadline.save
       return redirect_to @deadline.transport_mode, notice: "Linha #{@deadline.id} adicionada com sucesso."
     else
@@ -37,7 +39,7 @@ class DeadlinesController < ApplicationController
   private
 
   def deadline_params
-    params.require(:deadline).permit(:min, :max, :time, :transport_mode_id)
+    params.require(:deadline).permit(:min, :max, :time)
   end
 
   def check_admin
