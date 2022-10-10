@@ -4,6 +4,8 @@ class Order < ApplicationRecord
   :email, :customer_id, :total_distance, :status, presence: true
   before_validation :generate_code
   has_one :order_start
+  has_one :order_end
+  
   private
 
   def generate_code

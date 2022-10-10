@@ -1,4 +1,5 @@
 <h1><%= "#{Order.model_name.human} #{@order.code}" %></h1>
+<div tag="order-info">
 <dl>
 <h3>Informações do Fornecedor</h3>
 <dt><%= Order.human_attribute_name('takeout_address') %>: <%= @order.takeout_address %></dt>
@@ -11,29 +12,56 @@
 <dt><%= Order.human_attribute_name('delivery_address') %>: <%= @order.delivery_address %></dt>
 
 <p><%= Order.human_attribute_name('total_distance') %>: <%= @order.total_distance %>km</p>
-<p><%= Order.human_attribute_name('status') %>: <%= t(@order.status) %></p>
+<p><%= Order.human_attribute_name('status') %>: <%= t(@order.status) %>
+<% if @order.order_end.present? %>
+<%= @order.order_end.reason.present? ? "(com atraso)" : "(no prazo)" %>
+<% end %>
+</p>
 </dl>
-<% if current_user.admin and @order.pending? %>
+
+</div>
+<div tag="pending-buttons">
+<% if @order.pending? %>
+<% if current_user.admin %>
 <p><%= link_to 'Editar Ordem de Serviço', edit_order_path(@order) %></p>
 <% end %>
 <p><%= link_to 'Iniciar Ordem de Serviço', new_order_order_start_path(@order) %></p>
+<% end %>
+</div>
 
+<div tag="waiting-confirmation">
+<% if @order.order_start.present? %>
+<h3>Dados de Entrega</h3>
+<dl>
+<dt>Modo de Transporte: <%= @order.order_start.transport_mode.name %><dt>
+<dt>Veículo: <%= @order.order_start.vehicle.full_description %><dt>
+<dt>Valor do Frete: <%= number_to_currency(@order.order_start.full_value, locale: 'pt-BR') %></dt>
+<dt><%= @order.order_start.deadline %></dt>
+<dl>
 <% if @order.waiting_confirmation?%>
-<h3>Confirmação do Pedido</h3>
-<p>Modo de Transporte: <%= @order.order_start.transport_mode.name %><p>
-<p>Veículo: <%= @order.order_start.vehicle.full_description %><p>
-<p>Valor do Frete: <%= number_to_currency(@order.order_start.full_value, locale: 'pt-BR') %></p>
-<p><%= @order.order_start.deadline %></p>
 <p><%= button_to 'Confirmar Ordem de Serviço', order_confirmation_order_path, { method: 'patch'} %>
 <%= button_to 'Reconfigurar Ordem de Serviço', order_order_start_path(@order.order_start), { method: 'delete' }%>
 </p>
 <% end %>
-
-<% if current_user.admin and @order.on_route? %>
-<%= button_to 'Marcar como Cancelada', set_canceled_order_path, { method: 'patch'} %>
-<%= button_to 'Marcar como Entregue', set_delivered_order_path, { method: 'patch'} %>
 <% end %>
+</div>
 
-<div style='inline-block'>
+<div tag="on_route-buttons">
+<% if @order.on_route? %>
+<p><%= link_to 'Finalizar Ordem de Serviço', new_order_order_end_path(@order) %></p>
+<% if current_user.admin %>
+<p><%= button_to 'Marcar como Cancelada', set_canceled_order_path, { method: 'patch'} %></p>
+<% end %>
+<% end %>
+</div>
+
+<div tag="delivered-order">
+<% if @order.delivered? %>
+<h3>Pedido Finalizado</h3>
+<p>Pedido entregue em <%= I18n.localize(@order.order_end.time) %></p>
+<p><%= "Motivo do Atraso: #{@order.order_end.reason}" if @order.order_end.reason.present? %></p>
+<% end %>
+</div>
+
 <%= link_to 'Voltar', orders_path %>
 

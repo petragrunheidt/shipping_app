@@ -1,0 +1,11 @@
+<h1><%= "#{OrderEnd.model_name.human} #{@order.code}" %></h1>
+
+<%= form_with model: [@order, @order_end] do |order| %>
+<%= order.label :time %>
+<%= order.date_field :time %>
+<%= order.label :reason %>
+<%= order.text_area :reason %>
+<%= order.submit 'Finalizar Ordem de Serviço' %>
+<% end %>
+
+<%= link_to 'Voltar', @order %>

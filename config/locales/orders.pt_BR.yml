@@ -4,11 +4,14 @@ pt-BR:
   delivered: 'Entregue'
   on_route: 'Em Processo de Entrega'
   waiting_confirmation: 'Aguardando Confirmação'
+
   activerecord:
     models:
       order:
         one: 'Ordem de Serviço'
         other: 'Ordens de Serviço'
+      order_start: 'Iniciar Ordem de Serviço'
+      order_end: 'Finalizar Ordem de Serviço'
     attributes:
       order:
         takeout_address: 'Endereço de Retirada'
@@ -22,4 +25,8 @@ pt-BR:
         email: 'Email'
         total_distance: 'Distância Total'
         customer_id: 'CPF/CNPJ'
-
+      order_start:
+        transport_mode: 'Opções de Entrega'
+      order_end:
+        time: 'Data de Entrega'
+        reason: 'Motivo do Atraso (deixar em branco p/ entregas no prazo)'
