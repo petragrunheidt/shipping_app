@@ -1,21 +1,23 @@
 <h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
 <h3>Tabela de informações de uso</h3>
-<table>
+<table class="table">
+
 <tr>
-    <th></th>
-    <th>Carga Suportada</th>
-    <th>Faixa de Distâncias</th>
+    <th scope="col"></th>
+    <th scope="col">Carga Suportada</th>
+    <th scope="col">Faixa de Distâncias</th>
 
 </tr>
+
 <tr>
-    <th>Min</th>
-    <th><%= @transport_mode.min_weight %>kg</th>
-    <th><%= @transport_mode.min_distance %>km</th>
+    <td>Min</td>
+    <td ><%= @transport_mode.min_weight %>kg</td>
+    <td><%= @transport_mode.min_distance %>km</td>
 </tr>
 <tr>
-    <th>Max</th>
-    <th><%= @transport_mode.max_weight %>kg</th>
-    <th><%= @transport_mode.max_distance %>km</th>
+    <td>Max</td>
+    <td><%= @transport_mode.max_weight %>kg</td>
+    <td><%= @transport_mode.max_distance %>km</td>
 </tr>
 </table>
 <p><%= TransportMode.human_attribute_name('fixed_rate') %>: <%= number_to_currency(@transport_mode.fixed_rate, locale: 'pt-BR')%></p>
@@ -30,7 +32,7 @@
 <div id="weight-table">
 <h2><%= WeightTable.model_name.human %></h2>
 <% if @weight_table.present? %>
-<table>
+<table class="table">
 <tr>
     <th>Intervalo de pesos</th>
     <th></th>
@@ -38,10 +40,10 @@
 <% @weight_table.each do |line| %>
 </tr>
 <tr>
-    <th><%= line.min %>kg</th>
-    <th><%= line.max %>kg</th>
-    <th><%= number_to_currency(line.value, locale: 'pt-BR')  %></th>
-    <th><%= (link_to "Editar linha #{line.id}", edit_transport_mode_weight_table_path(line)) if current_user.admin == true %></th>
+    <td><%= line.min %>kg</td>
+    <td><%= line.max %>kg</td>
+    <td><%= number_to_currency(line.value, locale: 'pt-BR')  %></td>
+    <td><%= (link_to "Editar linha #{line.id}", edit_transport_mode_weight_table_path(line)) if current_user.admin == true %></td>
 </tr>
 <% end %>
 </table>
@@ -67,18 +69,18 @@
 <% end %>
   </div>
 <% end %>
-<table>
+<table class="table">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
 <th><%= line.label :value %></th>
-<th><%= line.label :transport_mode_id %></th>
+
 </tr>
 <tr>
-<th><%= line.number_field :min %></th>
-<th><%= line.number_field :max %></th>
-<th><%= line.number_field :value, step: :any  %></th>
-<th><%= line.collection_select :transport_mode_id, @transport_modes, :id, :with_weight_range %></th>
+<td><%= line.number_field :min %></td>
+<td><%= line.number_field :max %></td>
+<td><%= line.number_field :value, step: :any  %></td>
+
 </tr>
 </table>
 <p><%= line.submit 'Enviar' %></p>
@@ -90,7 +92,7 @@
 <div id="distance-table">
 <h2><%= DistanceTable.model_name.human %></h2>
 <% if @distance_table.present? %>
-<table>
+<table class="table">
 <tr>
     <th>Intervalo de Distâncias</th>
     <th></th>
@@ -98,10 +100,10 @@
 <% @distance_table.each do |line| %>
 </tr>
 <tr>
-    <th><%= line.min %>km</th>
-    <th><%= line.max %>km</th>
-    <th><%= number_to_currency(line.value, locale: 'pt-BR')  %></th>
-    <th><%= (link_to "Editar linha #{line.id}", edit_transport_mode_distance_table_path(line)) if current_user.admin == true %></th>
+    <td><%= line.min %>km</td>
+    <td><%= line.max %>km</td>
+    <td><%= number_to_currency(line.value, locale: 'pt-BR')  %></td>
+    <td><%= (link_to "Editar linha #{line.id}", edit_transport_mode_distance_table_path(line)) if current_user.admin == true %></td>
 </tr>
 <% end %>
 </table>
@@ -127,7 +129,7 @@
 <% end %>
   </div>
 <% end %>
-<table>
+<table class="table">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
@@ -135,10 +137,10 @@
 <th><%= line.label :transport_mode_id %></th>
 </tr>
 <tr>
-<th><%= line.number_field :min %></th>
-<th><%= line.number_field :max %></th>
-<th><%= line.number_field :value, step: :any %></th>
-<th><%= line.collection_select :transport_mode_id, @transport_modes, :id, :with_distance_range, prompt:true %></th>
+<td><%= line.number_field :min %></td>
+<td><%= line.number_field :max %></td>
+<td><%= line.number_field :value, step: :any %></td>
+<td><%= line.collection_select :transport_mode_id, @transport_modes, :id, :with_distance_range, prompt:true %></td>
 </tr>
 </table>
 <p><%= line.submit 'Enviar' %></p>
@@ -150,7 +152,7 @@
 <div id="deadline-table">
 <h2><%= Deadline.model_name.human %></h2>
 <% if @deadline.present? %>
-<table>
+<table class="table">
 <tr>
     <th>Intervalo de Distâncias</th>
     <th></th>
@@ -158,10 +160,10 @@
 <% @deadline.each do |line| %>
 </tr>
 <tr>
-    <th><%= line.min %>km</th>
-    <th><%= line.max %>km</th>
-    <th><%= line.time %>h</th>
-    <th><%= (link_to "Editar linha #{line.id}", edit_transport_mode_deadline_path(line)) if current_user.admin == true %></th>
+    <td><%= line.min %>km</td>
+    <td><%= line.max %>km</td>
+    <td><%= line.time %>h</td>
+    <td><%= (link_to "Editar linha #{line.id}", edit_transport_mode_deadline_path(line)) if current_user.admin == true %></td>
 </tr>
 <% end %>
 </table>
@@ -187,17 +189,17 @@
 <% end %>
   </div>
 <% end %>
-<table>
+<table class="table">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
 <th><%= line.label :time %></th>
 <th><%= line.label :transport_mode_id %></th>
 <tr>
-<th><%= line.number_field :min %></th>
-<th><%= line.number_field :max %></th>
-<th><%= line.number_field :time%></th>
-<th><%= line.collection_select :transport_mode_id, @transport_modes, :id, :with_distance_range, prompt:true %></th>
+<td><%= line.number_field :min %></td>
+<td><%= line.number_field :max %></td>
+<td><%= line.number_field :time%></td>
+<td><%= line.collection_select :transport_mode_id, @transport_modes, :id, :with_distance_range, prompt:true %></td>
 </tr>
 </table>
 <p><%= line.submit 'Enviar' %></p>

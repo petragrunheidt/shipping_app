@@ -10,7 +10,7 @@
 </div>
 <p><%= (link_to 'Cadastrar novo Veículo', new_vehicle_path) if current_user.admin == true %></p>
 <% if @vehicles.present? %>
-<% @vehicles.each do |trans| %>
+<% @vehicles.sort_by(&:transport_mode).each do |trans| %>
 <h3><%= link_to trans.full_description, trans%> - <%= t(trans.status) %></h3>
 
 <% end %>

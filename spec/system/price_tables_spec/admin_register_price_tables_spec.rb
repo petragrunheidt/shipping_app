@@ -50,7 +50,6 @@ describe 'Usuário tenta cadastrar linha em tabela de preços' do
             fill_in 'Peso Mínimo', with: 10
             fill_in 'Peso Máximo', with: 20
             fill_in 'Valor por Peso', with: 0.80
-            select 'Frota de Caminhões', :from => 'Modalidade de Transporte'
             click_on 'Enviar'
         end
 

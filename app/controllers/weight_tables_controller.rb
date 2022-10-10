@@ -9,8 +9,10 @@ class WeightTablesController < ApplicationController
   end
 
   def create
-    @transport_modes = TransportMode.all
+    @transport_mode = TransportMode.find(params[:transport_mode_id])
+
     @weight_line = WeightTable.new(weight_line_params)
+    @weight_line.transport_mode = @transport_mode
     if @weight_line.save
       return redirect_to @weight_line.transport_mode, notice: "Linha #{@weight_line.id} adicionada com sucesso."
     else
@@ -37,7 +39,7 @@ class WeightTablesController < ApplicationController
   private
 
   def weight_line_params
-    params.require(:weight_table).permit(:min, :max, :value, :transport_mode_id)
+    params.require(:weight_table).permit(:min, :max, :value)
   end
 
   def check_admin
