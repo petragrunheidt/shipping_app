@@ -1,11 +1,28 @@
 <h1><%= "#{OrderEnd.model_name.human} #{@order.code}" %></h1>
-
 <%= form_with model: [@order, @order_end] do |order| %>
-<%= order.label :time %>
-<%= order.date_field :time %>
-<%= order.label :reason %>
-<%= order.text_area :reason %>
-<%= order.submit 'Finalizar Ordem de Serviço' %>
+<% if @order_end.errors.any? %>
+
+  <div id="error_explanation">
+    <h2>Todos os campos devem ser preenchidos</h2>
+    <div>
+      <% @order_end.errors.each do |error| %>
+        <% flash.now[:alert] = error.full_message%>
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+
+        <% end %>
+   </div>
+<% end %>
+  </div>
+<% end %>
+
+<dl>
+<dt><%= order.label :time %></dt>
+<dt><%= order.date_field :time %></dt>
+<dt><%= order.label :reason %></dt>
+<dt><%= order.text_area :reason %></dt>
+<dt><%= order.submit 'Finalizar Ordem de Serviço' %></dt>
+</dl>
 <% end %>
 
 <%= link_to 'Voltar', @order %>

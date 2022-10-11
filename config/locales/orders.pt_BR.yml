@@ -32,4 +32,4 @@ pt-BR:
         delivery_deadline: 'Data Prevista de Entrega'
       order_end:
         time: 'Data de Entrega'
-        reason: 'Motivo do Atraso (deixar em branco p/ entregas no prazo)'
+        reason: 'Motivo do Atraso'
