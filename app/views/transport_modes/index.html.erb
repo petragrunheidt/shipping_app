@@ -1,10 +1,16 @@
 <h1><%= TransportMode.model_name.human(count: 2)%> disponíveis:</h1>
 <p><%= (link_to 'Cadastrar nova Modalidade de Transporte', new_transport_mode_path) if current_user.admin == true %></p>
+<div >
 <% if @transport_mode.present? %>
 <% @transport_mode.each do |trans| %>
-<h3><%= trans.name %></h3>
+
+<div>
+<h3 ><%= "#{trans.name}: (#{trans.status})" %></h3>
 <%= link_to 'mais informações', trans%>
 <% end %>
+</div>
+
 <% else %>
 <h3>Nenhuma Modalidade de Transporte Cadastrada</h3>
 <% end %>
+</div>

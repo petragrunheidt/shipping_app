@@ -4,16 +4,18 @@
 
   <div id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
+
     <div>
       <% @vehicle.errors.each do |error| %>
         <% flash.now[:alert] = error.full_message%>
         <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: name %>
+        <p><%= content_tag :div, msg, class: name %></p>
 
         <% end %>
    </div>
 <% end %>
   </div>
+
 <% end %>
 <dl>
 <dt><%= trans.label :vehicle_brand %></dt>

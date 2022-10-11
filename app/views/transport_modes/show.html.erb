@@ -1,6 +1,6 @@
 <h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
 <h3>Tabela de informações de uso</h3>
-<table class="table">
+<table class="table table-warning table-striped table-hover">
 
 <tr>
     <th scope="col"></th>
@@ -29,10 +29,10 @@
 <% end %>
 
 
-<div id="weight-table">
+<div class="table table-secondary" id="weight-table">
 <h2><%= WeightTable.model_name.human %></h2>
 <% if @weight_table.present? %>
-<table class="table">
+<table class="table table-warning table-striped table-hover">
 <tr>
     <th>Intervalo de pesos</th>
     <th></th>
@@ -56,7 +56,7 @@
 <%= form_with model: [@transport_mode, @weight_line] do |line| %>
 <% if @weight_line.errors.any? %>
 
-  <div id="error_explanation">
+  <div class="table table-secondary" id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
     <div>
       <% @weight_line.errors.each do |error| %>
@@ -69,7 +69,7 @@
 <% end %>
   </div>
 <% end %>
-<table class="table">
+<table class="table table-warning table-striped table-hover">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
@@ -89,10 +89,10 @@
 <% end %>
 </div>
 
-<div id="distance-table">
+<div class="table table-secondary" id="distance-table">
 <h2><%= DistanceTable.model_name.human %></h2>
 <% if @distance_table.present? %>
-<table class="table">
+<table class="table table-warning table-striped table-hover">
 <tr>
     <th>Intervalo de Distâncias</th>
     <th></th>
@@ -116,7 +116,7 @@
 
 <% if @distance_line.errors.any? %>
 
-  <div id="error_explanation">
+  <div class="table table-secondary" id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
     <div>
       <% @distance_line.errors.each do |error| %>
@@ -129,7 +129,7 @@
 <% end %>
   </div>
 <% end %>
-<table class="table">
+<table class="table table-warning table-striped table-hover">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
@@ -149,10 +149,10 @@
 </div>
 
 
-<div id="deadline-table">
+<div class="table table-secondary" id="deadline-table">
 <h2><%= Deadline.model_name.human %></h2>
 <% if @deadline.present? %>
-<table class="table">
+<table class="table table-warning table-striped table-hover">
 <tr>
     <th>Intervalo de Distâncias</th>
     <th></th>
@@ -176,7 +176,7 @@
 
 <% if @deadline_line.errors.any? %>
 
-  <div id="error_explanation">
+  <div class="table table-secondary" id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
     <div>
       <% @deadline_line.errors.each do |error| %>
@@ -189,7 +189,7 @@
 <% end %>
   </div>
 <% end %>
-<table class="table">
+<table class="table table-warning table-striped table-hover">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>

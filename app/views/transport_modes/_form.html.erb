@@ -2,9 +2,9 @@
 
 <% if @transport_mode.errors.any? %>
 
-  <div id="error_explanation">
+  <div class="bg-warning" id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
-    <div>
+    <div class="bg-info">
       <% @transport_mode.errors.each do |error| %>
         <% flash.now[:alert] = error.full_message%>
         <% flash.each do |name, msg| %>
@@ -15,20 +15,21 @@
 <% end %>
   </div>
 <% end %>
+<div class="mb-3">
 <dl>
-<dt><%= trans.label :name %></dt>
+<dt class="form-label"><%= trans.label :name %></dt>
 <dt><%= trans.text_field :name %></dt>
-<dt><%= trans.label :min_weight %>(kg)</dt>
+<dt class="form-label"><%= trans.label :min_weight %>(kg)</dt>
 <dt><%= trans.number_field :min_weight %></dt>
-<dt><%= trans.label :max_weight %>(kg)</dt>
+<dt class="form-label"><%= trans.label :max_weight %>(kg)</dt>
 <dt><%= trans.number_field :max_weight %></dt>
-<dt><%= trans.label :min_distance %>(km)</dt>
+<dt class="form-label"><%= trans.label :min_distance %>(km)</dt>
 <dt><%= trans.number_field :min_distance %></dt>
-<dt><%= trans.label :max_distance %>(km)</dt>
+<dt class="form-label"><%= trans.label :max_distance %>(km)</dt>
 <dt><%= trans.number_field :max_distance %></dt>
-<dt><%= trans.label :fixed_rate %></dt>
+<dt class="form-label"><%= trans.label :fixed_rate %></dt>
 <dt><%= trans.number_field :fixed_rate %></dt>
 </dl>
 <%= trans.submit 'Enviar' %>
-
+</div>
 <% end %>

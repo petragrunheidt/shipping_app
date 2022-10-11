@@ -38,7 +38,7 @@ class TransportModesController < ApplicationController
     if @transport_mode.update(transport_mode_params)
       return redirect_to @transport_mode, notice: 'Modo de Transporte Atualizado com sucesso.'
     else
-      render :new
+      render :edit
     end
   end
 

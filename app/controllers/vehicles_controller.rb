@@ -28,7 +28,7 @@ class VehiclesController < ApplicationController
     if @vehicle.update(vehicle_params)
       return redirect_to @vehicle, notice: 'Veículo Atualizado com sucesso.'
     else
-      render :new
+      render :edit
     end
   end
 

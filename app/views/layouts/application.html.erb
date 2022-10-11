@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag "application" %>
   </head>
-<nav id="nav links" class="navbar navbar-expand-lg bg-light">
+<nav id="nav links" class="navbar navbar-expand-lg bg-primary">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Transporte & Frete</a>
 
@@ -42,8 +42,9 @@
     </div>
   </div>
   </nav>
-  <div><%= notice %></div>
-  <body>
+  <div class="bg-success"><%= notice %></div>
+  <body class="container-flex bg-secondary mx-auto" style="width: 98%;">
     <%= yield %>
   </body>
+
 </html>

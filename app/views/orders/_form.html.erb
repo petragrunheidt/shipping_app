@@ -2,7 +2,7 @@
 
 <% if @order.errors.any? %>
 
-  <div id="error_explanation">
+  <div class="bg-danger" id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
     <div>
       <% @order.errors.each do |error| %>
