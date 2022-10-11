@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe 'Administrador entra na pagina de editar modo de transporte' do
-  it 'a partir da tela de administradores' do
+  it 'a partir da tela inicial' do
     # Arrange
     admin = FactoryBot.create(:user, admin: true)
     FactoryBot.create(:transport_mode)
     # Act
     login_as(admin)
-    visit admin_dashboard_index_path
-    click_on 'Editar Modos de Transporte existentes'
+    visit root_path
+    click_on 'Modos de Transporte'
     click_on 'mais informações'
     click_on 'Editar Modo de Transporte'
 
@@ -26,8 +26,8 @@ describe 'Administrador entra na pagina de editar modo de transporte' do
     FactoryBot.create(:transport_mode)
     # Act
     login_as(admin)
-    visit admin_dashboard_index_path
-    click_on 'Editar Modos de Transporte existentes'
+    visit root_path
+    click_on 'Modos de Transporte'
     click_on 'mais informações'
     click_on 'Editar Modo de Transporte'
     fill_in 'Nome', with: 'Modal Rodoviário'

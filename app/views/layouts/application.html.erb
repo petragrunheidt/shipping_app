@@ -24,20 +24,17 @@
           <a class="nav-link active" aria-current="page" href=<%=orders_path%>>Ordens de Serviço</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
-      <div >
-      <%= form_with url: search_orders_path, method: :get do |form|%>
+
+      <div>
+      <%= form_with url: search_orders_url, method: :get do |form|%>
     <%= form.label :order_query, 'Consultar Ordem de Serviço' %>
     <%= form.text_field :order_query %>
     <%= form.submit 'Buscar'%>
-      </div>
       <% end %>
-      </form>
+      </div>
       <% if user_signed_in? %>
   Olá, <%= current_user.description %>
-  <% if current_user.admin == true %>
-  <%= link_to 'Pagina de Admin', admin_dashboard_index_path %>
-  <% end %>
+  <%= " 👑" if current_user.admin? %>
   <%= button_to 'Encerrar Sessão', destroy_user_session_path, method: 'delete' %>
   <% else %>
   <%= link_to 'Iniciar Sessão', new_user_session_path %>

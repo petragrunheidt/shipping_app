@@ -1,15 +1,16 @@
 require 'rails_helper'
 
-describe 'Administrador entra na pagina de cadastrar novo modo de transporte' do
-  it 'a partir da tela de administradores' do
+describe 'Administrador entra na pagina de cadastrar nova Modalidade de transporte' do
+  it 'a partir da tela inicial' do
     # Arrange
     admin = FactoryBot.create(:user, admin: true)
     FactoryBot.create(:transport_mode)
 
     # Act
     login_as(admin)
-    visit admin_dashboard_index_path
-    click_on 'Cadastrar novo Modo de Transporte'
+    visit root_path
+    click_on 'Modos de Transporte'
+    click_on 'Cadastrar nova Modalidade de Transporte'
 
     # Assert
     expect(page).to have_field TransportMode.human_attribute_name('name')
@@ -19,14 +20,15 @@ describe 'Administrador entra na pagina de cadastrar novo modo de transporte' do
     expect(page).to have_field TransportMode.human_attribute_name('max_distance')
     expect(page).to have_field TransportMode.human_attribute_name('fixed_rate')
   end
-  it 'com sucesso' do
+  it 'e faz cadastro com sucesso' do
     # Arrange
     admin = FactoryBot.create(:user, admin: true)
 
     # Act
     login_as(admin)
-    visit admin_dashboard_index_path
-    click_on 'Cadastrar novo Modo de Transporte'
+    visit root_path
+    click_on 'Modos de Transporte'
+    click_on 'Cadastrar nova Modalidade de Transporte'
     fill_in 'Nome', with: 'Modal Rodoviário'
     fill_in 'Carga mínima', with: 10
     fill_in 'Carga máxima', with: 100
@@ -52,8 +54,9 @@ describe 'Administrador entra na pagina de cadastrar novo modo de transporte' do
 
     # Act
     login_as(admin)
-    visit admin_dashboard_index_path
-    click_on 'Cadastrar novo Modo de Transporte'
+    visit root_path
+    click_on 'Modos de Transporte'
+    click_on 'Cadastrar nova Modalidade de Transporte'
     fill_in 'Nome', with: 'Modal Rodoviário'
     fill_in 'Carga mínima', with: ''
     fill_in 'Carga máxima', with: ''

@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe 'Administrador entra na pagina de cadastrar novo Veículo' do
-  it 'a partir da tela de administradores' do
+  it 'a partir da tela inicial' do
     # Arrange
     admin = FactoryBot.create(:user, admin: true)
     FactoryBot.create(:vehicle)
 
     # Act
     login_as(admin)
-    visit admin_dashboard_index_path
+    visit vehicles_path
     click_on 'Cadastrar novo Veículo'
 
     # Assert
@@ -26,7 +26,7 @@ describe 'Administrador entra na pagina de cadastrar novo Veículo' do
 
     # Act
     login_as(admin)
-    visit admin_dashboard_index_path
+    visit vehicles_path
     click_on 'Cadastrar novo Veículo'
     fill_in 'Marca do Veículo', with: 'Nissan'
     fill_in 'Modelo do Veículo', with: 'TI120m'
@@ -51,7 +51,7 @@ describe 'Administrador entra na pagina de cadastrar novo Veículo' do
 
     # Act
     login_as(admin)
-    visit admin_dashboard_index_path
+    visit vehicles_path
     click_on 'Cadastrar novo Veículo'
     fill_in 'Marca do Veículo', with: 'Nissan'
     fill_in 'Modelo do Veículo', with: 'TI120m'

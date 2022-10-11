@@ -35,8 +35,8 @@ class OrdersController < ApplicationController
   end
 
   def search
-    @query = params["order_query"]
-    @order = Order.find_by("code LIKE ?", "%#{@query}%")
+    @order_query = params["order_query"]
+    @order = Order.find_by(code: @order_query)
   end
 
   def order_confirmation
