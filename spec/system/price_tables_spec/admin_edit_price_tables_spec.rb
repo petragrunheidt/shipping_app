@@ -39,7 +39,7 @@ describe 'Usuário tenta editar linha em tabela de preços' do
 
         # Assert
 
-        expect(page).to have_content('Linha 1 editada com sucesso.')
+        expect(page).to have_content('Linha 1 da tabela de peso editada com sucesso.')
         expect(page).to have_content 'Intervalo de pesos'
         expect(page).to have_content 'Preço por kg'
         expect(page).to have_content '20kg'
@@ -69,7 +69,7 @@ describe 'Usuário tenta editar linha em tabela de preços' do
 
       # Assert
 
-      expect(page).to have_content('Linha 1 editada com sucesso.')
+      expect(page).to have_content('Linha 1 da tabela de distância editada com sucesso.')
       expect(page).to have_content 'Intervalo de Distâncias'
       expect(page).to have_content 'Preço por faixa de km'
       expect(page).to have_content '20km'

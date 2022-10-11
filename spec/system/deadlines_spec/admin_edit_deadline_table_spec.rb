@@ -36,7 +36,7 @@ describe 'Usuário tenta editar linha em tabela de prazos' do
 
         # Assert
 
-        expect(page).to have_content('Linha 1 editada com sucesso.')
+        expect(page).to have_content('Linha 1 da tabela de prazos editada com sucesso.')
         expect(page).to have_content 'Intervalo de Distâncias'
         expect(page).to have_content 'Prazo'
         expect(page).to have_content '20km'

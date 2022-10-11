@@ -14,7 +14,7 @@ class DistanceTablesController < ApplicationController
     @distance_line = DistanceTable.new(distance_line_params)
     @distance_line.transport_mode = @transport_mode
     if @distance_line.save
-      return redirect_to @distance_line.transport_mode, notice: "Linha #{@distance_line.id} adicionada com sucesso."
+      return redirect_to @distance_line.transport_mode, notice: "Linha #{@distance_line.id} da tabela de distância adicionada com sucesso."
     else
       render :new
     end
@@ -30,9 +30,9 @@ class DistanceTablesController < ApplicationController
     @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
     if @distance_line.update(distance_line_params)
-      return redirect_to @distance_line.transport_mode, notice: "Linha #{@distance_line.id} editada com sucesso."
+      return redirect_to @distance_line.transport_mode, notice: "Linha #{@distance_line.id} da tabela de distância editada com sucesso."
     else
-      render :new
+      render :edit
     end
   end
 

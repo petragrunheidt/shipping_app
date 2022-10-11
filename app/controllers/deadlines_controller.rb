@@ -14,7 +14,7 @@ class DeadlinesController < ApplicationController
 
     @deadline.transport_mode = @transport_mode
     if @deadline.save
-      return redirect_to @deadline.transport_mode, notice: "Linha #{@deadline.id} adicionada com sucesso."
+      return redirect_to @deadline.transport_mode, notice: "Linha #{@deadline.id} da tabela de prazos adicionada com sucesso."
     else
       render :new
     end
@@ -30,9 +30,9 @@ class DeadlinesController < ApplicationController
     @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
     if @deadline.update(deadline_params)
-      return redirect_to @deadline.transport_mode, notice: "Linha #{@deadline.id} editada com sucesso."
+      return redirect_to @deadline.transport_mode, notice: "Linha #{@deadline.id} da tabela de prazos editada com sucesso."
     else
-      render :new
+      render :edit
     end
   end
 

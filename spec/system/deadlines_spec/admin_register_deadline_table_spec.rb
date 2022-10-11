@@ -53,7 +53,7 @@ describe 'Usuário tenta cadastrar linha em tabela de prazos' do
 
         # Assert
 
-        expect(page).to have_content('Linha 1 adicionada com sucesso.')
+        expect(page).to have_content('Linha 1 da tabela de prazos adicionada com sucesso.')
         expect(page).to have_content 'Intervalo de Distâncias'
         expect(page).to have_content 'Tempo de Entrega'
         expect(page).to have_content '10km'
