@@ -26,7 +26,10 @@ pt-BR:
         total_distance: 'Distância Total'
         customer_id: 'CPF/CNPJ'
       order_start:
+        order_date: 'Data do Pedido'
         transport_mode: 'Opções de Entrega'
+        shipping_fee: 'Valor do Frete'
+        delivery_deadline: 'Data Prevista de Entrega'
       order_end:
         time: 'Data de Entrega'
         reason: 'Motivo do Atraso (deixar em branco p/ entregas no prazo)'

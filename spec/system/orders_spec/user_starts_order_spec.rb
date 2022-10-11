@@ -6,7 +6,7 @@ describe 'Usuário inicia ordem de serviço' do
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :pending)
       delivery = FactoryBot.create(:transport_mode, status: :active)
-      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :circulation)
+      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :available)
 
       # Act
       login_as(user)
@@ -15,6 +15,7 @@ describe 'Usuário inicia ordem de serviço' do
       click_on 'Iniciar Ordem de Serviço'
       # Assert
       expect(page).to have_field 'Opções de Entrega'
+      expect(page).to have_field 'Data do Pedido'
       expect(page).to have_button 'Iniciar Ordem de Serviço'
 
 
@@ -22,15 +23,16 @@ describe 'Usuário inicia ordem de serviço' do
     it 'com sucesso' do
       # Arrange
       user = FactoryBot.create(:user)
-      order = FactoryBot.create(:order, status: :pending)
-      delivery = FactoryBot.create(:transport_mode, status: :active)
-      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :circulation)
+      order = FactoryBot.create(:order, total_distance: 30, status: :pending)
+      delivery = FactoryBot.create(:transport_mode, min_weight: 1, max_weight: 100, min_distance: 1, max_distance: 100, status: :active)
+      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :available)
 
       # Act
       login_as(user)
       visit orders_path
       click_on order.code
       click_on 'Iniciar Ordem de Serviço'
+      fill_in 'Data do Pedido', with: Date.today
       select delivery.with_weight_range, :from => 'Opções de Entrega'
       click_on 'Iniciar Ordem de Serviço'
 
@@ -40,9 +42,10 @@ describe 'Usuário inicia ordem de serviço' do
       expect(page).to have_content delivery.name
       expect(page).to have_content vehicle.full_description
       expect(page).to have_content 'Valor do Frete:'
-      expect(page).to have_content 'Prazo de entrega:'
+      expect(page).to have_content 'Data do Pedido:'
+      expect(page).to have_content 'Data Prevista de Entrega:'
     end
-    it 'e encontra erro quando não há veículos em circulação' do
+    it 'e encontra erro quando não há veículo Disponível' do
       # Arrange
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :pending)
@@ -63,14 +66,15 @@ describe 'Usuário inicia ordem de serviço' do
       # Arrange
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :pending, weight: 50)
-      delivery = FactoryBot.create(:transport_mode, min_weight: 1, max_weight: 100, status: :active)
-      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :circulation)
+      delivery = FactoryBot.create(:transport_mode, min_weight: 1, max_weight: 100, min_distance: 1, max_distance: 100, status: :active)
+      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :available)
 
       # Act
       login_as(user)
       visit orders_path
       click_on order.code
       click_on 'Iniciar Ordem de Serviço'
+      fill_in 'Data do Pedido', with: Date.today
       select delivery.with_weight_range, :from => 'Opções de Entrega'
       click_on 'Iniciar Ordem de Serviço'
       click_on 'Confirmar Ordem de Serviço'
@@ -85,15 +89,16 @@ describe 'Usuário inicia ordem de serviço' do
     it 'e desconfirma o pedido com sucesso' do
       # Arrange
       user = FactoryBot.create(:user)
-      order = FactoryBot.create(:order, status: :pending, weight: 50)
-      delivery = FactoryBot.create(:transport_mode, min_weight: 1, max_weight: 100, status: :active)
-      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :circulation)
+      order = FactoryBot.create(:order, status: :pending, weight: 50, total_distance: 30)
+      delivery = FactoryBot.create(:transport_mode, min_weight: 1, max_weight: 100, min_distance: 1, max_distance: 100, status: :active)
+      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :available)
 
       # Act
       login_as(user)
       visit orders_path
       click_on order.code
       click_on 'Iniciar Ordem de Serviço'
+      fill_in 'Data do Pedido', with: Date.today
       select delivery.with_weight_range, :from => 'Opções de Entrega'
       click_on 'Iniciar Ordem de Serviço'
       click_on 'Reconfigurar Ordem de Serviço'

@@ -8,11 +8,13 @@ class OrderStartsController < ApplicationController
 
   def create
     @order = Order.find(params[:order_id])
-    order_start_params = params.require(:order_start).permit(:transport_mode_id)
+    order_start_params = params.require(:order_start).permit(:transport_mode_id, :order_date)
 
     @order_start = OrderStart.new(order_start_params)
     @order_start.order = @order
-    @order_start.vehicle = @order_start.transport_mode.vehicles.where(status: :circulation).find_by("maximum_load > ?", @order.weight)
+    @order_start.vehicle = @order_start.transport_mode.vehicles.where(status: :available).find_by("maximum_load > ?", @order.weight)
+    @order_start.shipping_fee = @order_start.full_value
+    @order_start.delivery_deadline = @order_start.order_date + (@order_start.deadline / 24).ceil
 
     if @order_start.save
       @order.waiting_confirmation!

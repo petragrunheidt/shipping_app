@@ -6,6 +6,6 @@ FactoryBot.define do
     manifacture_year { 1995 }
     maximum_load { 80 }
     transport_mode
-    status { :circulation }
+    status { :available }
   end
 end

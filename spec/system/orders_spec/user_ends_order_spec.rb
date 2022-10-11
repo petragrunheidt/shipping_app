@@ -44,9 +44,9 @@ describe 'Usuário finaliza ordem de serviço' do
       expect(page).to have_content delivery.name
       expect(page).to have_content vehicle.full_description
       expect(page).to have_content 'Valor do Frete:'
-      expect(page).to have_content 'Prazo de entrega:'
+      expect(page).to have_content 'Data Prevista de Entrega:'
       expect(page).to have_content "Pedido entregue em #{I18n.localize(Date.today)}"
-      expect(Vehicle.find(1).status).to eq "circulation"
+      expect(Vehicle.find(1).status).to eq "available"
     end
     it 'com sucesso e com atraso' do
       # Arrange
@@ -72,12 +72,12 @@ describe 'Usuário finaliza ordem de serviço' do
       expect(page).to have_content delivery.name
       expect(page).to have_content vehicle.full_description
       expect(page).to have_content 'Valor do Frete:'
-      expect(page).to have_content 'Prazo de entrega:'
+      expect(page).to have_content 'Data Prevista de Entrega:'
       expect(page).to have_content "Pedido entregue em #{I18n.localize(Date.yesterday)}"
       expect(page).to have_content 'Namorada da entregadora sonhou que as duas haviam terminado e ela precisou do dia de folga.'
     end
 
-  #   it 'e encontra erro quando não há veículos em circulação' do
+  #   it 'e encontra erro quando não há veículo Disponível' do
   #     # Arrange
   #     user = FactoryBot.create(:user)
   #     order = FactoryBot.create(:order, status: :pending)
@@ -99,7 +99,7 @@ describe 'Usuário finaliza ordem de serviço' do
   #     user = FactoryBot.create(:user)
   #     order = FactoryBot.create(:order, status: :pending, weight: 50)
   #     delivery = FactoryBot.create(:transport_mode, min_weight: 1, max_weight: 100, status: :active)
-  #     vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :circulation)
+  #     vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :available)
 
   #     # Act
   #     login_as(user)
@@ -122,7 +122,7 @@ describe 'Usuário finaliza ordem de serviço' do
   #     user = FactoryBot.create(:user)
   #     order = FactoryBot.create(:order, status: :pending, weight: 50)
   #     delivery = FactoryBot.create(:transport_mode, min_weight: 1, max_weight: 100, status: :active)
-  #     vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :circulation)
+  #     vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :available)
 
   #     # Act
   #     login_as(user)

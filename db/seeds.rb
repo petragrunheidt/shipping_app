@@ -14,7 +14,7 @@ TransportMode.create!(name: 'Frota de Caminhões', min_weight: 100, max_weight: 
 
 (1..5).each do |i|
   Vehicle.create!(nameplate: SecureRandom.alphanumeric(7).upcase, vehicle_brand: 'Caloi', vehicle_model: SecureRandom.alphanumeric(5),
-  manifacture_year: 2003, maximum_load: 40 + i, transport_mode: TransportMode.find(1), status: :circulation)
+  manifacture_year: 2003, maximum_load: 40 + i, transport_mode: TransportMode.find(1), status: :available)
   Vehicle.create!(nameplate: SecureRandom.alphanumeric(7).upcase, vehicle_brand: 'Nissan', vehicle_model: SecureRandom.alphanumeric(5),
   manifacture_year: 2003, maximum_load: 180 + i, transport_mode: TransportMode.find(2))
   Vehicle.create!(nameplate: SecureRandom.alphanumeric(7).upcase, vehicle_brand: 'Caminhãosan', vehicle_model: SecureRandom.alphanumeric(5),

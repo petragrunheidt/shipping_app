@@ -33,7 +33,7 @@ class VehiclesController < ApplicationController
   end
 
   def activate
-    @vehicle.circulation!
+    @vehicle.available!
     return redirect_to @vehicle, notice: 'Veículo ativado para circulação.'
   end
 

@@ -1,4 +1,4 @@
-<h1><%= @vehicle.full_description %> <%= @vehicle.circulation? ? '(Em circulação)' : '(Em manutenção)' %></h1>
+<h1><%= @vehicle.full_description %> <%= @vehicle.available? ? '(Disponível)' : '(Em manutenção)' %></h1>
 <h3>Informações do <%= Vehicle.model_name.human %></h3>
 <dl>
 <dt><%= Vehicle.human_attribute_name('vehicle_brand') %>: <%= @vehicle.vehicle_brand %></dt>
@@ -14,5 +14,5 @@
 <% if current_user.admin %>
 <%= link_to 'Editar dados do Veículo', edit_vehicle_path %>
 </div>
-<%= button_to @vehicle.circulation? ? 'Mandar Veículo para manutenção' : 'Mandar Veículo para circulação', @vehicle.circulation? ? deactivate_vehicle_path : activate_vehicle_path, { method: 'patch'} %>
+<%= button_to @vehicle.available? ? 'Mandar Veículo para manutenção' : 'Mandar Veículo para circulação', @vehicle.available? ? deactivate_vehicle_path : activate_vehicle_path, { method: 'patch'} %>
 <% end %>

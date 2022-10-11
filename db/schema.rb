@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_09_225218) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_11_123116) do
   create_table "deadlines", force: :cascade do |t|
     t.integer "min"
     t.integer "max"
@@ -46,6 +46,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_09_225218) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "vehicle_id", null: false
+    t.date "order_date"
+    t.integer "shipping_fee"
+    t.date "delivery_deadline"
     t.index ["order_id"], name: "index_order_starts_on_order_id"
     t.index ["transport_mode_id"], name: "index_order_starts_on_transport_mode_id"
     t.index ["vehicle_id"], name: "index_order_starts_on_vehicle_id"

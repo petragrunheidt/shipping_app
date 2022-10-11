@@ -28,6 +28,6 @@ class OrderStart < ApplicationRecord
         order_deadline += range.time
       end
     end
-    "Prazo de entrega: #{order_deadline}h"
+    order_deadline
   end
 end

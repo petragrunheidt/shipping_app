@@ -18,7 +18,7 @@ describe 'Admin tenta mudar o status de ativação de um veículo' do
       expect(page).not_to have_button 'Mandar Veículo para circulação'
 
     end
-    it 'do padrão (em manutenção), para em circulação (com sucesso)' do
+    it 'do padrão (em manutenção), para Disponível (com sucesso)' do
         # Arrange
         admin = FactoryBot.create(:user, admin: true)
         FactoryBot.create(:vehicle, nameplate: 'ABC1234', vehicle_brand: 'Nissan',
@@ -32,7 +32,7 @@ describe 'Admin tenta mudar o status de ativação de um veículo' do
 
         # Assert
         expect(page).to have_button 'Mandar Veículo para manutenção'
-        expect(page).to have_content 'Em circulação'
+        expect(page).to have_content 'Disponível'
         expect(page).to have_content 'Veículo ativado para circulação.'
     end
     it 'de ativo, para inativo (com sucesso)' do

@@ -47,7 +47,7 @@ describe 'Administrador entra na pagina de cadastrar novo Veículo' do
     expect(page).to have_content 'Ano de Fabricação: 1992'
     expect(page).to have_content 'Carga máxima: 60kg'
     expect(page).to have_link 'Modal marítimo'
-    expect(page).to have_content 'Em circulação'
+    expect(page).to have_content 'Disponível'
 
   end
 end

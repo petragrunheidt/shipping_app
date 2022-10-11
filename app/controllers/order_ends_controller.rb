@@ -16,7 +16,7 @@ class OrderEndsController < ApplicationController
 
     if @order_end.save
       @order.delivered!
-      @vehicle.circulation!
+      @vehicle.available!
       redirect_to @order, notice: 'Ordem de Serviço Finalizada.'
     else
       render:new
