@@ -5,7 +5,7 @@
 <% @transport_mode.each do |trans| %>
 
 <div>
-<h3 ><%= "#{trans.name}: (#{trans.status})" %></h3>
+<h3 ><%= "#{trans.name} (#{t(trans.status)})" %></h3>
 <%= link_to 'mais informações', trans%>
 <% end %>
 </div>

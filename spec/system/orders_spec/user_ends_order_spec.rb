@@ -72,7 +72,7 @@ describe 'Usuário finaliza ordem de serviço' do
       vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :out_for_delivery)
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :on_route)
-      started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle, delivery_deadline: Date.yesterday)
+      started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle, delivery_deadline: Date.yesterday - 1)
 
       # Act
       login_as(user)
@@ -99,7 +99,7 @@ describe 'Usuário finaliza ordem de serviço' do
       vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :out_for_delivery)
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :on_route)
-      started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle, delivery_deadline: Date.yesterday)
+      started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle, delivery_deadline: Date.yesterday - 1)
 
       # Act
       login_as(user)

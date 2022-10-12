@@ -45,7 +45,7 @@ describe 'Usuário vê modos de transporte cadastrados' do
         click_on('mais informações')
 
         # Assert
-        expect(page).to have_content 'Modal Rodoviário'
+        expect(page).to have_content 'Modal Rodoviário (Inativo)'
         expect(page).to have_content 'Tabela de informações de uso'
         expect(page).to have_content '10km'
         expect(page).to have_content '100km'
