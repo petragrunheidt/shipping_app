@@ -59,13 +59,6 @@ class TransportModesController < ApplicationController
       :max_distance, :min_weight, :max_weight, :fixed_rate)
   end
 
-  def check_admin
-
-    if !current_user.admin
-      return redirect_to root_path, notice: "Acesso negado"
-    end
-  end
-
   def set_transport_mode
     @transport_mode = TransportMode.find(params[:id])
   end

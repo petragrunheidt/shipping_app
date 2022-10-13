@@ -1,16 +1,18 @@
 <h1><%= "#{OrderStart.model_name.human} #{@order.code}" %></h1>
 <% if @transport_modes.present? and @transport_modes.any? {|trans| trans.vehicles.where(status: :available).find_by("maximum_load > ?", @order.weight).present?} %>
 <%= form_with model: [@order, @order_start] do |order| %>
+
 <%= order.label :transport_mode_id, 'Opções de Entrega' %>
+
 <%= order.collection_select :transport_mode_id, @transport_modes, :id, :with_weight_and_distance_range, prompt:true %>
 <%= order.label :order_date %>
 <%= order.date_field :order_date %>
-<%= order.submit 'Iniciar Ordem de Serviço' %>
+<%= order.submit 'Iniciar Ordem de Serviço', class: "btn btn-primary  btn-m" %>
 <% end %>
 <% else %>
 <h3>No momento, não há Veículos disponíveis para essa Ordem de Serviço</h3>
 <% end %>
-<%= link_to 'Voltar', @order %>
+<%= link_to 'Voltar', @order, {class: "btn btn-primary  btn-m"} %>
 
 
 

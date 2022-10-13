@@ -3,7 +3,7 @@ class OrderStart < ApplicationRecord
   belongs_to :order
   belongs_to :transport_mode
   belongs_to :vehicle
-  before_validation :set_deadline_and_price
+  before_validation :set_deadline_and_price, on: :create
 
   def full_value
     total_value = self.transport_mode.fixed_rate

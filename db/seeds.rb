@@ -9,7 +9,7 @@
 User.create!(name: 'Petra', email: 'petra@sistemadefrete.com.br', password: 'password', admin: true)
 User.create!(name: 'usuario', email: 'qualquer@sistemadefrete.com.br', password: 'password', admin: false)
 TransportMode.create!(name: 'Frota de Bikes', min_weight: 10, max_weight: 50, min_distance: 10, max_distance: 50, fixed_rate: 7, status: :active)
-TransportMode.create!(name: 'Frota de Carros', min_weight: 50, max_weight: 200, min_distance: 50, max_distance: 200, fixed_rate: 10, status: :active)
+TransportMode.create!(name: 'Frota de Carros', min_weight: 30, max_weight: 200, min_distance: 30, max_distance: 200, fixed_rate: 10, status: :active)
 TransportMode.create!(name: 'Frota de Caminhões', min_weight: 100, max_weight: 500, min_distance: 100, max_distance: 500, fixed_rate: 15)
 
 (1..5).each do |i|
@@ -33,5 +33,19 @@ Deadline.create!(min: 10, max: 20, time: 12, transport_mode: TransportMode.find(
 Deadline.create!(min: 21, max: 30, time: 24, transport_mode: TransportMode.find(1))
 Deadline.create!(min: 31, max: 49, time: 48, transport_mode: TransportMode.find(1))
 
-order = Order.create(takeout_address:  "Rua da Transportadora 101",weight:  20,heigth:  10,width:  10,depth:  10,delivery_address:  "Rua da Petra 60",
+WeightTable.create!(min: 30, max: 80, value: 0.50, transport_mode: TransportMode.find(2))
+WeightTable.create!(min: 81, max: 130, value: 0.75, transport_mode: TransportMode.find(2))
+WeightTable.create!(min: 131, max: 200, value: 1.10, transport_mode: TransportMode.find(2))
+
+DistanceTable.create!(min: 30, max: 80, value: 7, transport_mode: TransportMode.find(2))
+DistanceTable.create!(min: 81, max: 130, value: 9, transport_mode: TransportMode.find(2))
+DistanceTable.create!(min: 131, max: 200, value: 12, transport_mode: TransportMode.find(2))
+
+Deadline.create!(min: 30, max: 80, time: 24, transport_mode: TransportMode.find(2))
+Deadline.create!(min: 81, max: 130, time: 48, transport_mode: TransportMode.find(2))
+Deadline.create!(min: 131, max: 200, time: 72, transport_mode: TransportMode.find(2))
+
+Order.create(takeout_address:  "Rua da Transportadora 101",weight:  20,heigth:  10,width:  10,depth:  10,delivery_address:  "Rua da Petra 60",
   name:  "Petra",email:  "petra@mail.com",customer_id:  "193029304",total_distance: 30,status: :pending)
+Order.create(takeout_address:  "Rua da outra Transportadora 101",weight:  20,heigth:  10,width:  10,depth:  10,delivery_address:  "Rua da Maria 50",
+  name:  "Maria",email:  "Maria@mail.com",customer_id:  "193029304",total_distance: 70,status: :pending)

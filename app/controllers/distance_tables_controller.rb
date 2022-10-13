@@ -42,13 +42,6 @@ class DistanceTablesController < ApplicationController
     params.require(:distance_table).permit(:min, :max, :value)
   end
 
-  def check_admin
-
-    if !current_user.admin
-      return redirect_to root_path, notice: "Acesso negado"
-    end
-  end
-
   def set_distance_line
     @distance_line = DistanceTable.find(params[:id])
     @previous_line = @distance_line.next

@@ -62,13 +62,6 @@ class OrdersController < ApplicationController
       :email, :customer_id, :total_distance, :status, :code)
   end
 
-  def check_admin
-
-    if !current_user.admin
-      return redirect_to root_path, notice: "Acesso negado"
-    end
-  end
-
   def set_order
     @order = Order.find(params[:id])
   end

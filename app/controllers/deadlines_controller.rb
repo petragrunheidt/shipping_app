@@ -42,13 +42,6 @@ class DeadlinesController < ApplicationController
     params.require(:deadline).permit(:min, :max, :time)
   end
 
-  def check_admin
-
-    if !current_user.admin
-      return redirect_to root_path, notice: "Acesso negado"
-    end
-  end
-
   def set_deadline
     @deadline = Deadline.find(params[:id])
 

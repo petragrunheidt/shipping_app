@@ -19,10 +19,7 @@ Rails.application.routes.draw do
     resources :order_ends, only: [:new, :create]
     get 'search', on: :collection
     patch :order_confirmation, on: :member
-    patch :set_waiting_confirmation, on: :member
-    patch :set_on_route, on: :member
-    patch :set_pending, on: :member
     patch :set_canceled, on: :member
-    patch :set_delivered, on: :member
+
   end
 end

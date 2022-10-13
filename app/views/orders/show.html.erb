@@ -30,7 +30,7 @@
 </div>
 
 <div tag="waiting-confirmation">
-<% if @order.order_start.present? %>
+<% if @order.order_start.present? and !@order.canceled? %>
 <h3>Dados de Entrega</h3>
 <dl>
 

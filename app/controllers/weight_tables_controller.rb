@@ -42,15 +42,7 @@ class WeightTablesController < ApplicationController
     params.require(:weight_table).permit(:min, :max, :value)
   end
 
-  def check_admin
-
-    if !current_user.admin
-      return redirect_to root_path, notice: "Acesso negado"
-    end
-  end
-
   def set_weight_line
     @weight_line = WeightTable.find(params[:id])
   end
-
 end

@@ -21,8 +21,8 @@
 <dt><%= order.date_field :time %></dt>
 <dt><%= order.label :reason %></dt>
 <dt><%= order.text_area :reason %></dt>
-<dt><%= order.submit 'Finalizar Ordem de Serviço' %></dt>
+<dt><%= order.submit 'Finalizar Ordem de Serviço', class: "btn btn-primary  btn-m" %></dt>
 </dl>
 <% end %>
 
-<%= link_to 'Voltar', @order %>
+<%= link_to 'Voltar', @order, {class: "btn btn-primary  btn-m"} %>

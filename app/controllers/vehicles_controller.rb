@@ -54,13 +54,6 @@ class VehiclesController < ApplicationController
       :manifacture_year, :maximum_load, :transport_mode_id, :status)
   end
 
-  def check_admin
-
-    if !current_user.admin
-      return redirect_to root_path, notice: "Acesso negado"
-    end
-  end
-
   def set_vehicle
     @vehicle = Vehicle.find(params[:id])
   end
