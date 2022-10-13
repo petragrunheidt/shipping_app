@@ -1,5 +1,7 @@
 <h1><%= TransportMode.model_name.human(count: 2)%> disponíveis:</h1>
-<p><%= (link_to 'Cadastrar nova Modalidade de Transporte', new_transport_mode_path) if current_user.admin == true %></p>
+<%  if current_user.admin? %>
+<p><%= link_to 'Cadastrar nova Modalidade de Transporte', new_transport_mode_path, class: "btn btn-primary  btn-m" %></p>
+<% end %>
 <div >
 <% if @transport_mode.present? %>
 <% @transport_mode.each do |trans| %>

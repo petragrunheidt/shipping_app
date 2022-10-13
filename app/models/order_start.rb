@@ -1,7 +1,9 @@
 class OrderStart < ApplicationRecord
+  validates :order_date, :delivery_deadline, :shipping_fee, presence: true
   belongs_to :order
   belongs_to :transport_mode
   belongs_to :vehicle
+  before_validation :set_deadline_and_price
 
   def full_value
     total_value = self.transport_mode.fixed_rate
@@ -29,5 +31,10 @@ class OrderStart < ApplicationRecord
       end
     end
     order_deadline
+  end
+
+  def set_deadline_and_price
+    self.shipping_fee = self.full_value
+    self.delivery_deadline = self.order_date + (self.deadline / 24).ceil
   end
 end

@@ -23,9 +23,9 @@
 <div tag="pending-buttons">
 <% if @order.pending? and current_user.present? %>
 <% if current_user.admin %>
-<p><%= link_to 'Editar Ordem de Serviço', edit_order_path(@order) %></p>
+<p><%= link_to 'Editar Ordem de Serviço', edit_order_path(@order), {class: "btn btn-primary  btn-m"} %></p>
 <% end %>
-<p><%= link_to 'Iniciar Ordem de Serviço', new_order_order_start_path(@order) %></p>
+<p><%= link_to 'Iniciar Ordem de Serviço', new_order_order_start_path(@order), {class: "btn btn-primary  btn-m"} %></p>
 <% end %>
 </div>
 
@@ -40,19 +40,20 @@
 <dt><%= "#{OrderStart.human_attribute_name('order_date')}: #{I18n.localize(@order.order_start.order_date)}" %></dt>
 <dt><%= "#{OrderStart.human_attribute_name('delivery_deadline')}: #{I18n.localize(@order.order_start.delivery_deadline)}" %></dt>
 <dl>
+
 <% if @order.waiting_confirmation? and current_user.present? %>
-<p><%= button_to 'Confirmar Ordem de Serviço', order_confirmation_order_path, { method: 'patch'} %>
-<%= button_to 'Reconfigurar Ordem de Serviço', order_order_start_path(@order.order_start), { method: 'delete' }%>
-</p>
+<p><%= button_to 'Confirmar Ordem de Serviço', order_confirmation_order_path, { method: 'patch', class: "btn btn-primary  btn-m"} %></p>
+<p><%= button_to 'Reconfigurar Ordem de Serviço', order_order_start_path(@order.order_start), { method: 'delete', class: "btn btn-primary  btn-m"}%></p>
+
 <% end %>
 <% end %>
 </div>
 
 <div tag="on_route-buttons">
 <% if @order.on_route? and current_user.present? %>
-<p><%= link_to 'Finalizar Ordem de Serviço', new_order_order_end_path(@order) %></p>
+<p><%= link_to 'Finalizar Ordem de Serviço', new_order_order_end_path(@order), {class: "btn btn-primary  btn-m"} %></p>
 <% if current_user.admin %>
-<p><%= button_to 'Marcar como Cancelada', set_canceled_order_path, { method: 'patch'} %></p>
+<p><%= button_to 'Marcar como Cancelada', set_canceled_order_path, { method: 'patch', class: "btn btn-primary  btn-m"} %></p>
 <% end %>
 <% end %>
 </div>
@@ -65,5 +66,5 @@
 <% end %>
 </div>
 
-<%= link_to 'Voltar', orders_path %>
+<%= link_to 'Voltar', orders_path, {class: "btn btn-primary  btn-m"} %>
 

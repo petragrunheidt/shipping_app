@@ -1,5 +1,5 @@
 class OrderEndsController < ApplicationController
-
+  
   def new
     @order = Order.find(params[:order_id])
     @order_end = OrderEnd.new

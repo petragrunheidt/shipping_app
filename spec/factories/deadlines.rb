@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :deadline do
-    min { 10 }
+    min { 20 }
     max { 60 }
-    time { 24 }
+    time { 48 }
     transport_mode
   end
 end

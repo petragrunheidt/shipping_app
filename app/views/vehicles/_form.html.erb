@@ -31,6 +31,6 @@
 <dt><%= trans.label :transport_mode_id %></dt>
 <dt><%= trans.collection_select :transport_mode_id, @transport_modes, :id, :name, prompt:true %></dt>
 </dl>
-<%= trans.submit 'Enviar' %>
+<%= trans.submit 'Enviar', class: "btn btn-primary  btn-m" %>
 
 <% end %>

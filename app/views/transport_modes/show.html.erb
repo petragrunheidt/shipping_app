@@ -1,6 +1,6 @@
 <h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
 <h3>Tabela de informações de uso</h3>
-<table class="table table-warning table-striped table-hover">
+<table class="table table-secondary table-striped table-hover">
 
 <tr>
     <th scope="col"></th>
@@ -23,16 +23,19 @@
 <p><%= TransportMode.human_attribute_name('fixed_rate') %>: <%= number_to_currency(@transport_mode.fixed_rate, locale: 'pt-BR')%></p>
 <div style='inline-block'>
 <% if current_user.admin %>
-<%= link_to 'Editar Modo de Transporte', edit_transport_mode_path %>
+<p>
+<%= link_to 'Editar Modo de Transporte', edit_transport_mode_path, {class: "btn btn-secondary  btn-m"} %>
 </div>
-<%= button_to @transport_mode.active? ? 'Desativar' : 'Ativar', @transport_mode.active? ? deactivate_transport_mode_path : activate_transport_mode_path, { method: 'patch'} %>
+<p>
+<%= button_to @transport_mode.active? ? 'Desativar' : 'Ativar', @transport_mode.active? ? deactivate_transport_mode_path : activate_transport_mode_path, { method: 'patch', class: "btn btn-secondary  btn-m"} %>
+</p>
 <% end %>
 
 
 <div class="table table-secondary" id="weight-table">
 <h2><%= WeightTable.model_name.human %></h2>
 <% if @weight_table.present? %>
-<table class="table table-warning table-striped table-hover">
+<table class="table table-secondary table-striped table-hover">
 <tr>
     <th>Intervalo de pesos</th>
     <th></th>
@@ -69,7 +72,7 @@
 <% end %>
   </div>
 <% end %>
-<table class="table table-warning table-striped table-hover">
+<table class="table table-secondary table-striped table-hover">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
@@ -83,7 +86,7 @@
 
 </tr>
 </table>
-<p><%= line.submit 'Enviar' %></p>
+<p><%= line.submit 'Enviar', class: "btn btn-secondary  btn-m" %></p>
 
 <% end %>
 <% end %>
@@ -92,7 +95,7 @@
 <div class="table table-secondary" id="distance-table">
 <h2><%= DistanceTable.model_name.human %></h2>
 <% if @distance_table.present? %>
-<table class="table table-warning table-striped table-hover">
+<table class="table table-secondary table-striped table-hover">
 <tr>
     <th>Intervalo de Distâncias</th>
     <th></th>
@@ -103,7 +106,7 @@
     <td><%= line.min %>km</td>
     <td><%= line.max %>km</td>
     <td><%= number_to_currency(line.value, locale: 'pt-BR')  %></td>
-    <td><%= (link_to "Editar linha #{line.id}", "/transport_modes/#{@transport_mode.id}/distance_tables/#{line.id}/edit") if current_user.admin? %></td>
+    <td><%= link_to "Editar linha #{line.id}", "/transport_modes/#{@transport_mode.id}/distance_tables/#{line.id}/edit" if current_user.admin? %></td>
 </tr>
 <% end %>
 </table>
@@ -129,7 +132,7 @@
 <% end %>
   </div>
 <% end %>
-<table class="table table-warning table-striped table-hover">
+<table class="table table-secondary table-striped table-hover">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
@@ -143,7 +146,7 @@
 
 </tr>
 </table>
-<p><%= line.submit 'Enviar' %></p>
+<p><%= line.submit 'Enviar', class: "btn btn-secondary  btn-m" %></p>
 <% end %>
 <% end %>
 </div>
@@ -152,7 +155,7 @@
 <div class="table table-secondary" id="deadline-table">
 <h2><%= Deadline.model_name.human %></h2>
 <% if @deadline.present? %>
-<table class="table table-warning table-striped table-hover">
+<table class="table table-secondary table-striped table-hover">
 <tr>
     <th>Intervalo de Distâncias</th>
     <th></th>
@@ -189,7 +192,7 @@
 <% end %>
   </div>
 <% end %>
-<table class="table table-warning table-striped table-hover">
+<table class="table table-secondary table-striped table-hover">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
@@ -202,7 +205,7 @@
 
 </tr>
 </table>
-<p><%= line.submit 'Enviar' %></p>
+<p><%= line.submit 'Enviar', class: "btn btn-secondary  btn-m" %></p>
 
 <% end %>
 <% end %>
