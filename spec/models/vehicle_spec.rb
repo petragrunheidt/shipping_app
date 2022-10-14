@@ -41,7 +41,7 @@ RSpec.describe Vehicle, type: :model do
       it 'false when maximum_load is greater than mode of transport max_weight' do
         # Arrange
         transport_mode = FactoryBot.create(:transport_mode, max_weight: 100)
-        vehicle = FactoryBot.build(:vehicle, maximum_load: 120, transport_mode: transport_mode)
+        vehicle = FactoryBot.build(:vehicle, maximum_load: 101, transport_mode: transport_mode)
 
         # Act
         result = vehicle.valid?

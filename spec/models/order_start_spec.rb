@@ -1,10 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe OrderStart, type: :model do
-  describe 'check calculations' do
-    it 'for final shipping value' do
+  describe 'generates shipping fee and delivery deadline' do
+    it 'check calculations' do
       # Arrange
-      user = FactoryBot.create(:user, admin: true)
       delivery = FactoryBot.create(:transport_mode, status: :active, fixed_rate: 15)
       vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :available)
       FactoryBot.create(:weight_table, transport_mode: delivery, min:20, max: 40, value: 1)
@@ -23,5 +22,4 @@ RSpec.describe OrderStart, type: :model do
       expect(deadline_calculation).to be true
     end
   end
-
 end

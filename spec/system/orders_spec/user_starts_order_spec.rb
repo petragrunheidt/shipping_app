@@ -6,6 +6,7 @@ describe 'Usuário inicia ordem de serviço' do
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :pending)
       delivery = FactoryBot.create(:transport_mode, status: :active)
+      deadline_line = FactoryBot.create(:deadline, transport_mode: delivery, time: 48)
       vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :available)
 
       # Act
@@ -17,6 +18,9 @@ describe 'Usuário inicia ordem de serviço' do
       expect(page).to have_field 'Opções de Entrega'
       expect(page).to have_field 'Data do Pedido'
       expect(page).to have_button 'Iniciar Ordem de Serviço'
+      expect(page).to have_content delivery.name
+      expect(page).to have_content 'R$'
+      expect(page).to have_content '48h'
 
 
     end

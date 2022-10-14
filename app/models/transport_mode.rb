@@ -23,5 +23,30 @@ class TransportMode < ApplicationRecord
     "#{name} | #{min_weight}-#{max_weight}kg | #{min_distance}-#{max_distance}km"
   end
 
+  def full_value(order)
+    total_value = self.fixed_rate
 
+    self.weight_tables.each do |range|
+      if (range.min..range.max).include? order.weight
+        total_value += (order.weight * range.value)
+      end
+    end
+
+    self.distance_tables.each do |range|
+      if (range.min..range.max).include? order.total_distance
+        total_value += range.value
+      end
+    end
+    total_value
+  end
+
+  def deadline(order)
+    order_deadline = 0
+    self.deadlines.each do |range|
+      if (range.min..range.max).include? order.total_distance
+        order_deadline += range.time
+      end
+    end
+    order_deadline
+  end
 end
