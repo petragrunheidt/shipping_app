@@ -46,7 +46,7 @@
     <td><%= line.min %>kg</td>
     <td><%= line.max %>kg</td>
     <td><%= number_to_currency(line.value, locale: 'pt-BR')  %></td>
-    <td><%= (link_to "Editar linha #{line.id}", "/transport_modes/#{@transport_mode.id}/weight_tables/#{line.id}/edit") if current_user.admin? %></td>
+    <td><%= (link_to "Editar linha", "/transport_modes/#{@transport_mode.id}/weight_tables/#{line.id}/edit") if current_user.admin? %></td>
 </tr>
 <% end %>
 </table>
@@ -106,7 +106,7 @@
     <td><%= line.min %>km</td>
     <td><%= line.max %>km</td>
     <td><%= number_to_currency(line.value, locale: 'pt-BR')  %></td>
-    <td><%= link_to "Editar linha #{line.id}", "/transport_modes/#{@transport_mode.id}/distance_tables/#{line.id}/edit" if current_user.admin? %></td>
+    <td><%= link_to "Editar linha", "/transport_modes/#{@transport_mode.id}/distance_tables/#{line.id}/edit" if current_user.admin? %></td>
 </tr>
 <% end %>
 </table>
@@ -166,7 +166,7 @@
     <td><%= line.min %>km</td>
     <td><%= line.max %>km</td>
     <td><%= line.time %>h</td>
-    <td><%= (link_to "Editar linha #{line.id}", "/transport_modes/#{@transport_mode.id}/deadlines/#{line.id}/edit") if current_user.admin? %></td>
+    <td><%= (link_to "Editar linha", "/transport_modes/#{@transport_mode.id}/deadlines/#{line.id}/edit") if current_user.admin? %></td>
 </tr>
 <% end %>
 </table>

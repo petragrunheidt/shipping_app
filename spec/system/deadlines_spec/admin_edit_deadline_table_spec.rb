@@ -13,7 +13,7 @@ describe 'Usuário tenta editar linha em tabela de prazos' do
         click_on('mais informações')
 
         # Assert
-        expect(page).not_to have_link 'Editar linha 1'
+        expect(page).not_to have_link 'Editar linha'
 
     end
     it 'e edita uma linha da tabela de prazos com sucesso' do
@@ -27,7 +27,7 @@ describe 'Usuário tenta editar linha em tabela de prazos' do
         visit transport_modes_path
         click_on('mais informações')
         within('div#deadline-table') do
-          click_on 'Editar linha 1'
+          click_on 'Editar linha'
         end
         fill_in 'Distância Mínima', with: 20
         fill_in 'Distância Máxima', with: 60
@@ -36,7 +36,7 @@ describe 'Usuário tenta editar linha em tabela de prazos' do
 
         # Assert
 
-        expect(page).to have_content('Linha 1 da tabela de prazos editada com sucesso.')
+        expect(page).to have_content('Linha da tabela de prazos editada com sucesso.')
         expect(page).to have_content 'Intervalo de Distâncias'
         expect(page).to have_content 'Prazo'
         expect(page).to have_content '20km'

@@ -14,7 +14,7 @@ class WeightTablesController < ApplicationController
     @weight_line = WeightTable.new(weight_line_params)
     @weight_line.transport_mode = @transport_mode
     if @weight_line.save
-      return redirect_to @weight_line.transport_mode, notice: "Linha #{@weight_line.id} da tabela de peso adicionada com sucesso."
+      return redirect_to @weight_line.transport_mode, notice: "Linha da tabela de peso adicionada com sucesso."
     else
       render :new
     end
@@ -30,7 +30,7 @@ class WeightTablesController < ApplicationController
     @transport_mode = TransportMode.find(params[:transport_mode_id])
     @transport_modes = TransportMode.all
     if @weight_line.update(weight_line_params)
-      return redirect_to @weight_line.transport_mode, notice: "Linha #{@weight_line.id} da tabela de peso editada com sucesso."
+      return redirect_to @weight_line.transport_mode, notice: "Linha da tabela de peso editada com sucesso."
     else
       render :edit
     end

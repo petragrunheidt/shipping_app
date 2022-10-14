@@ -16,7 +16,7 @@ TransportMode.create!(name: 'Frota de Caminhões', min_weight: 100, max_weight: 
   Vehicle.create!(nameplate: SecureRandom.alphanumeric(7).upcase, vehicle_brand: 'Caloi', vehicle_model: SecureRandom.alphanumeric(5),
   manifacture_year: 2003, maximum_load: 40 + i, transport_mode: TransportMode.find(1), status: :available)
   Vehicle.create!(nameplate: SecureRandom.alphanumeric(7).upcase, vehicle_brand: 'Nissan', vehicle_model: SecureRandom.alphanumeric(5),
-  manifacture_year: 2003, maximum_load: 180 + i, transport_mode: TransportMode.find(2))
+  manifacture_year: 2003, maximum_load: 180 + i, transport_mode: TransportMode.find(2), status: :available)
   Vehicle.create!(nameplate: SecureRandom.alphanumeric(7).upcase, vehicle_brand: 'Caminhãosan', vehicle_model: SecureRandom.alphanumeric(5),
   manifacture_year: 2003, maximum_load: 480 + i, transport_mode: TransportMode.find(3))
 end
@@ -47,5 +47,5 @@ Deadline.create!(min: 131, max: 200, time: 72, transport_mode: TransportMode.fin
 
 Order.create(takeout_address:  "Rua da Transportadora 101",weight:  20,heigth:  10,width:  10,depth:  10,delivery_address:  "Rua da Petra 60",
   name:  "Petra",email:  "petra@mail.com",customer_id:  "193029304",total_distance: 30,status: :pending)
-Order.create(takeout_address:  "Rua da outra Transportadora 101",weight:  20,heigth:  10,width:  10,depth:  10,delivery_address:  "Rua da Maria 50",
-  name:  "Maria",email:  "Maria@mail.com",customer_id:  "193029304",total_distance: 70,status: :pending)
+Order.create(takeout_address:  "Rua da outra Transportadora 101",weight:  49,heigth:  10,width:  10,depth:  10,delivery_address:  "Rua da Maria 50",
+  name:  "Maria",email:  "Maria@mail.com",customer_id:  "93940930100129",total_distance: 49,status: :pending)

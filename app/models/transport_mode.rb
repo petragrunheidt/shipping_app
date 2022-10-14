@@ -23,4 +23,5 @@ class TransportMode < ApplicationRecord
     "#{name} | #{min_weight}-#{max_weight}kg | #{min_distance}-#{max_distance}km"
   end
 
+
 end
