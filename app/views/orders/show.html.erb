@@ -43,7 +43,7 @@
 
 <% if @order.waiting_confirmation? and current_user.present? %>
 <p><%= button_to 'Confirmar Ordem de Serviço', order_confirmation_order_path, { method: 'patch', class: "btn btn-primary  btn-m"} %></p>
-<p><%= button_to 'Reconfigurar Ordem de Serviço', order_order_start_path(@order.order_start), { method: 'delete', class: "btn btn-primary  btn-m"}%></p>
+<p><%= button_to 'Reconfigurar Ordem de Serviço', order_order_start_path(@order, @order.order_start), { method: 'delete', class: "btn btn-primary  btn-m"}%></p>
 
 <% end %>
 <% end %>

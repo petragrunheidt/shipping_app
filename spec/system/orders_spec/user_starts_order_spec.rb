@@ -37,7 +37,7 @@ describe 'Usuário inicia ordem de serviço' do
       click_on order.code
       click_on 'Iniciar Ordem de Serviço'
       fill_in 'Data do Pedido', with: Date.today
-      select delivery.with_weight_range, :from => 'Opções de Entrega'
+      select delivery.name, :from => 'Opções de Entrega'
       click_on 'Iniciar Ordem de Serviço'
 
       # Assert
@@ -79,7 +79,7 @@ describe 'Usuário inicia ordem de serviço' do
       click_on order.code
       click_on 'Iniciar Ordem de Serviço'
       fill_in 'Data do Pedido', with: Date.today
-      select delivery.with_weight_range, :from => 'Opções de Entrega'
+      select delivery.name, :from => 'Opções de Entrega'
       click_on 'Iniciar Ordem de Serviço'
       click_on 'Confirmar Ordem de Serviço'
 
@@ -103,7 +103,7 @@ describe 'Usuário inicia ordem de serviço' do
       click_on order.code
       click_on 'Iniciar Ordem de Serviço'
       fill_in 'Data do Pedido', with: Date.today
-      select delivery.with_weight_range, :from => 'Opções de Entrega'
+      select delivery.name, :from => 'Opções de Entrega'
       click_on 'Iniciar Ordem de Serviço'
       click_on 'Reconfigurar Ordem de Serviço'
 
