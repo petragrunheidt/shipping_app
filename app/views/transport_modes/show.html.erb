@@ -1,6 +1,6 @@
 <h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
-<h3>Tabela de informações de uso</h3>
-<table class="table table-secondary table-striped table-hover">
+<h4>Tabela de informações de uso</h4>
+<table class="table bg-primary table-striped table-hover">
 
 <tr>
     <th scope="col"></th>
@@ -32,10 +32,10 @@
 <% end %>
 
 
-<div class="table table-secondary" id="weight-table">
+<div class="table" id="weight-table">
 <h2><%= WeightTable.model_name.human %></h2>
 <% if @weight_table.present? %>
-<table class="table table-secondary table-striped table-hover">
+<table class="table bg-primary table-striped table-hover">
 <tr>
     <th>Intervalo de pesos</th>
     <th></th>
@@ -51,7 +51,7 @@
 <% end %>
 </table>
 <% else %>
-<h3>Nenhum dado cadastrado.</h3>
+<h4>Nenhum dado cadastrado.</h4>
 <% end %>
 <% if current_user.admin == true %>
 
@@ -59,7 +59,7 @@
 <%= form_with model: [@transport_mode, @weight_line] do |line| %>
 <% if @weight_line.errors.any? %>
 
-  <div class="table table-secondary" id="error_explanation">
+  <div class="table" id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
     <div>
       <% @weight_line.errors.each do |error| %>
@@ -72,7 +72,7 @@
 <% end %>
   </div>
 <% end %>
-<table class="table table-secondary table-striped table-hover">
+<table class="table bg-primary table-striped table-hover">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
@@ -86,16 +86,16 @@
 
 </tr>
 </table>
-<p><%= line.submit 'Enviar', class: "btn btn-secondary  btn-m" %></p>
+<p><%= line.submit 'Enviar', class: "btn bg-primary  btn-m" %></p>
 
 <% end %>
 <% end %>
 </div>
 
-<div class="table table-secondary" id="distance-table">
+<div class="table" id="distance-table">
 <h2><%= DistanceTable.model_name.human %></h2>
 <% if @distance_table.present? %>
-<table class="table table-secondary table-striped table-hover">
+<table class="table bg-primary table-striped table-hover">
 <tr>
     <th>Intervalo de Distâncias</th>
     <th></th>
@@ -111,7 +111,7 @@
 <% end %>
 </table>
 <% else %>
-<h3>Nenhum dado cadastrado.</h3>
+<h4>Nenhum dado cadastrado.</h4>
 <% end %>
 <% if current_user.admin == true %>
 <h4>Adicionar linha à <%= DistanceTable.model_name.human %></h4>
@@ -119,7 +119,7 @@
 
 <% if @distance_line.errors.any? %>
 
-  <div class="table table-secondary" id="error_explanation">
+  <div class="table" id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
     <div>
       <% @distance_line.errors.each do |error| %>
@@ -132,7 +132,7 @@
 <% end %>
   </div>
 <% end %>
-<table class="table table-secondary table-striped table-hover">
+<table class="table bg-primary table-striped table-hover">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
@@ -146,16 +146,16 @@
 
 </tr>
 </table>
-<p><%= line.submit 'Enviar', class: "btn btn-secondary  btn-m" %></p>
+<p><%= line.submit 'Enviar', class: "btn bg-primary  btn-m" %></p>
 <% end %>
 <% end %>
 </div>
 
 
-<div class="table table-secondary" id="deadline-table">
+<div class="table" id="deadline-table">
 <h2><%= Deadline.model_name.human %></h2>
 <% if @deadline.present? %>
-<table class="table table-secondary table-striped table-hover">
+<table class="table bg-primary table-striped table-hover">
 <tr>
     <th>Intervalo de Distâncias</th>
     <th></th>
@@ -171,7 +171,7 @@
 <% end %>
 </table>
 <% else %>
-<h3>Nenhum dado cadastrado.</h3>
+<h4>Nenhum dado cadastrado.</h4>
 <% end %>
 <% if current_user.admin == true %>
 <h4>Adicionar linha à <%= Deadline.model_name.human %></h4>
@@ -179,7 +179,7 @@
 
 <% if @deadline_line.errors.any? %>
 
-  <div class="table table-secondary" id="error_explanation">
+  <div class="table bg-primary" id="error_explanation">
     <h2>Todos os campos devem ser preenchidos</h2>
     <div>
       <% @deadline_line.errors.each do |error| %>
@@ -192,7 +192,7 @@
 <% end %>
   </div>
 <% end %>
-<table class="table table-secondary table-striped table-hover">
+<table class="table bg-primary table-striped table-hover">
 <tr>
 <th><%= line.label :min %></th>
 <th><%= line.label :max %></th>
@@ -205,12 +205,12 @@
 
 </tr>
 </table>
-<p><%= line.submit 'Enviar', class: "btn btn-secondary  btn-m" %></p>
+<p><%= line.submit 'Enviar', class: "btn bg-primary  btn-m" %></p>
 
 <% end %>
 <% end %>
 </div>
 
-<%= link_to 'Voltar', transport_modes_path %>
+<%= link_to 'Voltar', transport_modes_path, class: "btn bg-primary  btn-m" %>
 
 
