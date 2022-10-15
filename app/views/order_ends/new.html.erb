@@ -2,8 +2,7 @@
 <%= form_with model: [@order, @order_end] do |order| %>
 <% if @order_end.errors.any? %>
 
-  <div id="error_explanation">
-    <h2>Todos os campos devem ser preenchidos</h2>
+  <div class="bg-warning" id="error_explanation">
     <div>
       <% @order_end.errors.each do |error| %>
         <% flash.now[:alert] = error.full_message%>
@@ -18,7 +17,7 @@
 
 <dl>
 <dt><%= order.label :time %></dt>
-<dt><%= order.date_field :time %></dt>
+<dt><%= order.date_field :time, value: Date.today  %></dt>
 <dt><%= order.label :reason %></dt>
 <dt><%= order.text_area :reason %></dt>
 <dt><%= order.submit 'Finalizar Ordem de Serviço', class: "btn btn-primary  btn-m" %></dt>

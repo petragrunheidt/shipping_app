@@ -1,6 +1,22 @@
 <h1><%= "#{OrderStart.model_name.human} #{@order.code}" %></h1>
 <% if @transport_modes.present? and @transport_modes.any? {|trans| trans.vehicles.where(status: :available).find_by("maximum_load > ?", @order.weight).present?} %>
 <%= form_with model: [@order, @order_start] do |order| %>
+
+<% if @order_start.errors.any? %>
+
+  <div class="bg-warning" id="error_explanation">
+    <div>
+      <% @order_start.errors.each do |error| %>
+        <% flash.now[:alert] = error.full_message%>
+        <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, class: name %>
+
+        <% end %>
+           </div>
+<% end %>
+  </div>
+<% end %>
+
 <div><p>
 <%= order.label :transport_mode_id, 'Opções de Entrega' %>
 
@@ -10,7 +26,7 @@
 
 <div><p>
 <%= order.label :order_date %>
-<%= order.date_field :order_date %>
+<%= order.date_field :order_date, value: Date.today %>
 </div></p>
 <div>
 <%= order.submit 'Iniciar Ordem de Serviço', class: "btn btn-primary  btn-m" %>

@@ -34,7 +34,9 @@ class OrderStart < ApplicationRecord
   end
 
   def set_deadline_and_price
-    self.shipping_fee = self.full_value
+    if self.order_date.present?
+      self.shipping_fee = self.full_value
     self.delivery_deadline = self.order_date + (self.deadline / 24).ceil
+    end
   end
 end

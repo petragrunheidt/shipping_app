@@ -20,7 +20,7 @@ class OrderStartsController < ApplicationController
       @order.waiting_confirmation!
       redirect_to @order, notice: 'Ordem de Serviço Iniciada.'
     else
-      render:new
+      render :new
     end
   end
 
