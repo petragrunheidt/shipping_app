@@ -49,12 +49,16 @@ describe 'Usuário inicia ordem de serviço' do
       expect(page).to have_content 'Data do Pedido:'
       expect(page).to have_content 'Data Prevista de Entrega:'
     end
-    it 'e encontra erro quando não há veículo Disponível' do
+    it 'e encontra mensagem quando não há veículo ou modo de transporte Disponível' do
       # Arrange
       user = FactoryBot.create(:user)
-      order = FactoryBot.create(:order, status: :pending)
-      delivery = FactoryBot.create(:transport_mode, status: :active)
-      vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :maintenance)
+      order = FactoryBot.create(:order, status: :pending, weight: 50, total_distance: 30)
+      delivery1 = FactoryBot.create(:transport_mode, status: :active, min_weight: 10, max_weight: 100, min_distance: 10, max_distance: 100)
+      delivery2 = FactoryBot.create(:transport_mode, status: :inactive, min_weight: 10, max_weight: 100, min_distance: 10, max_distance: 100)
+      delivery3 = FactoryBot.create(:transport_mode, status: :active, min_weight: 60, max_weight: 100, min_distance: 10, max_distance: 100)
+      vehicle1 = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery1, status: :maintenance)
+      vehicle2 = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery2, status: :available)
+      vehicle3 = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery3, status: :available)
 
       # Act
       login_as(user)
