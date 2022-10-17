@@ -21,10 +21,11 @@ describe 'Usuário finaliza ordem de serviço' do
     it 'com sucesso e sem atraso' do
       # Arrange
       delivery = FactoryBot.create(:transport_mode, status: :active)
+      deadline_table = FactoryBot.create(:deadline, min: 10, max: 100, time: 72, transport_mode: delivery)
       vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :out_for_delivery)
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :on_route)
-      started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle, delivery_deadline: Date.today)
+      started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle)
 
 
       # Act
@@ -48,10 +49,11 @@ describe 'Usuário finaliza ordem de serviço' do
     it 'e encontra erro ao tentar cadastrar motivo em finalização sem atraso' do
       # Arrange
       delivery = FactoryBot.create(:transport_mode, status: :active)
+      deadline_table = FactoryBot.create(:deadline, min: 10, max: 100, time: 72, transport_mode: delivery)
       vehicle = FactoryBot.create(:vehicle, maximum_load: 80, transport_mode: delivery, status: :out_for_delivery)
       user = FactoryBot.create(:user)
       order = FactoryBot.create(:order, status: :on_route)
-      started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle, delivery_deadline: Date.today)
+      started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle)
 
 
       # Act

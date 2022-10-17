@@ -3,6 +3,6 @@ FactoryBot.define do
     order
     transport_mode
     vehicle
-    order_date { Date.today }
+    order_date { Date.yesterday }
   end
 end
