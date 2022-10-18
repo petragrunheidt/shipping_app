@@ -5,6 +5,8 @@ class Order < ApplicationRecord
   validates :weight, :heigth, :width, :depth, comparison: { greater_than: 0 }
   validates :code, uniqueness: true
   validates :code, length: { is: 15 }
+  validates :customer_id, length: { is: 14 }
+  validates :customer_id, format: { with: /\d{14}/}
 
   before_validation :generate_code, on: :create
   has_one :order_start

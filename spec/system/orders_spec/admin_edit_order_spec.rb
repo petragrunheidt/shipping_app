@@ -58,7 +58,7 @@ describe 'Usuário tenta editar Ordem de Serviço' do
       fill_in 'Endereço de Entrega', with: 'Rua da Petra'
       fill_in 'Nome', with: 'Petra'
       fill_in 'Email', with: 'pez@mail.com'
-      fill_in 'CPF/CNPJ', with: '49301920394'
+      fill_in 'CPF/CNPJ', with: '29102930491029'
       fill_in 'Distância Total', with: 80
       click_on 'Enviar'
 
@@ -70,7 +70,7 @@ describe 'Usuário tenta editar Ordem de Serviço' do
       expect(page).to have_content 'Rua da Petra'
       expect(page).to have_content 'Petra'
       expect(page).to have_content 'pez@mail.com'
-      expect(page).to have_content '49301920394'
+      expect(page).to have_content '29102930491029'
       expect(page).to have_content '80km'
   end
 end

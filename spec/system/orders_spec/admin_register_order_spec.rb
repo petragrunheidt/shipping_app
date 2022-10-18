@@ -38,7 +38,7 @@ describe 'Administrador entra na pagina de cadastrar nova Ordem de Serviço' do
     fill_in 'Endereço de Entrega', with: 'Rua da Petra'
     fill_in 'Nome', with: 'Petra'
     fill_in 'Email', with: admin.email
-    fill_in 'CPF/CNPJ', with: '49301920394'
+    fill_in 'CPF/CNPJ', with: '10293029304914'
     fill_in 'Distância Total', with: 80
     click_on 'Enviar'
 
@@ -50,7 +50,7 @@ describe 'Administrador entra na pagina de cadastrar nova Ordem de Serviço' do
     expect(page).to have_content 'Rua da Petra'
     expect(page).to have_content 'Petra'
     expect(page).to have_content admin.email
-    expect(page).to have_content '49301920394'
+    expect(page).to have_content '10293029304914'
     expect(page).to have_content '80km'
 
   end
@@ -70,7 +70,7 @@ describe 'Administrador entra na pagina de cadastrar nova Ordem de Serviço' do
     fill_in 'Endereço de Entrega', with: 'Rua da Petra'
     fill_in 'Nome', with: ''
     fill_in 'Email', with: ''
-    fill_in 'CPF/CNPJ', with: '49301920394'
+    fill_in 'CPF/CNPJ', with: '10293049102934'
     fill_in 'Distância Total', with: 80
     click_on 'Enviar'
 

@@ -44,7 +44,7 @@ describe 'Usuário vê Ordens de Serviço cadastrados' do
                       delivery_address:  "Rua da Petra 60",
                       name:  "Petra",
                       email:  "petra@mail.com",
-                      customer_id:  "193029304",
+                      customer_id:  "30293049102914",
                       total_distance: 100,
                       status: 0)
 
@@ -61,7 +61,7 @@ describe 'Usuário vê Ordens de Serviço cadastrados' do
         expect(page).to have_content("Endereço de Entrega: Rua da Petra 60")
         expect(page).to have_content("Nome: Petra")
         expect(page).to have_content("Email: petra@mail.com")
-        expect(page).to have_content("CPF/CNPJ: 193029304")
+        expect(page).to have_content("CPF/CNPJ: 30293049102914")
         expect(page).to have_content("Distância Total: 100km")
         expect(page).to have_content("Status: Pendente")
     end

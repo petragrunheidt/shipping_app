@@ -19,6 +19,20 @@ RSpec.describe Order, type: :model do
       # Assert
       expect(order.errors.include? :takeout_address).to be true
     end
+    it 'customer_id must have length of 14' do
+    order = FactoryBot.build(:order, customer_id: '9301')
+
+    result = order.valid?
+
+    expect(order.errors.include? :customer_id).to be true
+    end
+    it 'customer_id must have have only numeric characters' do
+      order = FactoryBot.build(:order, customer_id: 'ADKEODKAMOQNDT')
+
+      result = order.valid?
+
+      expect(order.errors.include? :customer_id).to be true
+    end
   end
   describe 'generates a random code' do
     it 'when creating a new order' do
