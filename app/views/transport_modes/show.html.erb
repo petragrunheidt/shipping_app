@@ -1,4 +1,9 @@
 <h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
+
+<p>
+<%= button_to @transport_mode.active? ? 'Desativar' : 'Ativar', @transport_mode.active? ? deactivate_transport_mode_path : activate_transport_mode_path, { method: 'patch', class: "btn btn-primary  btn-m"} if current_user.admin? %>
+</p>
+
 <h4>Tabela de informações de uso</h4>
 <table class="table bg-primary table-striped table-hover">
 
@@ -22,13 +27,11 @@
 </table>
 <p><%= TransportMode.human_attribute_name('fixed_rate') %>: <%= number_to_currency(@transport_mode.fixed_rate, locale: 'pt-BR')%></p>
 <div style='inline-block'>
-<% if current_user.admin %>
+<% if current_user.admin? %>
 <p>
 <%= link_to 'Editar Modo de Transporte', edit_transport_mode_path, {class: "btn btn-primary  btn-m"} %>
 </div>
-<p>
-<%= button_to @transport_mode.active? ? 'Desativar' : 'Ativar', @transport_mode.active? ? deactivate_transport_mode_path : activate_transport_mode_path, { method: 'patch', class: "btn btn-primary  btn-m"} %>
-</p>
+
 <% end %>
 
 
