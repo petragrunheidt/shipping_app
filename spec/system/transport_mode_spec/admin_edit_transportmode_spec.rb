@@ -20,7 +20,7 @@ describe 'Administrador entra na pagina de editar modo de transporte' do
     expect(page).to have_field TransportMode.human_attribute_name('max_distance')
     expect(page).to have_field TransportMode.human_attribute_name('fixed_rate')
   end
-  it 'com sucesso' do
+  it 'e faz edição com sucesso' do
     # Arrange
     admin = FactoryBot.create(:user, admin: true)
     FactoryBot.create(:transport_mode)

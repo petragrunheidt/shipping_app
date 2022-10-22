@@ -11,7 +11,7 @@ class TransportMode < ApplicationRecord
   validates :min_weight, :min_distance, :max_weight, :max_distance, :fixed_rate, comparison: { greater_than: 0 }
   validates :max_weight, comparison: {greater_than: :min_weight}
   validates :max_distance, comparison: {greater_than: :min_distance}
-
+  validate :no_tables, on: [:update]
   def with_weight_range
     "#{name} | #{min_weight}-#{max_weight}kg"
   end
@@ -49,5 +49,17 @@ class TransportMode < ApplicationRecord
       end
     end
     order_deadline
+  end
+
+  def no_tables
+    if self.weight_tables.empty? and self.active?
+      errors.add(:transport_mode, 'Modo de Transporte não pode ser ativado com tabela de peso em branco')
+    end
+    if self.distance_tables.empty? and self.active?
+      errors.add(:transport_mode, 'Modo de Transporte não pode ser ativado com tabela de distância em branco')
+    end
+    if self.deadlines.empty? and self.active?
+      errors.add(:transport_mode, 'Modo de Transporte não pode ser ativado com tabela de prazos em branco')
+    end
   end
 end

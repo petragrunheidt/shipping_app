@@ -1,8 +1,13 @@
 <h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
 
+<div class="bg-warning" id="error_explanation">
+  <%= alert %>
+</div>
+
 <p>
-<%= button_to @transport_mode.active? ? 'Desativar' : 'Ativar', @transport_mode.active? ? deactivate_transport_mode_path : activate_transport_mode_path, { method: 'patch', class: "btn btn-primary  btn-m"} if current_user.admin? %>
+  <%= button_to @transport_mode.active? ? 'Desativar' : 'Ativar', @transport_mode.active? ? deactivate_transport_mode_path : activate_transport_mode_path, { method: 'patch', class: "btn btn-primary  btn-m"} if current_user.admin? %>
 </p>
+
 
 <h4>Tabela de informações de uso</h4>
 <table class="table bg-primary table-striped table-hover">

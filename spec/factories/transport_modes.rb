@@ -6,6 +6,6 @@ FactoryBot.define do
     min_weight { 5 }
     max_weight { 100 }
     fixed_rate { "9.99" }
-    status { 1 }
+    status { 0 }
   end
 end

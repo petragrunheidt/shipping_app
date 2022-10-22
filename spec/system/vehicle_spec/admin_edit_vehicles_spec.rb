@@ -20,7 +20,7 @@ describe 'Administrador entra na pagina de editar Veículos' do
     expect(page).to have_field 'Ano de Fabricação'
     expect(page).to have_field 'Modalidade de Transporte'
   end
-  it 'com sucesso' do
+  it 'e faz edição com sucesso' do
     # Arrange
     admin = FactoryBot.create(:user, admin: true)
     FactoryBot.create(:transport_mode, name: 'Modal marítimo')
