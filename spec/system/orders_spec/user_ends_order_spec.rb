@@ -42,8 +42,7 @@ describe 'Usuário finaliza ordem de serviço' do
       expect(page).to have_content delivery.name
       expect(page).to have_content vehicle.full_description
       expect(page).to have_content 'Valor do Frete:'
-      expect(page).to have_content 'Data Prevista de Entrega:'
-      expect(page).to have_content "Pedido entregue em #{I18n.localize(Date.today)}"
+      expect(page).to have_content "Pedido entregue em: #{I18n.localize(Date.today)}"
       expect(Vehicle.find(1).status).to eq "available"
     end
     it 'e encontra erro ao tentar cadastrar motivo em finalização sem atraso' do
@@ -92,8 +91,7 @@ describe 'Usuário finaliza ordem de serviço' do
       expect(page).to have_content delivery.name
       expect(page).to have_content vehicle.full_description
       expect(page).to have_content 'Valor do Frete:'
-      expect(page).to have_content 'Data Prevista de Entrega:'
-      expect(page).to have_content "Pedido entregue em #{I18n.localize(Date.today)}"
+      expect(page).to have_content "Pedido entregue em: #{I18n.localize(Date.today)}"
       expect(page).to have_content 'Namorada da entregadora sonhou que as duas haviam terminado e ela precisou do dia de folga.'
     end
     it 'e encontra erro ao tentar fazer cadastro com data em branco' do
