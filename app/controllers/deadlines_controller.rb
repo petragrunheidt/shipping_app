@@ -16,7 +16,7 @@ class DeadlinesController < ApplicationController
     if @deadline.save
       return redirect_to @deadline.transport_mode, notice: "Linha da tabela de prazos adicionada com sucesso."
     else
-      render :new
+      return redirect_to @transport_mode, alert: 'Todos os dados da tabela de prazos devem ser preenchidos'
     end
   end
 

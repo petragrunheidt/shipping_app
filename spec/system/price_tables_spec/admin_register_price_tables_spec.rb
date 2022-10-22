@@ -20,7 +20,7 @@ describe 'Usuário tenta cadastrar linha em tabela de preços' do
         expect(page).not_to have_field 'Valor por faixa de Distância'
 
     end
-    it 'e encotnra os campos para adicionar linha a uma tabela de peso vazia' do
+    it 'e encontra os campos para adicionar linha a uma tabela de peso vazia' do
         # Arrange
         user = FactoryBot.create(:user, admin: true)
         FactoryBot.create(:transport_mode)
@@ -53,15 +53,29 @@ describe 'Usuário tenta cadastrar linha em tabela de preços' do
             click_on 'Enviar'
         end
 
-
         # Assert
-
         expect(page).to have_content('Linha da tabela de peso adicionada com sucesso.')
         expect(page).to have_content 'Intervalo de pesos'
         expect(page).to have_content 'Preço por kg'
         expect(page).to have_content '10kg'
         expect(page).to have_content '20kg'
         expect(page).to have_content 'R$ 0,80'
+    end
+    it 'e encontra erro ao tentar cadastrar tabela de peso com campo em branco' do
+        user = FactoryBot.create(:user, admin: true)
+        tm = FactoryBot.create(:transport_mode, name: 'Frota de Caminhões', min_weight: 10, max_weight: 100)
+
+        # Act
+        login_as(user)
+        visit transport_modes_path
+        click_on('mais informações')
+        within('div#weight-table') do
+            fill_in 'Peso Mínimo', with: 10
+            click_on 'Enviar'
+        end
+
+        # Assert
+        expect(page).to have_content('Todos os dados da tabela de peso devem ser preenchidos')
     end
     it 'e acessa a pagina de adicionar linha a uma tabela de distância' do
         # Arrange
@@ -83,7 +97,7 @@ describe 'Usuário tenta cadastrar linha em tabela de preços' do
     it 'e adiciona a linha a uma tabela de distância com sucesso' do
         # Arrange
         user = FactoryBot.create(:user, admin: true)
-        tm = FactoryBot.create(:transport_mode, name: 'Frota de Caminhões', min_weight: 10, max_weight: 100)
+        tm = FactoryBot.create(:transport_mode, name: 'Frota de Caminhões', min_distance: 10, max_distance: 100)
 
         # Act
         login_as(user)
@@ -104,5 +118,21 @@ describe 'Usuário tenta cadastrar linha em tabela de preços' do
         expect(page).to have_content '10km'
         expect(page).to have_content '30km'
         expect(page).to have_content 'R$ 0,65'
+    end
+    it 'e encontra erro ao tentar cadastrar tabela de distância com campo em branco' do
+        user = FactoryBot.create(:user, admin: true)
+        tm = FactoryBot.create(:transport_mode, name: 'Frota de Caminhões', min_distance: 10, max_distance: 100)
+
+        # Act
+        login_as(user)
+        visit transport_modes_path
+        click_on('mais informações')
+        within('div#distance-table') do
+            fill_in 'Distância Mínima', with: 10
+            click_on 'Enviar'
+        end
+
+        # Assert
+        expect(page).to have_content('Todos os dados da tabela de distância devem ser preenchidos')
     end
 end

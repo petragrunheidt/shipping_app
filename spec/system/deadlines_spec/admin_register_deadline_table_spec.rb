@@ -60,4 +60,20 @@ describe 'Usuário tenta cadastrar linha em tabela de prazos' do
         expect(page).to have_content '20km'
         expect(page).to have_content '24h'
     end
+    it 'e encontra erro ao tentar cadastrar tabela de prazos com campo em branco' do
+        user = FactoryBot.create(:user, admin: true)
+        tm = FactoryBot.create(:transport_mode, name: 'Frota de Caminhões', min_distance: 10, max_distance: 100)
+
+        # Act
+        login_as(user)
+        visit transport_modes_path
+        click_on('mais informações')
+        within('div#deadline-table') do
+            fill_in 'Distância Mínima', with: 10
+            click_on 'Enviar'
+        end
+
+        # Assert
+        expect(page).to have_content('Todos os dados da tabela de prazos devem ser preenchidos')
+    end
 end
