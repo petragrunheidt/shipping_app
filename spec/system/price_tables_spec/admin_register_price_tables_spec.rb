@@ -70,12 +70,13 @@ describe 'Usuário tenta cadastrar linha em tabela de preços' do
         visit transport_modes_path
         click_on('mais informações')
         within('div#weight-table') do
-            fill_in 'Peso Mínimo', with: 10
             click_on 'Enviar'
         end
 
         # Assert
-        expect(page).to have_content('Todos os dados da tabela de peso devem ser preenchidos')
+        expect(page).to have_content('Peso Mínimo não pode ficar em branco')
+        expect(page).to have_content('Peso Máximo não pode ficar em branco')
+        expect(page).to have_content('Valor por Peso não pode ficar em branco')
     end
     it 'e acessa a pagina de adicionar linha a uma tabela de distância' do
         # Arrange
@@ -128,11 +129,12 @@ describe 'Usuário tenta cadastrar linha em tabela de preços' do
         visit transport_modes_path
         click_on('mais informações')
         within('div#distance-table') do
-            fill_in 'Distância Mínima', with: 10
             click_on 'Enviar'
         end
 
         # Assert
-        expect(page).to have_content('Todos os dados da tabela de distância devem ser preenchidos')
+        expect(page).to have_content('Distância Mínima não pode ficar em branco')
+        expect(page).to have_content('Distância Máxima não pode ficar em branco')
+        expect(page).to have_content('Valor por faixa de Distância não pode ficar em branco')
     end
 end

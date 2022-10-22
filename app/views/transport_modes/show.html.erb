@@ -1,7 +1,14 @@
 <h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
 
 <div class="bg-warning" id="error_explanation">
-  <%= alert %>
+  <% if !alert.nil? %>
+    <% if !(alert.class == String) %>
+      <% alert.each do |error| %>
+        <p><%= error %></p>
+
+    <% end %>
+  <% end %>
+<% end %>
 </div>
 
 <p>

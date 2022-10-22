@@ -53,13 +53,13 @@ class TransportMode < ApplicationRecord
 
   def no_tables
     if self.weight_tables.empty? and self.active?
-      errors.add(:transport_mode, 'Modo de Transporte não pode ser ativado com tabela de peso em branco')
+      errors.add(:status, ' não pode ser alterado para ativo com tabela de peso em branco')
     end
     if self.distance_tables.empty? and self.active?
-      errors.add(:transport_mode, 'Modo de Transporte não pode ser ativado com tabela de distância em branco')
+      errors.add(:status, ' não pode ser alterado para ativo com tabela de distância em branco')
     end
     if self.deadlines.empty? and self.active?
-      errors.add(:transport_mode, 'Modo de Transporte não pode ser ativado com tabela de prazos em branco')
+      errors.add(:status, ' não pode ser alterado para ativo com tabela de prazos em branco')
     end
   end
 end

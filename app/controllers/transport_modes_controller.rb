@@ -44,11 +44,12 @@ class TransportModesController < ApplicationController
   end
 
   def activate
-    return redirect_to @transport_mode, alert: 'Modo de Transporte não pode ser ativado com tabela de peso em branco' if @transport_mode.weight_tables.empty?
-    return redirect_to @transport_mode, alert: 'Modo de Transporte não pode ser ativado com tabela de distância em branco' if @transport_mode.distance_tables.empty?
-    return redirect_to @transport_mode, alert: 'Modo de Transporte não pode ser ativado com tabela de prazos em branco' if  @transport_mode.deadlines.empty?
-    @transport_mode.active!
-    return redirect_to @transport_mode, notice: 'Modo de Transporte ativado.'
+    begin
+      @transport_mode.active!
+      return redirect_to @transport_mode, notice: 'Modo de Transporte ativado.'
+    rescue
+      return redirect_to @transport_mode, alert: @transport_mode.errors.full_messages
+    end
   end
 
   def deactivate

@@ -16,7 +16,7 @@ class DistanceTablesController < ApplicationController
     if @distance_line.save
       return redirect_to @distance_line.transport_mode, notice: "Linha da tabela de distância adicionada com sucesso."
     else
-      return redirect_to @transport_mode, alert: 'Todos os dados da tabela de distância devem ser preenchidos'
+      return redirect_to @transport_mode, alert: @distance_line.errors.full_messages
     end
   end
 

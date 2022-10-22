@@ -16,7 +16,7 @@ class WeightTablesController < ApplicationController
     if @weight_line.save
       return redirect_to @weight_line.transport_mode, notice: "Linha da tabela de peso adicionada com sucesso."
     else
-      return redirect_to @transport_mode, alert: 'Todos os dados da tabela de peso devem ser preenchidos'
+      return redirect_to @transport_mode, alert: @weight_line.errors.full_messages
     end
   end
 

@@ -71,7 +71,7 @@ describe 'Admin tenta mudar o status de ativação de um modo de transporte' do
     # Assert
     expect(page).to have_button 'Ativar'
     expect(page).to have_content 'Inativo'
-    expect(page).to have_content 'Modo de Transporte não pode ser ativado com tabela de peso em branco'
+    expect(page).to have_content 'Status não pode ser alterado para ativo com tabela de peso em branco'
   end
   it 'e encontra erro ao tentar ativar um modo de transporte sem tabela de distância cadastrada' do
     # Arrange
@@ -88,7 +88,7 @@ describe 'Admin tenta mudar o status de ativação de um modo de transporte' do
     # Assert
     expect(page).to have_button 'Ativar'
     expect(page).to have_content 'Inativo'
-    expect(page).to have_content 'Modo de Transporte não pode ser ativado com tabela de distância em branco'
+    expect(page).to have_content 'Status não pode ser alterado para ativo com tabela de distância em branco'
   end
   it 'e encontra erro ao tentar ativar um modo de transporte sem tabela de prazos cadastrada' do
     # Arrange
@@ -106,6 +106,6 @@ describe 'Admin tenta mudar o status de ativação de um modo de transporte' do
     # Assert
     expect(page).to have_button 'Ativar'
     expect(page).to have_content 'Inativo'
-    expect(page).to have_content 'Modo de Transporte não pode ser ativado com tabela de prazos em branco'
+    expect(page).to have_content 'Status não pode ser alterado para ativo com tabela de prazos em branco'
   end
 end

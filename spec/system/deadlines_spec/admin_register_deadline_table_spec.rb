@@ -69,11 +69,12 @@ describe 'Usuário tenta cadastrar linha em tabela de prazos' do
         visit transport_modes_path
         click_on('mais informações')
         within('div#deadline-table') do
-            fill_in 'Distância Mínima', with: 10
             click_on 'Enviar'
         end
 
         # Assert
-        expect(page).to have_content('Todos os dados da tabela de prazos devem ser preenchidos')
+        expect(page).to have_content('Distância Mínima não pode ficar em branco')
+        expect(page).to have_content('Distância Máxima não pode ficar em branco')
+        expect(page).to have_content('Tempo de Entrega não pode ficar em branco')
     end
 end
