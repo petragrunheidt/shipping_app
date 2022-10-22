@@ -42,7 +42,7 @@ describe 'Administrador entra na pagina de cadastrar novo Veículo' do
     expect(page).to have_content 'Ano de Fabricação: 1995'
     expect(page).to have_content 'Carga máxima: 80kg'
     expect(page).to have_link 'Frota de Carros'
-    expect(page).to have_content 'Em manutenção'
+    expect(page).to have_content 'Manutenção'
 
   end
   it 'e encontra mensagens de erro ao deixar campos em branco' do

@@ -52,6 +52,7 @@ class OrdersController < ApplicationController
 
   def set_canceled
     @order.canceled!
+    @order.order_start.vehicle.available!
     return redirect_to @order, notice: "Status da ordem de serviço atualizada."
   end
 

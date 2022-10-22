@@ -51,7 +51,7 @@ describe 'Usuário vê veículos cadastrados' do
         expect(page).to have_content 'Ano de Fabricação: 2005'
         expect(page).to have_content 'Carga máxima: 100kg'
         expect(page).to have_link 'Modal Rodoviário'
-        expect(page).to have_content 'Em manutenção'
+        expect(page).to have_content 'Manutenção'
 
     end
     it 'e volta para a lista de veículos' do
