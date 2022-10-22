@@ -2,17 +2,18 @@
 <%  if current_user.admin? %>
 <p><%= link_to 'Cadastrar nova Modalidade de Transporte', new_transport_mode_path, class: "btn btn-primary  btn-m" %></p>
 <% end %>
-<div >
+
+<div>
 <% if @transport_mode.present? %>
 <% @transport_mode.each do |trans| %>
 
 <div>
 <h3 ><%= "#{trans.name} (#{t(trans.status)})" %></h3>
-<%= link_to 'mais informações', trans%>
+<p class="btn btn-primary"><%= link_to 'mais informações', trans%><p>
 <% end %>
 </div>
-
+</div>
 <% else %>
 <h3>Nenhuma Modalidade de Transporte Cadastrada</h3>
 <% end %>
-</div>
+
