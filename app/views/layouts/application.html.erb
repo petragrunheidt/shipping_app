@@ -10,20 +10,20 @@
     <%= stylesheet_link_tag "application" %>
     <%= javascript_importmap_tags %>
   </head>
-<nav id="nav links" class="navbar navbar-expand-lg bg-primary p-3 rounded">
+<nav id="nav links" class="border-bottom navbar navbar-expand-lg bg-primary p-3 rounded">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">Transporte & Frete</a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=<%=transport_modes_path%>>Modos de Transporte</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="width: 55%;">
+        <li class="nav-item" style="margin-right: 2%;">
+          <a class="nav-link active bg-secondary rounded" aria-current="page" href=<%=transport_modes_path%>>Modos de Transporte</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=<%=vehicles_path%>>Veículos</a>
+        <li class="nav-item" style="margin-right: 2%;">
+          <a class="nav-link active bg-secondary rounded" aria-current="page" href=<%=vehicles_path%>>Veículos</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href=<%=orders_path%>>Ordens de Serviço</a>
+        <li class="nav-item" style="margin-right: 2%;">
+          <a class="nav-link active bg-secondary rounded" aria-current="page" href=<%=orders_path%>>Ordens de Serviço</a>
         </li>
       </ul>
 
@@ -44,8 +44,11 @@
     </div>
   </div>
   </nav>
-  <div class="bg-success rounded"><%= notice %></div>
+  <% if notice.present? %>
+    <div class="bg-success rounded" style="margin: 1%;"><%= notice %></div>
+  <% end %>
   <body class="bg-primary">
+    
     <div class="container-flex bg-secondary mx-auto px-3 rounded"  style="padding: 2%; width: 98%;">
       <%= yield %>
     </div>

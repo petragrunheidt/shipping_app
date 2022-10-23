@@ -17,28 +17,34 @@
   </div>
 <% end %>
 
-<div><p>
-<%= order.label :transport_mode_id, 'Opções de Entrega' %>
-
-<div><p>
-<% options_array = @transport_modes.map {|trans| ["#{trans.name} - #{number_to_currency(trans.full_value(@order), locale: 'pt-BR')} - #{trans.deadline(@order)}h", trans.id]} %>
-<%= order.select(:transport_mode_id, options_array)%>
-
-<div><p>
-<%= order.label :order_date %>
-<%= order.date_field :order_date, value: Date.today %>
-</div></p>
 <div>
-<%= order.submit 'Iniciar Ordem de Serviço', class: "btn btn-primary  btn-m" %>
-</div></p>
+  <p>
+    <%= order.label :transport_mode_id, 'Opções de Entrega' %>
+    <% options_array = @transport_modes.map {|trans| ["#{trans.name} - #{number_to_currency(trans.full_value(@order), locale: 'pt-BR')} - #{trans.deadline(@order)}h", trans.id]} %>
+    <%= order.select(:transport_mode_id, options_array)%>
+  </p>
+</div>
+<div>
+  <p>
+    <%= order.label :order_date %>
+    <%= order.date_field :order_date, value: Date.today %>
+  </p>
+</div>
+<div>
+<p>
+  <%= order.submit 'Iniciar Ordem de Serviço', class: "btn btn-primary  btn-m" %>
+</p>
+</div>
 <% end %>
 
 <% else %>
-<h3>No momento, não há Veículos disponíveis para essa Ordem de Serviço</h3>
+<div>
+  <h3>No momento, não há Veículos disponíveis para essa Ordem de Serviço</h3>
+</div>
 <% end %>
-</div><p>
-<%= link_to 'Voltar', @order, {class: "btn btn-primary  btn-m"} %>
-</div></p>
+<div>
+  <p><%= link_to 'Voltar', @order, {class: "btn btn-primary  btn-m"} %></p>
+</div>
 
 
 

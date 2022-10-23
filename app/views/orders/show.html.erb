@@ -1,6 +1,6 @@
 <h1><%= "#{Order.model_name.human} #{@order.code}" %></h1>
 <div tag="order-info">
-<dl>
+
 <h3>Dados da Ordem de Serviço</h3>
 <h6><%= Order.human_attribute_name('status') %>: <%= t(@order.status) %>
 <% if @order.order_end.present? %>
@@ -8,72 +8,73 @@
 <% end %>
 <p><%= Order.human_attribute_name('total_distance') %>: <%= @order.total_distance %>km</p>
 </h6>
-<div class="card bg-primary" style="width: 24rem; padding: 2%;">
-<h5 class="card-title">Informações do Fornecedor</h5>
-<dt><%= Order.human_attribute_name('takeout_address') %>: <%= @order.takeout_address %></dt>
-<dt>Peso: <%= @order.weight %>kg</dt>
-<dt>Dimensões: <%= "#{@order.heigth}x#{@order.width}x#{@order.depth}cm" %></dt>
-</div>
-<div class="card bg-primary" style="width: 24rem; padding: 2%;">
-<h5 class="card-title">Informações do Cliente</h5>
-<dt><%= Order.human_attribute_name('name') %>: <%= @order.name %></dt>
-<dt><%= Order.human_attribute_name('email') %>: <%= @order.email %></dt>
-<dt><%= Order.human_attribute_name('customer_id') %>: <%= @order.customer_id  %></dt>
-<dt><%= Order.human_attribute_name('delivery_address') %>: <%= @order.delivery_address %></dt>
-</div>
-<br>
+<div class="row">
+    <div class="col-6">
+    <dl>
+        <div class="card bg-primary" style="width: 80%; padding: 2%; margin-bottom: 5%;">
+            <h5 class="card-title">Informações do Fornecedor</h5>
+            <dt><%= Order.human_attribute_name('takeout_address') %>: <%= @order.takeout_address %></dt>
+            <dt>Peso: <%= @order.weight %>kg</dt>
+            <dt>Dimensões: <%= "#{@order.heigth}x#{@order.width}x#{@order.depth}cm" %></dt>
+        </div>
+        <div class="card bg-primary" style="width: 80%; padding: 2%; margin-bottom: 5%;">
+            <h5 class="card-title">Informações do Cliente</h5>
+            <dt><%= Order.human_attribute_name('name') %>: <%= @order.name %></dt>
+            <dt><%= Order.human_attribute_name('email') %>: <%= @order.email %></dt>
+            <dt><%= Order.human_attribute_name('customer_id') %>: <%= @order.customer_id  %></dt>
+            <dt><%= Order.human_attribute_name('delivery_address') %>: <%= @order.delivery_address %></dt>
+        </div>
+    </dl>
+    </div>
 
 
-</dl>
 
+    <div class="col-6">
+        <% if @order.order_start.present? and !@order.canceled? %>
+        <div class="card bg-primary" style="width: 80%; padding: 2%;">
+            <h3 >Dados de Entrega</h3>
+            <dl>
+                <dt><%= "#{TransportMode.model_name.human}: #{@order.order_start.transport_mode.name}" %><dt>
+                <dt><%= "#{Vehicle.model_name.human}: #{@order.order_start.vehicle.full_description}" %><dt>
+                <dt><%= "#{OrderStart.human_attribute_name('shipping_fee')}: #{number_to_currency(@order.order_start.shipping_fee, locale: 'pt-BR')}" %></dt>
+                <dt><%= "#{OrderStart.human_attribute_name('order_date')}: #{I18n.localize(@order.order_start.order_date)}" %></dt>
+                <dt><%= "#{OrderStart.human_attribute_name('delivery_deadline')}: #{I18n.localize(@order.order_start.delivery_deadline)}" if @order.order_end.nil? %></dt>
+            <dl>    
+        <% end %>
+        <% if @order.delivered? %>
+            <dl>
+                <dt>Pedido entregue em: <%= I18n.localize(@order.order_end.time) %></dt>
+                <dt><%= "Motivo do Atraso: #{@order.order_end.reason}" if @order.order_end.reason.present? %></dt>
+            </dl>
+        </div>
+        <% end %>        
+    </div>
 </div>
+
 <div tag="pending-buttons">
 <% if @order.pending? and current_user.present? %>
-<% if current_user.admin %>
-<p><%= link_to 'Editar Ordem de Serviço', edit_order_path(@order), {class: "btn btn-primary  btn-m"} %></p>
-<% end %>
-<p><%= link_to 'Iniciar Ordem de Serviço', new_order_order_start_path(@order), {class: "btn btn-primary  btn-m"} %></p>
+    <% if current_user.admin %>
+        <p><%= link_to 'Editar Ordem de Serviço', edit_order_path(@order), {class: "btn btn-primary  btn-m"} %></p>
+    <% end %>
+    <p><%= link_to 'Iniciar Ordem de Serviço', new_order_order_start_path(@order), {class: "btn btn-primary  btn-m"} %></p>
 <% end %>
 </div>
 
-
-<% if @order.order_start.present? and !@order.canceled? %>
-<div class="card bg-primary" style="width: 24rem; padding: 2%;" tag="waiting-confirmation">
-<h3 >Dados de Entrega</h3>
-<dl>
-
-<dt><%= "#{TransportMode.model_name.human}: #{@order.order_start.transport_mode.name}" %><dt>
-<dt><%= "#{Vehicle.model_name.human}: #{@order.order_start.vehicle.full_description}" %><dt>
-<dt><%= "#{OrderStart.human_attribute_name('shipping_fee')}: #{number_to_currency(@order.order_start.shipping_fee, locale: 'pt-BR')}" %></dt>
-<dt><%= "#{OrderStart.human_attribute_name('order_date')}: #{I18n.localize(@order.order_start.order_date)}" %></dt>
-<dt><%= "#{OrderStart.human_attribute_name('delivery_deadline')}: #{I18n.localize(@order.order_start.delivery_deadline)}" if @order.order_end.nil? %></dt>
-<dl>
-
+<div tag="confirmation_buttons">
 <% if @order.waiting_confirmation? and current_user.present? %>
-<p><%= button_to 'Confirmar Ordem de Serviço', order_confirmation_order_path, { method: 'patch', class: "btn btn-secondary  btn-m"} %></p>
-<p><%= button_to 'Reconfigurar Ordem de Serviço', order_order_start_path(@order, @order.order_start), { method: 'delete', class: "btn btn-secondary  btn-m"}%></p>
-
+    <p><%= button_to 'Confirmar Ordem de Serviço', order_confirmation_order_path, { method: 'patch', class: "btn btn-primary  btn-m"} %></p>
+    <p><%= button_to 'Reconfigurar Ordem de Serviço', order_order_start_path(@order, @order.order_start), { method: 'delete', class: "btn btn-primary  btn-m"}%></p>
 <% end %>
-<% end %>
-
+</div>
 
 <div tag="on_route-buttons">
 <% if @order.on_route? and current_user.present? %>
-<p><%= link_to 'Finalizar Ordem de Serviço', new_order_order_end_path(@order), {class: "btn btn-secondary  btn-m"} %></p>
-<% if current_user.admin %>
-<p><%= button_to 'Marcar como Cancelada', set_canceled_order_path, { method: 'patch', class: "btn btn-secondary  btn-m"} %></p>
-<% end %>
-<% end %>
-</div>
-
-<div tag="delivered-order">
-<% if @order.delivered? %>
-<dl>
-<dt>Pedido entregue em: <%= I18n.localize(@order.order_end.time) %></dt>
-<dt><%= "Motivo do Atraso: #{@order.order_end.reason}" if @order.order_end.reason.present? %></dt>
-</dt>
+    <p><%= link_to 'Finalizar Ordem de Serviço', new_order_order_end_path(@order), {class: "btn btn-primary  btn-m"} %></p>
+    <% if current_user.admin %>
+        <p><%= button_to 'Marcar como Cancelada', set_canceled_order_path, { method: 'patch', class: "btn btn-primary  btn-m"} %></p>
+    <% end %>
 <% end %>
 </div>
+<div>
+<p><%= link_to 'Voltar', orders_path, {class: "btn btn-primary  btn-m"} %></p>
 </div>
-<%= link_to 'Voltar', orders_path, {class: "btn btn-primary  btn-m"} %>
-
