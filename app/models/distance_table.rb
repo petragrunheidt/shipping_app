@@ -17,12 +17,7 @@ class DistanceTable < ApplicationRecord
       end
     end
     if !(self.transport_mode.distance_tables.empty?)
-      if self.transport_mode.distance_tables.last.max > self.min
-        errors.add(:min, "deve ser maior do que o valor máximo da última entrada")
-      end
-    end
-    if !(self.transport_mode.distance_tables.empty?)
-      if self.transport_mode.distance_tables.last.max > self.min
+      if self.transport_mode.distance_tables.last.max >= self.min
         errors.add(:min, "deve ser maior do que o valor máximo da última entrada")
       end
     end
@@ -38,7 +33,7 @@ class DistanceTable < ApplicationRecord
       end
     end
     if self.transport_mode.distance_tables.present? and self.transport_mode.distance_tables.length > 1
-      if self.transport_mode.distance_tables.where("id < ?", id).last.max > self.min
+      if self.transport_mode.distance_tables.where("id < ?", id).last.max >= self.min
         errors.add(:min, "deve ser maior do que o valor máximo da última entrada")
       end
     end

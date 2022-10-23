@@ -17,7 +17,7 @@ class Deadline < ApplicationRecord
       end
     end
     if !(self.transport_mode.deadlines.empty?)
-      if self.transport_mode.deadlines.last.max > self.min
+      if self.transport_mode.deadlines.last.max >= self.min
         errors.add(:min, "deve ser maior do que o valor máximo da última entrada")
       end
     end
@@ -33,7 +33,7 @@ class Deadline < ApplicationRecord
       end
     end
     if self.transport_mode.deadlines.present? and self.transport_mode.deadlines.length > 1
-      if self.transport_mode.deadlines.where("id < ?", id).last.max > self.min
+      if self.transport_mode.deadlines.where("id < ?", id).last.max >= self.min
         errors.add(:min, "deve ser maior do que o valor máximo da última entrada")
       end
     end

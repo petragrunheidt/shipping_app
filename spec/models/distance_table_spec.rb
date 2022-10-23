@@ -81,6 +81,15 @@ RSpec.describe DistanceTable, type: :model do
 
         expect(result).to be false
       end
+      it 'false when min is equal to last table input max' do
+        tm = FactoryBot.create(:transport_mode, min_distance: 10, max_distance: 100)
+        dl1 = FactoryBot.create(:distance_table, min: 10, max: 30, transport_mode: tm)
+        dl2 = FactoryBot.build(:distance_table, min: 30, max: 50, transport_mode: tm)
+        
+        result = dl2.valid?
+
+        expect(result).to be false
+      end
     end
   end
 end
