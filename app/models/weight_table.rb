@@ -1,6 +1,7 @@
 class WeightTable < ApplicationRecord
   validates :min, :max, :value, presence: true
   belongs_to :transport_mode
+  validates :max, comparison: { greater_than: :min }
   validate :create_weight_range, on: [:create]
   validate :update_weight_range, on: [:update]
 

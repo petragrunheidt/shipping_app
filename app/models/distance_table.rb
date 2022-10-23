@@ -1,6 +1,7 @@
 class DistanceTable < ApplicationRecord
   validates :min, :max, :value, presence: true
   belongs_to :transport_mode
+  validates :max, comparison: { greater_than: :min }
   validate :create_distance_range, on: [:create]
   validate :update_distance_range, on: [:update]
 

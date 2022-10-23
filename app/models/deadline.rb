@@ -1,6 +1,7 @@
 class Deadline < ApplicationRecord
   validates :min, :max, :time, presence: true
   belongs_to :transport_mode
+  validates :max, comparison: { greater_than: :min }
   validate :create_distance_range, on: [:create]
   validate :edit_distance_range, on: [:update]
 
