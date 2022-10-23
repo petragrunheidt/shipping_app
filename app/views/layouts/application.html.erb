@@ -2,11 +2,13 @@
 <html>
   <head>
     <title>ShippingApp</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application" %>
+    <%= javascript_importmap_tags %>
   </head>
 <nav id="nav links" class="navbar navbar-expand-lg bg-primary p-3 rounded">
   <div class="container-fluid">
@@ -42,9 +44,11 @@
     </div>
   </div>
   </nav>
-  <div class="bg-success"><%= notice %></div>
-  <body class="container-flex bg-secondary mx-auto px-2" style="width: 98%;">
-    <%= yield %>
+  <div class="bg-success rounded"><%= notice %></div>
+  <body class="bg-primary">
+    <div class="container-flex bg-secondary mx-auto px-3 rounded"  style="padding: 2%; width: 98%;">
+      <%= yield %>
+    </div>
   </body>
 
 </html>

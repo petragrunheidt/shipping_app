@@ -11,12 +11,9 @@ RSpec.describe OrderStart, type: :model do
       FactoryBot.create(:deadline, transport_mode: delivery, min:20, max: 40, time: 48)
       order = FactoryBot.create(:order, status: :on_route, weight: 30, total_distance: 30 )
       started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle, order_date: Date.today)
-
       # Act
-
       shipping_calculation = (started_order.shipping_fee == 15 + (30*1) + 10)
       deadline_calculation = (started_order.delivery_deadline == Date.today + (48 / 24).ceil)
-
       # Assert
       expect(shipping_calculation).to be true
       expect(deadline_calculation).to be true
@@ -30,12 +27,9 @@ RSpec.describe OrderStart, type: :model do
       FactoryBot.create(:deadline, transport_mode: delivery, min:10, max: 30, time: 48)
       order = FactoryBot.create(:order, status: :on_route, weight: 10, total_distance: 10 )
       started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle, order_date: Date.today)
-
       # Act
-
       shipping_calculation = (started_order.shipping_fee == 15 + (10*1) + 10)
       deadline_calculation = (started_order.delivery_deadline == Date.today + (48 / 24).ceil)
-
       # Assert
       expect(shipping_calculation).to be true
       expect(deadline_calculation).to be true
@@ -49,12 +43,9 @@ RSpec.describe OrderStart, type: :model do
       FactoryBot.create(:deadline, transport_mode: delivery, min:10, max: 30, time: 48)
       order = FactoryBot.create(:order, status: :on_route, weight: 30, total_distance: 30 )
       started_order = FactoryBot.create(:order_start, order: order, transport_mode: delivery, vehicle: vehicle, order_date: Date.today)
-
       # Act
-
       shipping_calculation = (started_order.shipping_fee == 15 + (30*1) + 10)
       deadline_calculation = (started_order.delivery_deadline == Date.today + (48 / 24).ceil)
-
       # Assert
       expect(shipping_calculation).to be true
       expect(deadline_calculation).to be true

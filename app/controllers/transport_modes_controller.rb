@@ -4,7 +4,7 @@ class TransportModesController < ApplicationController
   before_action :transport_mode_params, only: [:create, :update]
 
   def index
-    @transport_mode = TransportMode.all
+    @transport_modes = TransportMode.all
   end
 
   def show

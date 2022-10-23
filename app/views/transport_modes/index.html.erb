@@ -3,17 +3,20 @@
 <p><%= link_to 'Cadastrar nova Modalidade de Transporte', new_transport_mode_path, class: "btn btn-primary  btn-m" %></p>
 <% end %>
 
-<div>
-<% if @transport_mode.present? %>
-<% @transport_mode.each do |trans| %>
-
-<div>
-<h3 ><%= "#{trans.name} (#{t(trans.status)})" %></h3>
-<p class="btn btn-primary"><%= link_to 'mais informações', trans%><p>
-<% end %>
-</div>
-</div>
+<% if @transport_modes.present? %>       
+    <% @transport_modes.each_slice(3) do |trans| %>
+        <div class="row">
+        <% trans.each do |trans| %>
+            <div class="col-4">
+                <div class="card bg-primary" style="padding: 3%; width: 18rem;">
+                <h3 class="card-title"><%= "#{trans.name} (#{t(trans.status)})" %></h3>
+                <p class="card-text btn btn-secondary"><%= link_to 'mais informações', trans%><p>
+                </div>
+            </div>
+        <% end %>
+        </div> 
+    <% end %>    
 <% else %>
-<h3>Nenhuma Modalidade de Transporte Cadastrada</h3>
+    <h3>Nenhuma Modalidade de Transporte Cadastrada</h3>
 <% end %>
 
