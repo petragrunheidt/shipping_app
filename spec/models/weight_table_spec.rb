@@ -36,17 +36,7 @@ RSpec.describe WeightTable, type: :model do
         expect(result).to be false
 
       end
-      it 'false when transport_mode is empty' do
-        # Arrange
-        wt = FactoryBot.build(:weight_table, transport_mode: nil)
 
-        # Act
-        result = wt.valid?
-
-        # Assert
-        expect(result).to be false
-
-      end
     end
     context 'comparison' do
       it 'false when min is less than transport_mode min_weight' do
@@ -70,6 +60,15 @@ RSpec.describe WeightTable, type: :model do
         result = wt.valid?
 
         # Assert
+        expect(result).to be false
+      end
+      it 'false when min is less than last table input max' do
+        tm = FactoryBot.create(:transport_mode, min_weight: 10, max_weight: 100)
+        dl1 = FactoryBot.create(:weight_table, min: 10, max: 30, transport_mode: tm)
+        dl2 = FactoryBot.build(:weight_table, min: 20, max: 50, transport_mode: tm)
+        
+        result = dl2.valid?
+
         expect(result).to be false
       end
     end

@@ -44,7 +44,5 @@ class DistanceTablesController < ApplicationController
 
   def set_distance_line
     @distance_line = DistanceTable.find(params[:id])
-    @previous_line = @distance_line.next
-    @next_line = @distance_line.previous
   end
 end

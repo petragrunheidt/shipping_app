@@ -1,10 +1,10 @@
-<h1>Editar linha <%= @deadline.id %> da <%= DistanceTable.model_name.human %></h1>
+<h1>Editar linha <%= @deadline.id %> da <%= Deadline.model_name.human %></h1>
 <%= form_with model: [@transport_mode, @deadline] do |line| %>
 
 <% if @deadline.errors.any? %>
 
-  <div id="error_explanation">
-    <h2>Todos os campos devem ser preenchidos</h2>
+  <div class="bg-warning" id="error_explanation">
+
     <div>
       <% @deadline.errors.each do |error| %>
         <% flash.now[:alert] = error.full_message%>

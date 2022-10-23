@@ -2,8 +2,8 @@
 <%= form_with model: [@transport_mode, @weight_line] do |line| %>
 <% if @weight_line.errors.any? %>
 
-  <div id="error_explanation">
-    <h2>Todos os campos devem ser preenchidos</h2>
+  <div class="bg-warning" id="error_explanation">
+
     <div>
       <% @weight_line.errors.each do |error| %>
         <% flash.now[:alert] = error.full_message%>
