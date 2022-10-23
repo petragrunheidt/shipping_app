@@ -48,8 +48,28 @@ RSpec.describe Deadline, type: :model do
 
         # Assert
         expect(result).to be false
-
       end
+      it 'false when min is equal to zero' do
+        # Arrange
+        dl = FactoryBot.build(:deadline, min: 0, max: 50)
+
+        # Act
+        result = dl.valid?
+
+        # Assert
+        expect(result).to be false
+      end
+      it 'false when min is less than zero' do
+        # Arrange
+        dl = FactoryBot.build(:deadline, min: -1, max: 50)
+
+        # Act
+        result = dl.valid?
+
+        # Assert
+        expect(result).to be false
+      end
+
       it 'false when min is less than transport_mode min_distance' do
         # Arrange
         tm = FactoryBot.build(:transport_mode, min_distance: 10)
