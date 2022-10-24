@@ -1,25 +1,35 @@
 # shipping_app
 Project workflow and planning available at: https://github.com/users/petragrunheidt/projects/1
 
-intructions:
+<h3>intructions:</h3>
 
-install ruby -v 3.0.4
+<p>install ruby -v 3.0.4</p>
 
-Run the command:
+<p>Run the command:</p>
+
 > bundle install
-Then setup the database with:
+
+<p>Then setup the database with:</p>
+
 > rails db:migrate
-And populate with:
+
+<p>And populate with:</p>
+
 > rails db:seed
-Start the server with:
+
+<p>Start the server with:</p>
+
 > rails server
-Access with the project in a web browser with the localhost directory:
+
+<p>Access with the project in a web browser with the localhost directory:</p>
+
 > http://localhost:3000/
 
-admin_login:
-email: petra@sistemadefrete.com.br
-password: password
+<p>admin_login:</p>
+<p>email: petra@sistemadefrete.com.br</p>
+<p>password: password</p>
 
-regular_user_login:
-email: qualquer@sistemadefrete.com.br
-password: password
+
+<p>regular_user_login:</p>
+<p>email: qualquer@sistemadefrete.com.br</p>
+<p>password: password</p>
