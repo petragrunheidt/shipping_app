@@ -4,7 +4,7 @@ describe 'Administrador entra na pagina de editar modo de transporte' do
   it 'a partir da tela inicial' do
     # Arrange
     admin = FactoryBot.create(:user, admin: true)
-    FactoryBot.create(:transport_mode)
+    trans = FactoryBot.create(:transport_mode)
     # Act
     login_as(admin)
     visit root_path
@@ -13,6 +13,7 @@ describe 'Administrador entra na pagina de editar modo de transporte' do
     click_on 'Editar Modo de Transporte'
 
     # Assert
+    expect(page).to have_content trans.name
     expect(page).to have_field TransportMode.human_attribute_name('name')
     expect(page).to have_field TransportMode.human_attribute_name('min_weight')
     expect(page).to have_field TransportMode.human_attribute_name('max_weight')

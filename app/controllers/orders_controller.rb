@@ -30,7 +30,7 @@ class OrdersController < ApplicationController
     if @order.update(order_params)
       return redirect_to @order, notice: 'Ordem de Serviço atualizada com sucesso.'
     else
-      render :new
+      render :edit
     end
   end
 

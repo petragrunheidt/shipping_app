@@ -13,6 +13,7 @@ describe 'Administrador entra na pagina de editar Veículos' do
     click_on 'Editar dados do Veículo'
 
     # Assert
+    expect(page).to have_content 'Nissan A140i - ABC1234'
     expect(page).to have_field 'Marca do Veículo'
     expect(page).to have_field 'Modelo do Veículo'
     expect(page).to have_field 'Placa de Identificação'
