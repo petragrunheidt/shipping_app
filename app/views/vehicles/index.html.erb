@@ -1,21 +1,47 @@
 <h1><%= Vehicle.model_name.human(count: 2)%> disponíveis:</h1>
 <div id="vehicle-search">
-<p>
-<%= form_with url: search_vehicles_path, method: :get do |form|%>
-    <%= form.label :query, 'Buscar Veículo' %>
-    <%= form.text_field :query %>
-    <%= form.submit 'Buscar'%>
-<% end %>
-</p>
+    <p>
+        <%= form_with url: search_vehicles_path, method: :get do |form|%>
+            <%= form.label :query, 'Buscar Veículo' %>
+            <%= form.text_field :query %>
+            <%= form.submit 'Buscar'%>
+        <% end %>
+    </p>
 </div>
-<%  if current_user.admin?%>
-<p><%= link_to 'Cadastrar novo Veículo', new_vehicle_path, class: "btn btn-primary  btn-m" %></p>
-<% end %>
-<% if @vehicles.present? %>
-<% @vehicles.sort_by(&:transport_mode).each do |trans| %>
-<h3><%= link_to trans.full_description, trans%> - <%= t(trans.status) %></h3>
 
-<% end %>
+<div>
+    <% if current_user.admin?%>
+        <p><%= link_to 'Cadastrar novo Veículo', new_vehicle_path, class: "btn btn-primary  btn-m" %></p>
+    <% end %>
+</div>
+
+<% if @vehicles.present? %>   
+    <% @transport_modes.each_slice(3) do |trans| %>
+        <div class="row">
+        <% trans.each_with_index do |trans, index| %>
+        <div class="col-4">
+            <div id="accordion">
+            <div class="card bg-primary">
+                <div class="card-header" id="heading<%= index+1 %>">
+                <h5 class="mb-0">
+                    <button class="btn" data-toggle="collapse" data-target="#collapse<%= index+1 %>" aria-expanded="true" aria-controls="collapse<%= index+1 %>">
+                        <%= trans.name %>
+                    </button>
+                </h5>
+            </div>
+                <div id="collapse<%= index+1 %>" class="collapse show" aria-labelledby="heading<%= index+1 %>" data-parent="#accordion">
+                <div class="card-body">
+                    <% @vehicles.where(transport_mode: trans).each do |vehicle| %>
+                        <p><%= link_to vehicle.full_description, vehicle%> - <%= t(vehicle.status) %></p>
+                    <% end %>
+            </div>
+                </div>
+            </div>
+        </div>   
+        </div>
+        <% end %>
+        </div> 
+    <% end %>    
 <% else %>
-<h3>Nenhum <%= Vehicle.model_name.human %> disponível</h3>
+    <h3>Nenhum <%= Vehicle.model_name.human %> disponível</h3>
 <% end %>

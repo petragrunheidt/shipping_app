@@ -4,6 +4,7 @@ class VehiclesController < ApplicationController
   before_action :set_vehicle, only: [:show, :edit, :update, :activate, :deactivate]
   before_action :vehicle_params, only: [:create, :update]
   def index
+    @transport_modes = TransportMode.all
     @vehicles = Vehicle.all
   end
 
