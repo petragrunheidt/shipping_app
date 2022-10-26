@@ -1,0 +1,55 @@
+<div class="table" id="weight-table">
+  <h2><%= WeightTable.model_name.human %></h2>
+  <% if @weight_table.present? %>
+    <table class="table bg-primary table-striped table-hover">
+      <tr>
+        <th>Intervalo de pesos</th>
+        <th></th>
+        <th>Preço por kg</th>
+      </tr>
+      <% @weight_table.each do |line| %>
+        <tr>
+          <td><%= line.min %>kg</td>
+          <td><%= line.max %>kg</td>
+          <td><%= number_to_currency(line.value, locale: 'pt-BR')  %></td>
+          <td><%= (link_to "Editar linha", "/transport_modes/#{@transport_mode.id}/weight_tables/#{line.id}/edit") if current_user.admin? %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <h4>Nenhum dado cadastrado.</h4>
+  <% end %>
+
+  <% if current_user.admin? %>
+    <h4>Adicionar linha à <%= WeightTable.model_name.human %></h4>
+    <%= form_with model: [@transport_mode, @weight_line] do |line| %>
+      <% if @weight_line.errors.any? %>
+        <div class="table" id="error_explanation">
+          <h2> Todos os campos devem ser preenchidos </h2>
+        
+          <% @weight_line.errors.each do |error| %>
+            <% flash.now[:alert] = error.full_message%>
+            <% flash.each do |name, msg| %>
+              <%= content_tag :div, msg, class: name %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <table class="table bg-primary table-striped table-hover">
+        <tr>
+          <th><%= line.label :min %></th>
+          <th><%= line.label :max %></th>
+          <th><%= line.label :value %></th>
+        </tr>
+        <tr>
+          <td><%= line.number_field :min %></td>
+          <td><%= line.number_field :max %></td>
+          <td><%= line.number_field :value, step: :any  %></td>
+        </tr>
+      </table>
+      <p>
+        <%= line.submit 'Enviar', class: "btn bg-primary  btn-m" %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
