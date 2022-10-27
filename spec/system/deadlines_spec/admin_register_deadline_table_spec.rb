@@ -26,13 +26,11 @@ describe 'Usuário tenta cadastrar linha em tabela de prazos' do
         login_as(user)
         visit transport_modes_path
         click_on('mais informações')
-
-
+        
         # Assert
         expect(page).to have_field 'Distância Mínima'
         expect(page).to have_field 'Distância Máxima'
         expect(page).to have_field 'Tempo de Entrega'
-
     end
 
     it 'e adiciona a linha a uma tabela de Prazo vazia com sucesso' do

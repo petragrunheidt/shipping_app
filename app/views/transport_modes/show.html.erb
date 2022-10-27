@@ -1,232 +1,101 @@
-<h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
-
-<div class="bg-warning" id="error_explanation">
-  <% if !alert.nil? %>
-    <% if !(alert.class == String) %>
-      <% alert.each do |error| %>
-        <p><%= error %></p>
-
+<article>
+  <header>
+    <h1><%= @transport_mode.name %> <%= @transport_mode.active? ? '(Ativo)' : '(Inativo)' %></h1>
+    
+    <div class="bg-warning" id="error_explanation">
+      <% if !alert.nil? %>
+        <% if !(alert.class == String) %>
+          <% alert.each do |error| %>
+            <p><%= error %></p>
+    
+        <% end %>
+      <% end %>
     <% end %>
-  <% end %>
-<% end %>
-</div>
-
-<p>
-  <%= button_to @transport_mode.active? ? 'Desativar' : 'Ativar', @transport_mode.active? ? deactivate_transport_mode_url : activate_transport_mode_url, { method: 'patch', class: "btn btn-primary  btn-m"} if current_user.admin? %>
-</p>
-
-
-<h4>Tabela de informações de uso</h4>
-<table class="table bg-primary table-striped table-hover">
-
-<tr>
-    <th scope="col"></th>
-    <th scope="col">Carga Suportada</th>
-    <th scope="col">Faixa de Distâncias</th>
-
-</tr>
-
-<tr>
-    <td>Min</td>
-    <td ><%= @transport_mode.min_weight %>kg</td>
-    <td><%= @transport_mode.min_distance %>km</td>
-</tr>
-<tr>
-    <td>Max</td>
-    <td><%= @transport_mode.max_weight %>kg</td>
-    <td><%= @transport_mode.max_distance %>km</td>
-</tr>
-</table>
-<p><%= TransportMode.human_attribute_name('fixed_rate') %>: <%= number_to_currency(@transport_mode.fixed_rate, locale: 'pt-BR')%></p>
-<div style='inline-block'>
-<% if current_user.admin? %>
-<p>
-<%= link_to 'Editar Modo de Transporte', edit_transport_mode_url, {class: "btn btn-primary  btn-m"} %>
-</p>
-</div>
-
-<% end %>
-
-
-<div class="table" id="weight-table">
-<h2><%= WeightTable.model_name.human %></h2>
-<% if @weight_table.present? %>
-<table class="table bg-primary table-striped table-hover">
-<tr>
-    <th>Intervalo de pesos</th>
-    <th></th>
-    <th>Preço por kg</th>
-<% @weight_table.each do |line| %>
-</tr>
-<tr>
-    <td><%= line.min %>kg</td>
-    <td><%= line.max %>kg</td>
-    <td><%= number_to_currency(line.value, locale: 'pt-BR')  %></td>
-    <td><%= (link_to "Editar linha", "/transport_modes/#{@transport_mode.id}/weight_tables/#{line.id}/edit") if current_user.admin? %></td>
-</tr>
-<% end %>
-</table>
-<% else %>
-<h4>Nenhum dado cadastrado.</h4>
-<% end %>
-<% if current_user.admin == true %>
-
-<h4>Adicionar linha à <%= WeightTable.model_name.human %></h4>
-<%= form_with model: [@transport_mode, @weight_line] do |line| %>
-<% if @weight_line.errors.any? %>
-
-  <div class="table" id="error_explanation">
-    <h2>Todos os campos devem ser preenchidos</h2>
-    <div>
-      <% @weight_line.errors.each do |error| %>
-        <% flash.now[:alert] = error.full_message%>
-        <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: name %>
-
+    </div>
+  <header>
+  <main>
+    <p>
+      <% if current_user.admin? %>
+        <% if @transport_mode.active? %>
+          <%= button_to 'Desativar', deactivate_transport_mode_url, { method: 'patch', class: "btn btn-primary  btn-m"} %>
+        <% else %>
+          <%= button_to 'Ativar', activate_transport_mode_url, { method: 'patch', class: "btn btn-primary  btn-m"} %>
         <% end %>
-   </div>
-<% end %>
-  </div>
-<% end %>
-<table class="table bg-primary table-striped table-hover">
-<tr>
-<th><%= line.label :min %></th>
-<th><%= line.label :max %></th>
-<th><%= line.label :value %></th>
-
-</tr>
-<tr>
-<td><%= line.number_field :min %></td>
-<td><%= line.number_field :max %></td>
-<td><%= line.number_field :value, step: :any  %></td>
-
-</tr>
-</table>
-<p><%= line.submit 'Enviar', class: "btn bg-primary  btn-m" %></p>
-
-<% end %>
-<% end %>
-</div>
-
-<div class="table" id="distance-table">
-<h2><%= DistanceTable.model_name.human %></h2>
-<% if @distance_table.present? %>
-<table class="table bg-primary table-striped table-hover">
-<tr>
-    <th>Intervalo de Distâncias</th>
-    <th></th>
-    <th>Preço por faixa de km</th>
-<% @distance_table.each do |line| %>
-</tr>
-<tr>
-    <td><%= line.min %>km</td>
-    <td><%= line.max %>km</td>
-    <td><%= number_to_currency(line.value, locale: 'pt-BR')  %></td>
-    <td><%= link_to "Editar linha", "/transport_modes/#{@transport_mode.id}/distance_tables/#{line.id}/edit" if current_user.admin? %></td>
-</tr>
-<% end %>
-</table>
-<% else %>
-<h4>Nenhum dado cadastrado.</h4>
-<% end %>
-<% if current_user.admin == true %>
-<h4>Adicionar linha à <%= DistanceTable.model_name.human %></h4>
-<%= form_with model: [@transport_mode, @distance_line] do |line| %>
-
-<% if @distance_line.errors.any? %>
-
-  <div class="table" id="error_explanation">
-    <h2>Todos os campos devem ser preenchidos</h2>
-    <div>
-      <% @distance_line.errors.each do |error| %>
-        <% flash.now[:alert] = error.full_message%>
-        <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: name %>
-
+      <% end %>
+    </p>
+    
+    <section>
+      <h4>Tabela de informações de uso</h4>
+      <table class="table bg-primary table-striped table-hover">
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Carga Suportada</th>
+          <th scope="col">Faixa de Distâncias</th>
+        </tr>
+        <tr>
+          <td>Min</td>
+          <td ><%= @transport_mode.min_weight %>kg</td>
+          <td><%= @transport_mode.min_distance %>km</td>
+        </tr>
+        <tr>
+          <td>Max</td>
+          <td><%= @transport_mode.max_weight %>kg</td>
+          <td><%= @transport_mode.max_distance %>km</td>
+        </tr>
+      </table>
+      <p>
+        <%= TransportMode.human_attribute_name('fixed_rate') %>: <%= number_to_currency(@transport_mode.fixed_rate, locale: 'pt-BR') %>
+      </p>
+      <div style='inline-block'>
+        <% if current_user.admin? %>
+          <p>
+            <%= link_to 'Editar Modo de Transporte', edit_transport_mode_url, {class: "btn btn-primary  btn-m"} %>
+          </p>
         <% end %>
-   </div>
-<% end %>
-  </div>
-<% end %>
-<table class="table bg-primary table-striped table-hover">
-<tr>
-<th><%= line.label :min %></th>
-<th><%= line.label :max %></th>
-<th><%= line.label :value %></th>
-
-</tr>
-<tr>
-<td><%= line.number_field :min %></td>
-<td><%= line.number_field :max %></td>
-<td><%= line.number_field :value, step: :any %></td>
-
-</tr>
-</table>
-<p><%= line.submit 'Enviar', class: "btn bg-primary  btn-m" %></p>
-<% end %>
-<% end %>
-</div>
-
-
-<div class="table" id="deadline-table">
-<h2><%= Deadline.model_name.human %></h2>
-<% if @deadline.present? %>
-<table class="table bg-primary table-striped table-hover">
-<tr>
-    <th>Intervalo de Distâncias</th>
-    <th></th>
-    <th>Tempo de Entrega</th>
-<% @deadline.each do |line| %>
-</tr>
-<tr>
-    <td><%= line.min %>km</td>
-    <td><%= line.max %>km</td>
-    <td><%= line.time %>h</td>
-    <td><%= (link_to "Editar linha", "/transport_modes/#{@transport_mode.id}/deadlines/#{line.id}/edit") if current_user.admin? %></td>
-</tr>
-<% end %>
-</table>
-<% else %>
-<h4>Nenhum dado cadastrado.</h4>
-<% end %>
-<% if current_user.admin == true %>
-<h4>Adicionar linha à <%= Deadline.model_name.human %></h4>
-<%= form_with model: [@transport_mode, @deadline_line] do |line| %>
-
-<% if @deadline_line.errors.any? %>
-
-  <div class="table bg-primary" id="error_explanation">
-    <h2>Todos os campos devem ser preenchidos</h2>
-    <div>
-      <% @deadline_line.errors.each do |error| %>
-        <% flash.now[:alert] = error.full_message%>
-        <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, class: name %>
-
-        <% end %>
-   </div>
-<% end %>
-  </div>
-<% end %>
-<table class="table bg-primary table-striped table-hover">
-<tr>
-<th><%= line.label :min %></th>
-<th><%= line.label :max %></th>
-<th><%= line.label :time %></th>
-
-<tr>
-<td><%= line.number_field :min %></td>
-<td><%= line.number_field :max %></td>
-<td><%= line.number_field :time%></td>
-
-</tr>
-</table>
-<p><%= line.submit 'Enviar', class: "btn bg-primary  btn-m" %></p>
-
-<% end %>
-<% end %>
-</div>
-
-<%= link_to 'Voltar', transport_modes_path, class: "btn bg-primary  btn-m" %>
+      </div>
+    </section>
+    
+    <section id="price_tables">
+      <%= render partial: 'transport_modes/tables/table', locals: { 
+                                                                    table_model: WeightTable,
+                                                                    table: @weight_table, 
+                                                                    table_url: 'weight_tables',
+                                                                    line_type: @weight_line,
+                                                                    trans_mod: @transport_mode,
+                                                                    table_css: "weight-table",
+                                                                    interval: 'Intervalo de pesos',
+                                                                    unit: 'kg',
+                                                                    price_for: 'Preço por kg'
+                                                                  } %>
+    
+      <%= render partial: 'transport_modes/tables/table', locals: { 
+                                                                    table_model: DistanceTable,
+                                                                    table: @distance_table, 
+                                                                    table_url: 'distance_tables',
+                                                                    line_type: @distance_line,
+                                                                    trans_mod: @transport_mode,
+                                                                    table_css: "distance-table",
+                                                                    interval: 'Intervalo de Distâncias',
+                                                                    unit: 'km',
+                                                                    price_for: 'Preço por faixa de km'
+                                                                  } %>
+    
+      <%= render partial: 'transport_modes/tables/table', locals: { 
+                                                                    table_model: Deadline,
+                                                                    table: @deadline, 
+                                                                    table_url: 'deadlines',
+                                                                    line_type: @deadline_line,
+                                                                    trans_mod: @transport_mode,
+                                                                    table_css: "deadline-table",
+                                                                    interval: 'Intervalo de Distâncias',
+                                                                    unit: 'km',
+                                                                    price_for: 'Tempo de Entrega'
+                                                                  } %>
+    </section>
+  </main>
+  <footer>
+    <%= link_to 'Voltar', transport_modes_path, class: "btn bg-primary  btn-m" %>
+  </footer>
+</article>
 
 

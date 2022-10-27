@@ -1,0 +1,23 @@
+<table class="table bg-primary table-striped table-hover">
+  <tr>
+    <th><%= line.label :min %></th>
+    <th><%= line.label :max %></th>
+    <% if line_type.class != Deadline %>
+      <th><%= line.label :value %></th>
+    <% else %>
+      <th><%= line.label :time %></th>
+    <% end %>
+  </tr>
+  <tr>
+    <td><%= line.number_field :min %></td>
+    <td><%= line.number_field :max %></td>
+    <% if line_type.class != Deadline %>
+      <td><%= line.number_field :value, step: :any  %></td>
+    <% else %>
+      <td><%= line.number_field :time %></td>
+    <% end %>
+  </tr>
+</table>
+<p>
+  <%= line.submit 'Enviar', class: "btn bg-primary  btn-m" %>
+</p>

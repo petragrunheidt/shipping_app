@@ -1,0 +1,35 @@
+<div class="table" id=<%=table_css%>>
+  <h2><%= table_model.model_name.human %></h2>
+  <% if table.present? %>
+    <table class="table bg-primary table-striped table-hover">
+      <tr>
+        <th> <%= interval %> </th>
+        <th></th>
+        <th> <%= price_for %> </th>
+      </tr>
+      <% table.each do |line| %>
+        <tr>
+          <td><%= line.min %><%= unit %></td>
+          <td><%= line.max %><%= unit %></td>
+          <% if table_model == Deadline %>
+            <td><%= line.time %>h</td>
+          <% end %>
+          <% if table_model != Deadline %>
+            <td><%= number_to_currency(line.value, locale: 'pt-BR')  %></td>
+          <% end %>
+          <td><%= (link_to "Editar linha", "/transport_modes/#{trans_mod.id}/#{table_url}/#{line.id}/edit") if current_user.admin? %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% else %>
+    <h4>Nenhum dado cadastrado.</h4>
+  <% end %>
+
+  <% if current_user.admin? %>
+    <h4>Adicionar linha à <%= table_model.model_name.human %></h4>
+    <%= form_with model: [trans_mod, line_type] do |line| %>
+      <%= render 'transport_modes/tables/line_errors', line: line_type %>
+      <%= render partial: 'transport_modes/tables/new_line', locals: { line: line, line_type: line_type } %>
+    <% end %>
+  <% end %>
+</div>
