@@ -1,35 +1,62 @@
 # shipping_app
-Project workflow and planning available at: https://github.com/users/petragrunheidt/projects/1
+<h2> Configurações </h2>
 
-<h3>intructions:</h3>
+<ul>
+  <li> Versão do Ruby Utilizada: Ruby 3.0.4 </li>
+  <li> Versão do framework Rails: 7.0.4 </li>
+  <li> Versão do Node: 18.12.0 </li>
+  <li> Ferramenta para testes: Rspec </li>
+  <li> HTTP Web Server: Puma </li>
+  <li> Test driver: Capybara </li>
+</ul>
 
-<p>install ruby -v 3.0.4</p>
+<h2> Setup da aplicação </h2>
+<p></p>
+  Antes de inicializar a aplicação, rode o comando <code>bin/setup</code> para instalar todas as gems e dependências necessárias para o funcionamento adequado da aplicação.
+</p>
+<p>
+  Em seguida, você pode subir a aplicação utilizando o comando <code>rails s</code> no seu terminal, que permitirá o acesso no endereço <code>https://localhost:3000/</code>
+</p>
+<p>
+  Caso queira rodar todos os testes automatizados, utilize o comando <code>rspec</code>
+</p>
+<p>
+  É recomendado rodar o comando <code>rails db:seed</code> no seu terminal para popular o banco de dados com alguns models pré-cadastrados. Dessa forma, você terá acesso a dois logins de usuários, um comum e um administrador, na qual o administrador possui alguns acessos a mais do que o usuário comum. Ao clicar no botão <code>Fazer Login</code> localizado na barra de navegação da página inicial, você poderá utilizar as seguintes credenciais para se autenticar:
+</p>
 
-<p>Run the command:</p>
+<p>
+  <h3> Usuário comum </h3>
+    <ul>
+      <li> Email: qualquer@sistemadefrete.com.br </li>
+      <li> Senha: password </li>
+    </ul>
+</p>
 
-> bundle install
+<p>
+  <h3> Usuário administrador </h3>
+    <ul>
+      <li> Email: petra@sistemadefrete.com.br </li>
+      <li> Senha: password </li>
+    </ul>
+</p>
 
-<p>Then setup the database with:</p>
+<p>
+<h2> Specs do sistema </h2>
+  <h4> Gems utilizadas: </h4>
+  
+    * FactoryBot: 
+       Gem utilizada para automatizar o processo de população do banco de dados, simplificando as etapas de alguns testes e os deixando mais limpos.
 
-> rails db:migrate
+    * Devise:
+       Gem utilizada para gerenciar a autenticação dos usuários comuns e admins.
 
-<p>And populate with:</p>
+    * Bootstrap:
+       Gem utilizada para fazer o front-end e a estilização da aplicação.
 
-> rails db:seed
+    * Rubocop:
+       Linter utilizado para garantir que o código se enquadra em padrões de boas práticas.
 
-<p>Start the server with:</p>
-
-> rails server
-
-<p>Access with the project in a web browser with the localhost directory:</p>
-
-> http://localhost:3000/
-
-<p>admin_login:</p>
-<p>email: petra@sistemadefrete.com.br</p>
-<p>password: password</p>
-
-
-<p>regular_user_login:</p>
-<p>email: qualquer@sistemadefrete.com.br</p>
-<p>password: password</p>
+    * Simplecov:
+       Gem utilizada para garantir uma boa cobertura de testes automatizados durante o desenvolvimento
+       da aplicação. 
+</p>
