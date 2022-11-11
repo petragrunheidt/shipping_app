@@ -37,7 +37,7 @@ describe 'Usuário tenta editar Ordem de Serviço' do
         expect(page).to have_field 'Nome'
         expect(page).to have_field 'Email'
         expect(page).to have_field 'Distância Total'
-        expect(page).to have_field 'CPF/CNPJ'
+        expect(page).to have_field 'CPF'
     end
     it 'e faz a edição com sucesso' do
       # Arrange
@@ -58,7 +58,7 @@ describe 'Usuário tenta editar Ordem de Serviço' do
       fill_in 'Endereço de Entrega', with: 'Rua da Petra'
       fill_in 'Nome', with: 'Petra'
       fill_in 'Email', with: 'pez@mail.com'
-      fill_in 'CPF/CNPJ', with: '29102930491029'
+      fill_in 'CPF', with: '29102930491029'
       fill_in 'Distância Total', with: 80
       click_on 'Enviar'
 

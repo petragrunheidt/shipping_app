@@ -20,7 +20,7 @@ describe 'Administrador entra na pagina de cadastrar nova Ordem de Serviço' do
     expect(page).to have_field 'Nome'
     expect(page).to have_field 'Email'
     expect(page).to have_field 'Distância Total'
-    expect(page).to have_field 'CPF/CNPJ'
+    expect(page).to have_field 'CPF'
   end
   it 'e faz o cadastro com sucesso' do
     # Arrange
@@ -38,7 +38,7 @@ describe 'Administrador entra na pagina de cadastrar nova Ordem de Serviço' do
     fill_in 'Endereço de Entrega', with: 'Rua da Petra'
     fill_in 'Nome', with: 'Petra'
     fill_in 'Email', with: admin.email
-    fill_in 'CPF/CNPJ', with: '10293029304914'
+    fill_in 'CPF', with: '10293029304914'
     fill_in 'Distância Total', with: 80
     click_on 'Enviar'
 
@@ -70,7 +70,7 @@ describe 'Administrador entra na pagina de cadastrar nova Ordem de Serviço' do
     fill_in 'Endereço de Entrega', with: 'Rua da Petra'
     fill_in 'Nome', with: ''
     fill_in 'Email', with: ''
-    fill_in 'CPF/CNPJ', with: '10293049102934'
+    fill_in 'CPF', with: '10293049102934'
     fill_in 'Distância Total', with: 80
     click_on 'Enviar'
 
