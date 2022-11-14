@@ -24,7 +24,7 @@ pt-BR:
         name: 'Nome'
         email: 'Email'
         total_distance: 'Distância Total'
-        customer_id: 'CPF/CNPJ'
+        customer_id: 'CPF'
       order_start:
         order_date: 'Data do Pedido'
         transport_mode: 'Opções de Entrega'
