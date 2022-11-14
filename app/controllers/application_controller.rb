@@ -5,12 +5,11 @@ class ApplicationController < ActionController::Base
   private
 
   def check_admin
+    return if current_user.admin
 
-    if !current_user.admin
-      return redirect_to root_path, notice: "Acesso negado"
-    end
+    redirect_to root_path, notice: 'Acesso negado'
   end
-  
+
   protected
 
   def configure_permitted_parameters

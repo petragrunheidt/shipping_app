@@ -1,9 +1,7 @@
 class OrderEndsController < ApplicationController
-
   def new
     @order = Order.find(params[:order_id])
     @order_end = OrderEnd.new
-
   end
 
   def create
@@ -17,9 +15,9 @@ class OrderEndsController < ApplicationController
     if @order_end.save
       @order.delivered!
       @vehicle.available!
-      return redirect_to @order, notice: 'Ordem de Serviço Finalizada.'
+      redirect_to @order, notice: 'Ordem de Serviço Finalizada.'
     else
-      render:new
+      render :new
     end
   end
 end
