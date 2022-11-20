@@ -2,7 +2,7 @@
 <h2> Configurações </h2>
 
 <ul>
-  <li> Versão do Ruby Utilizada: Ruby 3.0.4 </li>
+  <li> Versão do Ruby Utilizada: Ruby 3.1.2 </li>
   <li> Versão do framework Rails: 7.0.4 </li>
   <li> Versão do Node: 18.12.0 </li>
   <li> Ferramenta para testes: Rspec </li>
